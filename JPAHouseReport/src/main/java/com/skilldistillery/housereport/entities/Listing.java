@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -38,95 +39,129 @@ public class Listing {
 	private Double propertyTax;
 	@Column(name = "parking_type")
 	private String parkingType;
-	
-	
+	@ManyToOne
+	@JoinColumn(name = "property_id")
+	private PropertyType propertyType;
+
 	@OneToOne
-	@JoinColumn(name="address_id")
+	@JoinColumn(name = "address_id")
 	private Address address;
-		
+
 	public Listing() {
 	}
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public Double getPrice() {
 		return price;
 	}
+
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+
 	public Integer getSquareFeet() {
 		return SquareFeet;
 	}
+
 	public void setSquareFeet(Integer squareFeet) {
 		SquareFeet = squareFeet;
 	}
+
 	public Integer getBedNumber() {
 		return BedNumber;
 	}
+
 	public void setBedNumber(Integer bedNumber) {
 		BedNumber = bedNumber;
 	}
+
 	public Integer getBathNumber() {
 		return BathNumber;
 	}
+
 	public void setBathNumber(Integer bathNumber) {
 		BathNumber = bathNumber;
 	}
+
 	public Double getPropertyCrimeRate() {
 		return propertyCrimeRate;
 	}
+
 	public void setPropertyCrimeRate(Double propertyCrimeRate) {
 		this.propertyCrimeRate = propertyCrimeRate;
 	}
+
 	public Double getViolentCrimeRate() {
 		return violentCrimeRate;
 	}
+
 	public void setViolentCrimeRate(Double violentCrimeRate) {
 		this.violentCrimeRate = violentCrimeRate;
 	}
+
 	public Double getHoaMonthlyRate() {
 		return hoaMonthlyRate;
 	}
+
 	public void setHoaMonthlyRate(Double hoaMonthlyRate) {
 		this.hoaMonthlyRate = hoaMonthlyRate;
 	}
+
 	public LocalDateTime getCreatedOn() {
 		return createdOn;
 	}
+
 	public void setCreatedOn(LocalDateTime createdOn) {
 		this.createdOn = createdOn;
 	}
+
 	public Integer getYearBuilt() {
 		return yearBuilt;
 	}
+
 	public void setYearBuilt(Integer yearBuilt) {
 		this.yearBuilt = yearBuilt;
 	}
+
 	public Integer getLotSizeSqft() {
 		return lotSizeSqft;
 	}
+
 	public void setLotSizeSqft(Integer lotSizeSqft) {
 		this.lotSizeSqft = lotSizeSqft;
 	}
+
 	public Double getPropertyTax() {
 		return propertyTax;
 	}
+
 	public void setPropertyTax(Double propertyTax) {
 		this.propertyTax = propertyTax;
 	}
+
 	public String getParkingType() {
 		return parkingType;
 	}
+
 	public void setParkingType(String parkingType) {
 		this.parkingType = parkingType;
 	}
-	
-	
+
+	public PropertyType getPropertyType() {
+		return propertyType;
+	}
+
+	public void setPropertyType(PropertyType propertyType) {
+		this.propertyType = propertyType;
+	}
+
 	public Address getAddress() {
 		return address;
 	}
@@ -141,7 +176,7 @@ public class Listing {
 				+ ", BathNumber=" + BathNumber + ", propertyCrimeRate=" + propertyCrimeRate + ", violentCrimeRate="
 				+ violentCrimeRate + ", hoaMonthlyRate=" + hoaMonthlyRate + ", createdOn=" + createdOn + ", yearBuilt="
 				+ yearBuilt + ", lotSizeSqft=" + lotSizeSqft + ", propertyTax=" + propertyTax + ", parkingType="
-				+ parkingType + "]";
+				+ parkingType + ", propertyType=" + propertyType + ", address=" + address + "]";
 	}
 
 	@Override
