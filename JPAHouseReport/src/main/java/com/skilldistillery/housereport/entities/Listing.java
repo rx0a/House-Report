@@ -56,6 +56,7 @@ public class Listing {
 
 	@ManyToMany(mappedBy = "listings")
 	private List<Event> events;
+	
 	@OneToOne(mappedBy = "listing")
 	private Rating rating;
 	
