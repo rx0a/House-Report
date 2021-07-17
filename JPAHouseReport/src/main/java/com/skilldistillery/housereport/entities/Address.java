@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Address {
@@ -22,6 +23,12 @@ public class Address {
 	private String state;
 	@Column(name="postal_code")
 	private String postalCode;
+	
+	@OneToOne(mappedBy="address")
+	private Listing listing;
+	
+	public Address() {}
+	
 	public int getId() {
 		return id;
 	}
@@ -58,6 +65,16 @@ public class Address {
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
+	
+	
+	public Listing getListing() {
+		return listing;
+	}
+
+	public void setListing(Listing listing) {
+		this.listing = listing;
+	}
+
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", city=" + city + ", state="

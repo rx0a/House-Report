@@ -52,5 +52,12 @@ class AddressTest {
 		assertEquals("80218", address.getPostalCode());
 		
 	}
+	
+	@Test
+	@DisplayName("Testing address-listing mapping")
+	void test2() {
+		assertNotNull(address.getListing());
+		assertEquals("2-Car Garage", address.getListing().getParkingType());
+	}
 }
 	

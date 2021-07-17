@@ -47,5 +47,11 @@ class ListingTest {
 		assertNotNull(listing);
 		assertEquals(1890, listing.getYearBuilt());
 	}
+	
+	@Test
+	void test_listing_address_association() {
+		assertNotNull(listing.getAddress());
+		assertEquals("Denver", listing.getAddress().getCity());
+	}
 
 }

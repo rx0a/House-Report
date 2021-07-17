@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Listing {
@@ -36,6 +38,11 @@ public class Listing {
 	private Double propertyTax;
 	@Column(name = "parking_type")
 	private String parkingType;
+	
+	
+	@OneToOne
+	@JoinColumn(name="address_id")
+	private Address address;
 		
 	public Listing() {
 	}
@@ -118,6 +125,16 @@ public class Listing {
 	public void setParkingType(String parkingType) {
 		this.parkingType = parkingType;
 	}
+	
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
 		return "Listing [id=" + id + ", price=" + price + ", SquareFeet=" + SquareFeet + ", BedNumber=" + BedNumber

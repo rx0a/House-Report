@@ -6,9 +6,9 @@
     </provider>
     
  		 <class>com.skilldistillery.housereport.entities.Address</class>
-        <!-- <class>com.skilldistillery.housereport.entities.Event</class>
+        <class>com.skilldistillery.housereport.entities.Event</class>
         <class>com.skilldistillery.housereport.entities.Listing</class>
-        <class>com.skilldistillery.housereport.entities.Rating</class>
+     <!--    <class>com.skilldistillery.housereport.entities.Rating</class>
         <class>com.skilldistillery.housereport.entities.PropertyType</class>  -->
         <class>com.skilldistillery.housereport.entities.ListingPhoto</class>
         <class>com.skilldistillery.housereport.entities.User</class>
