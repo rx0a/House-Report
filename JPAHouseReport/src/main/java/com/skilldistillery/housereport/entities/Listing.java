@@ -51,6 +51,8 @@ public class Listing {
 	
 	@ManyToMany(mappedBy="listings")
 	private List<Event> events;
+	@OneToOne(mappedBy="listing")
+	private Rating rating;
 		
 	public Listing() {
 	}
@@ -183,6 +185,15 @@ public class Listing {
 
 	public void setEvents(List<Event> events) {
 		this.events = events;
+	}
+	
+
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
 	}
 
 	@Override

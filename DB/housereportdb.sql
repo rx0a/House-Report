@@ -299,11 +299,31 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `favorite`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `housereportdb`;
+INSERT INTO `favorite` (`listing_id`, `user_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `comment`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `housereportdb`;
 INSERT INTO `comment` (`id`, `comment`, `comment_date`, `user_id`, `listing_id`) VALUES (1, '6th avenue nearby has a lot of sketchballs walking around', '2021-06-16 20:46:55', 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `listing_event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `housereportdb`;
+INSERT INTO `listing_event` (`listing_id`, `event_id`) VALUES (1, 1);
 
 COMMIT;
 
