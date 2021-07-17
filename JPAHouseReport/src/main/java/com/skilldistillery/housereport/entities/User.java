@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -29,6 +32,13 @@ public class User {
 	private List<Comment> comments;
 	@OneToMany(mappedBy = "user")
 	private List<Rating> ratings;
+	
+	@ManyToMany
+	@JoinTable(name="favorite", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="listing_id"))
+	private List<Listing> favorites;
+	
+	@OneToMany(mappedBy="user")
+	private List<Listing> listings;
 
 	public User() {
 	}
@@ -121,6 +131,38 @@ public class User {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+
+
+	public List<Listing> getFavorites() {
+		return favorites;
+	}
+
+
+	public void setFavorites(List<Listing> favorites) {
+		this.favorites = favorites;
+	}
+
+	
+
+	public List<Listing> getListings() {
+		return listings;
+	}
+
+
+	public void setListings(List<Listing> listings) {
+		this.listings = listings;
 	}
 
 

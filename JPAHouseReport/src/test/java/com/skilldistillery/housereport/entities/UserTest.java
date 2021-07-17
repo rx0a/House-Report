@@ -53,5 +53,16 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals(16, user.getComments().get(0).getCommentDate().getDayOfMonth());
 	}
+	
+	@Test
+	void test_user_mapped_listing_favorites() {
+		assertNotNull(user.getFavorites());
+		assertEquals(1, user.getFavorites().size());
+	}
 
+	@Test
+	void test_user_mapped_listings() {
+		assertNotNull(user.getListings());
+		assertEquals(1, user.getListings().size());
+	}
 }

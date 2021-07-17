@@ -71,4 +71,16 @@ class ListingTest {
 		assertNotNull(listing.getRating());
 		assertTrue(listing.getRating().isRating());
 	}
+
+	@Test
+	void test_listing_mapped_favorites() {
+		assertNotNull(listing.getFavoriteUsers());
+		assertEquals(1, listing.getFavoriteUsers().size());
+	}
+
+	@Test
+	void test_listing_mapped_user() {
+		assertNotNull(listing.getUser());
+		assertEquals("admin", listing.getUser().getUsername());
+	}
 }

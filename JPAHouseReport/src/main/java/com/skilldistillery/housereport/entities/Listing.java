@@ -53,6 +53,13 @@ public class Listing {
 	private List<Event> events;
 	@OneToOne(mappedBy="listing")
 	private Rating rating;
+	
+	@ManyToMany(mappedBy="favorites")
+	private List<User> favoriteUsers;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 		
 	public Listing() {
 	}
@@ -194,6 +201,26 @@ public class Listing {
 
 	public void setRating(Rating rating) {
 		this.rating = rating;
+	}
+
+	
+
+
+	public List<User> getFavoriteUsers() {
+		return favoriteUsers;
+	}
+
+	public void setFavoriteUsers(List<User> favoriteUsers) {
+		this.favoriteUsers = favoriteUsers;
+	}
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
