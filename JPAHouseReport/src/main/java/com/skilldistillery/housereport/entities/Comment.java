@@ -29,9 +29,21 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name="listing_id")
 	private Listing listing;
+	
+	
+//	Constructors Below:
 
 	public Comment() {
 	}
+	
+	public Comment(String comment, LocalDateTime commentDate, User user, Listing listing) {
+	super();
+	this.comment = comment;
+	this.commentDate = commentDate;
+	this.user = user;
+	this.listing = listing;
+}
+
 
 	public int getId() {
 		return id;

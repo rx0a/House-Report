@@ -43,6 +43,7 @@ public class Listing {
 	@Column(name = "parking_type")
 	private String parkingType;
 
+
 	@OneToMany(mappedBy="listing")
 	private List<Comment> comments;
 
@@ -73,19 +74,14 @@ public class Listing {
 	public Listing() {
 	}
 
-	
-
 	public List<Comment> getComments() {
 		return comments;
 	}
 
 
-
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-
-
 
 	public int getId() {
 		return id;
