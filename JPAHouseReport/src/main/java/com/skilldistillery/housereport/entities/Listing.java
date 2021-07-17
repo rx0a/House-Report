@@ -41,6 +41,11 @@ public class Listing {
 	private Double propertyTax;
 	@Column(name = "parking_type")
 	private String parkingType;
+
+	@ManyToOne
+	@JoinColumn(name = "listing_id")
+	private Comment comment;
+
 	@ManyToOne
 	@JoinColumn(name = "property_id")
 	private PropertyType propertyType;
@@ -48,13 +53,21 @@ public class Listing {
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-	
-	@ManyToMany(mappedBy="listings")
+
+	@ManyToMany(mappedBy = "listings")
 	private List<Event> events;
-	@OneToOne(mappedBy="listing")
+	@OneToOne(mappedBy = "listing")
 	private Rating rating;
-		
+
 	public Listing() {
+	}
+
+	public Comment getComment() {
+		return comment;
+	}
+
+	public void setComment(Comment comment) {
+		this.comment = comment;
 	}
 
 	public int getId() {
@@ -176,8 +189,6 @@ public class Listing {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
-	
 
 	public List<Event> getEvents() {
 		return events;
@@ -186,7 +197,6 @@ public class Listing {
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
-	
 
 	public Rating getRating() {
 		return rating;
