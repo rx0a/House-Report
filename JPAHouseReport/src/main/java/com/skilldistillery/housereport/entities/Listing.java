@@ -43,9 +43,9 @@ public class Listing {
 	@Column(name = "parking_type")
 	private String parkingType;
 
-	@ManyToOne
-	@JoinColumn(name = "listing_id")
-	private Comment comment;
+//	@ManyToOne
+//	@JoinColumn(name = "listing_id")
+//	private Comment comment;
 
 	@ManyToOne
 	@JoinColumn(name = "property_id")
@@ -73,13 +73,13 @@ public class Listing {
 	public Listing() {
 	}
 
-	public Comment getComment() {
-		return comment;
-	}
-
-	public void setComment(Comment comment) {
-		this.comment = comment;
-	}
+//	public Comment getComment() {
+//		return comment;
+//	}
+//
+//	public void setComment(Comment comment) {
+//		this.comment = comment;
+//	}
 
 	public int getId() {
 		return id;
