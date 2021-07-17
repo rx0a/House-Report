@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -58,7 +59,14 @@ public class Listing {
 	private List<Event> events;
 	@OneToOne(mappedBy = "listing")
 	private Rating rating;
+<<<<<<< HEAD
 
+=======
+	
+	@OneToMany(mappedBy = "listing")
+	private List<ListingPhoto> listingPhotos;
+		
+>>>>>>> 369a41d6a4fc1838fe939f507e0e5dfae6641c6a
 	public Listing() {
 	}
 
@@ -188,6 +196,14 @@ public class Listing {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public List<ListingPhoto> getListingPhotos() {
+		return listingPhotos;
+	}
+
+	public void setListingPhotos(List<ListingPhoto> listingPhotos) {
+		this.listingPhotos = listingPhotos;
 	}
 
 	public List<Event> getEvents() {

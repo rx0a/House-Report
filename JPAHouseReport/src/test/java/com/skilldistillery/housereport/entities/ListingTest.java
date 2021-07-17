@@ -78,4 +78,9 @@ class ListingTest {
 		assertNotNull(listing);
 		assertEquals("6th avenue nearby has a lot of sketchballs walking around", listing.getComment());
 	}
+	@Test
+	void test_listing_mapped_to_listingphoto() {
+		assertNotNull(listing);
+		assertEquals("https://www.zillow.com/homedetails/595-N-Gilpin-St-Denver-CO-80218/13345693_zpid/?mmlb=g,0",listing.getListingPhotos().get(0).getImgUrl());
+	}
 }
