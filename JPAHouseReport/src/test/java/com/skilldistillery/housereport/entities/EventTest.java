@@ -43,7 +43,7 @@ class EventTest {
 	}
 
 	@Test
-	@DisplayName("Testing address field")
+	@DisplayName("testing event date")
 	void test() {
 		assertNotNull(event);
 		assertEquals("Hail Storm", event.getEventType());

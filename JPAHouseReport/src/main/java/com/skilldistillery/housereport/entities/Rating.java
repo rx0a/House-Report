@@ -12,6 +12,9 @@ public class Rating {
 	private RatingId id;
 	@Column(name="rating")
 	private boolean rating;
+	
+	public Rating() {}
+	
 	public RatingId getId() {
 		return id;
 	}
@@ -28,6 +31,7 @@ public class Rating {
 	public String toString() {
 		return "Rating [id=" + id + ", rating=" + rating + "]";
 	}
+
 	
 	
 
