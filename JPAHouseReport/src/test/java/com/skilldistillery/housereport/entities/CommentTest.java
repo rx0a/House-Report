@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class CommentTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Comment comment;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,26 +32,26 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		comment = em.find(Comment.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		comment = null;
 	}
 
 	@Test
-	void test_user_mapped_toDB() {
+	void test_comment_mapped_toDB() {
 
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+		assertNotNull(comment);
+		assertEquals("6th avenue nearby has a lot of sketchballs walking around", comment.getComment());
 	}
 	@Test
-	void test_user_mapped_comment() {
+	void test_comment_mapped_to_user() {
 
-		assertNotNull(user);
-		assertEquals(16, user.getComments().get(0).getCommentDate().getDayOfMonth());
+		assertNotNull(comment);
+		assertEquals("admin", comment.getUser().getUsername());
 	}
 
 }

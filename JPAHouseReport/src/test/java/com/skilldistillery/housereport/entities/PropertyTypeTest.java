@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class PropertyTypeTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private PropertyType propertyType;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,26 +32,20 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		propertyType = em.find(PropertyType.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		propertyType = null;
 	}
 
 	@Test
-	void test_user_mapped_toDB() {
+	void test_propertyType_mapped_toDB() {
 
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
-	}
-	@Test
-	void test_user_mapped_comment() {
-
-		assertNotNull(user);
-		assertEquals(16, user.getComments().get(0).getCommentDate().getDayOfMonth());
+		assertNotNull(propertyType);
+		assertEquals(1, propertyType.getId());
 	}
 
 }

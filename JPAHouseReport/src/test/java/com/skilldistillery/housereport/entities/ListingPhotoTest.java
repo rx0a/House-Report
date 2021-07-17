@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class ListingPhotoTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private ListingPhoto photo;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,26 +32,20 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		photo = em.find(ListingPhoto.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		photo = null;
 	}
 
 	@Test
-	void test_user_mapped_toDB() {
+	void test_photo_mapped_toDB() {
 
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
-	}
-	@Test
-	void test_user_mapped_comment() {
-
-		assertNotNull(user);
-		assertEquals(16, user.getComments().get(0).getCommentDate().getDayOfMonth());
+		assertNotNull(photo);
+		assertEquals("https://www.zillow.com/homedetails/595-N-Gilpin-St-Denver-CO-80218/13345693_zpid/?mmlb=g,0", photo.getImgUrl());
 	}
 
 }

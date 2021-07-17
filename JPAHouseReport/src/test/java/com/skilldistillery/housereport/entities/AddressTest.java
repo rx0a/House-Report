@@ -2,6 +2,7 @@ package com.skilldistillery.housereport.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,13 +12,13 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
-
+class AddressTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Address address;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,26 +33,31 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		address = em.find(Address.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		address = null;
 	}
 
 	@Test
-	void test_user_mapped_toDB() {
-
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+	@DisplayName("Testing address field")
+	void test() {
+		assertNotNull(address);
+		assertEquals("595 N Gilpin St", address.getStreet());
+		assertEquals("Denver", address.getCity());
+		assertEquals("Colorado", address.getState());
+		assertEquals("80218", address.getPostalCode());
+		
 	}
+	
 	@Test
-	void test_user_mapped_comment() {
-
-		assertNotNull(user);
-		assertEquals(16, user.getComments().get(0).getCommentDate().getDayOfMonth());
+	@DisplayName("Testing address-listing mapping")
+	void test2() {
+		assertNotNull(address.getListing());
+		assertEquals("2-Car Garage", address.getListing().getParkingType());
 	}
-
 }
+	

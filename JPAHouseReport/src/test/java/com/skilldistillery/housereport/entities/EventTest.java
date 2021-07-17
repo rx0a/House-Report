@@ -1,7 +1,8 @@
 package com.skilldistillery.housereport.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Calendar;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,13 +12,13 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
-
+class EventTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Event event;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,26 +33,24 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		event = em.find(Event.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		event = null;
 	}
 
 	@Test
-	void test_user_mapped_toDB() {
-
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+	@DisplayName("testing event date")
+	void test() {
+		assertNotNull(event);
+		assertEquals("Hail Storm", event.getEventType());
+		assertEquals(2012, event.getEventDate().getYear());
+		assertEquals(05, event.getEventDate().getMonthValue());
+		assertEquals(21, event.getEventDate().getDayOfMonth());
+		
+		
 	}
-	@Test
-	void test_user_mapped_comment() {
-
-		assertNotNull(user);
-		assertEquals(16, user.getComments().get(0).getCommentDate().getDayOfMonth());
-	}
-
 }
