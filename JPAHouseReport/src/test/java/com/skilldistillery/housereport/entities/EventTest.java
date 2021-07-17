@@ -56,6 +56,6 @@ class EventTest {
 	@DisplayName("Testing event listing mapping")
 	void test2() {
 		assertNotNull(event.getListings());
-//		assertEquals(1, event.getListings().size());
+		assertEquals(1, event.getListings().size());
 	}
 }
