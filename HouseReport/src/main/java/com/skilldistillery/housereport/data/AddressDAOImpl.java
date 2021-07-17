@@ -36,7 +36,7 @@ public class AddressDAOImpl implements AddressDAO {
 	
 	@Override
 	public List<Address> findByCity(String city) {
-		String jpql = "SELECT a FROM address a WHERE a.street LIKE :street AND a.street2 LIKE :street2 AND a.city LIKE :city AND a.state LIKE :state AND a.postalCode LIKE :postalCode";
+		String jpql = "SELECT a FROM address a WHERE a.city LIKE :city";
 		List<Address> addresses = em.createQuery(jpql, Address.class)
 			.setParameter("city", city)
 			.getResultList();
