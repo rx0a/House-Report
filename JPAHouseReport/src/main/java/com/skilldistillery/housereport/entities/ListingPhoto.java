@@ -1,26 +1,23 @@
 package com.skilldistillery.housereport.entities;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Comment {
-
+@Table(name="listing_photo")
+public class ListingPhoto {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	private String comment;
-	
-	@Column(name="comment_date")
-	private LocalDateTime commentDate;
-	
-	public Comment () {}
+	@Column(name="img_url")
+	private String imgUrl;
+
+	public ListingPhoto() {}
 
 	public int getId() {
 		return id;
@@ -30,25 +27,17 @@ public class Comment {
 		this.id = id;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getImgUrl() {
+		return imgUrl;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-	public LocalDateTime getCommentDate() {
-		return commentDate;
-	}
-
-	public void setCommentDate(LocalDateTime commentDate) {
-		this.commentDate = commentDate;
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", comment=" + comment + ", commentDate=" + commentDate + "]";
+		return "ListingPhoto [id=" + id + ", imgUrl=" + imgUrl + "]";
 	}
 
 	@Override
@@ -67,7 +56,7 @@ public class Comment {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Comment other = (Comment) obj;
+		ListingPhoto other = (ListingPhoto) obj;
 		if (id != other.id)
 			return false;
 		return true;
