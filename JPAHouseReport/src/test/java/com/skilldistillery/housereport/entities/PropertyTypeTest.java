@@ -47,5 +47,12 @@ class PropertyTypeTest {
 		assertNotNull(propertyType);
 		assertEquals(1, propertyType.getId());
 	}
+	
+	@Test
+	void test_propertyType_mapped_to_listing() {
+
+		assertNotNull(propertyType);
+		assertEquals(3438, propertyType.getListings().get(0).getSquareFeet());
+	}
 
 }
