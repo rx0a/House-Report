@@ -49,8 +49,13 @@ class EventTest {
 		assertEquals("Hail Storm", event.getEventType());
 		assertEquals(2012, event.getEventDate().getYear());
 		assertEquals(05, event.getEventDate().getMonthValue());
-		assertEquals(21, event.getEventDate().getDayOfMonth());
-		
-		
+		assertEquals(21, event.getEventDate().getDayOfMonth());	
+	}
+	
+	@Test
+	@DisplayName("Testing event listing mapping")
+	void test2() {
+		assertNotNull(event.getListings());
+//		assertEquals(1, event.getListings().size());
 	}
 }

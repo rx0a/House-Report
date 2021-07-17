@@ -1,6 +1,7 @@
 package com.skilldistillery.housereport.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -43,7 +45,11 @@ public class Listing {
 	@OneToOne
 	@JoinColumn(name="address_id")
 	private Address address;
+	
+	@ManyToMany(mappedBy="listings")
+	private List<Event> events;
 		
+	
 	public Listing() {
 	}
 	
@@ -133,6 +139,16 @@ public class Listing {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	
+	
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 
 	@Override
