@@ -62,6 +62,6 @@ class ListingTest {
 	@Test
 	void test_listing_events_association() {
 		assertNotNull(listing.getEvents());
-//		assertEquals(1, listing.getEvents().size());
+		assertEquals(1, listing.getEvents().size());
 	}
 }

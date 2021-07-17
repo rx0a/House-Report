@@ -23,7 +23,7 @@ public class Event {
 	private LocalDateTime eventDate;
 	
 	@ManyToMany
-	@JoinTable(name="listing_event", joinColumns=@JoinColumn(name="events_id"), inverseJoinColumns=@JoinColumn(name="listing_id"))
+	@JoinTable(name="listing_event", joinColumns=@JoinColumn(name="event_id"), inverseJoinColumns=@JoinColumn(name="listing_id"))
 	private List<Listing> listings;
 	
 	public Event() {}
