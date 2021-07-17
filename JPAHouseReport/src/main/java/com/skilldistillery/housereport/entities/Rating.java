@@ -3,6 +3,9 @@ package com.skilldistillery.housereport.entities;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +15,12 @@ public class Rating {
 	private RatingId id;
 	@Column(name="rating")
 	private boolean rating;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	@OneToOne
+	@JoinColumn(name="listing_id")
+	private Listing listing;
 	
 	public Rating() {}
 	
