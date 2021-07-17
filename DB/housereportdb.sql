@@ -177,9 +177,9 @@ DROP TABLE IF EXISTS `listing_event` ;
 
 CREATE TABLE IF NOT EXISTS `listing_event` (
   `listing_id` INT NOT NULL,
-  `events_id` INT NOT NULL,
-  PRIMARY KEY (`listing_id`, `events_id`),
-  INDEX `fk_property_has_events_events1_idx` (`events_id` ASC),
+  `event_id` INT NOT NULL,
+  PRIMARY KEY (`listing_id`, `event_id`),
+  INDEX `fk_property_has_events_events1_idx` (`event_id` ASC),
   INDEX `fk_property_has_events_property1_idx` (`listing_id` ASC),
   CONSTRAINT `fk_property_has_events_property1`
     FOREIGN KEY (`listing_id`)
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `listing_event` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_property_has_events_events1`
-    FOREIGN KEY (`events_id`)
+    FOREIGN KEY (`event_id`)
     REFERENCES `event` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
