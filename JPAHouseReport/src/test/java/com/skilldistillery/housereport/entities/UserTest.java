@@ -18,11 +18,10 @@ class UserTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	private User user;
-	
-	
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		 emf = Persistence.createEntityManagerFactory("JPAHouseReport");
+		emf = Persistence.createEntityManagerFactory("JPAHouseReport");
 	}
 
 	@AfterAll
@@ -32,8 +31,8 @@ class UserTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		 em = emf.createEntityManager();
-		 user = em.find(User.class, 1);
+		em = emf.createEntityManager();
+		user = em.find(User.class, 1);
 	}
 
 	@AfterEach
@@ -42,12 +41,11 @@ class UserTest {
 		user = null;
 	}
 
-	
 	@Test
 	void test_user_mapped_toDB() {
-		
+
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
-}
+	}
 
 }
