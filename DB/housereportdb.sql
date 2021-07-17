@@ -309,6 +309,16 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `rating`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `housereportdb`;
+INSERT INTO `rating` (`listing_id`, `user_id`, `rating`) VALUES (1, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `listing_photo`
 -- -----------------------------------------------------
 START TRANSACTION;
