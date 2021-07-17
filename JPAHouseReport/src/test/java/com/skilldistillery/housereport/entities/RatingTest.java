@@ -18,6 +18,7 @@ class RatingTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	private Rating rating;
+	private RatingId rid;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,7 +34,7 @@ class RatingTest {
 	void setUp() throws Exception {
 		
 		em = emf.createEntityManager();
-		RatingId rid = new RatingId();
+		rid = new RatingId();
 		rid.setListingId(1);;
 		rid.setUserId(1);;
 		rating = em.find(Rating.class, rid);
@@ -44,6 +45,8 @@ class RatingTest {
 
 	@AfterEach
 	void tearDown() throws Exception {
+		rating = null;
+		rid = null;
 		em.close();
 	}
 
