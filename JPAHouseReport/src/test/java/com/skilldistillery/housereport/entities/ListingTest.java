@@ -2,6 +2,7 @@ package com.skilldistillery.housereport.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -63,5 +64,11 @@ class ListingTest {
 	void test_listing_events_association() {
 		assertNotNull(listing.getEvents());
 		assertEquals(1, listing.getEvents().size());
+	}
+	
+	@Test
+	void test_listing_mapped_rating() {
+		assertNotNull(listing.getRating());
+		assertTrue(listing.getRating().isRating());
 	}
 }
