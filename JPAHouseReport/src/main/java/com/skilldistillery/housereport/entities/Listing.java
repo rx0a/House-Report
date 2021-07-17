@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -41,6 +42,11 @@ public class Listing {
 	private Double propertyTax;
 	@Column(name = "parking_type")
 	private String parkingType;
+
+	@ManyToOne
+	@JoinColumn(name = "listing_id")
+	private Comment comment;
+
 	@ManyToOne
 	@JoinColumn(name = "property_id")
 	private PropertyType propertyType;
@@ -48,10 +54,10 @@ public class Listing {
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-	
-	@ManyToMany(mappedBy="listings")
+
+	@ManyToMany(mappedBy = "listings")
 	private List<Event> events;
-	@OneToOne(mappedBy="listing")
+	@OneToOne(mappedBy = "listing")
 	private Rating rating;
 	
 	@ManyToMany(mappedBy="favorites")
@@ -60,8 +66,19 @@ public class Listing {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
-		
+	
+	@OneToMany(mappedBy = "listing")
+	private List<ListingPhoto> listingPhotos;
+
 	public Listing() {
+	}
+
+	public Comment getComment() {
+		return comment;
+	}
+
+	public void setComment(Comment comment) {
+		this.comment = comment;
 	}
 
 	public int getId() {
@@ -183,8 +200,14 @@ public class Listing {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
-	
+
+	public List<ListingPhoto> getListingPhotos() {
+		return listingPhotos;
+	}
+
+	public void setListingPhotos(List<ListingPhoto> listingPhotos) {
+		this.listingPhotos = listingPhotos;
+	}
 
 	public List<Event> getEvents() {
 		return events;
@@ -193,7 +216,6 @@ public class Listing {
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
-	
 
 	public Rating getRating() {
 		return rating;

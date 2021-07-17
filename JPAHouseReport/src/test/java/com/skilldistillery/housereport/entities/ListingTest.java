@@ -41,35 +41,47 @@ class ListingTest {
 		em.close();
 		listing = null;
 	}
+//
+//	@Test
+//	void test_listing_mapped_toDB() {
+//
+//		assertNotNull(listing);
+//		assertEquals(1890, listing.getYearBuilt());
+//	}
+//
+//	@Test
+//	void test_listing_address_association() {
+//		assertNotNull(listing.getAddress());
+//		assertEquals("Denver", listing.getAddress().getCity());
+//	}
+//
+//	@Test
+//	void test_listing_to_propertyType_mappings() {
+//		assertNotNull(listing);
+//		assertEquals("Two-Story House - with Basement", listing.getPropertyType().getType());
+//	}
+//
+//	@Test
+//	void test_listing_events_association() {
+//		assertNotNull(listing.getEvents());
+//		assertEquals(1, listing.getEvents().size());
+//	}
+//
+//	@Test
+//	void test_listing_mapped_rating() {
+//		assertNotNull(listing.getRating());
+//		assertTrue(listing.getRating().isRating());
+//	}
 
 	@Test
-	void test_listing_mapped_toDB() {
-
+	void test_listing_to_comment_mappings() {
 		assertNotNull(listing);
-		assertEquals(1890, listing.getYearBuilt());
-	}
-	
-	@Test
-	void test_listing_address_association() {
-		assertNotNull(listing.getAddress());
-		assertEquals("Denver", listing.getAddress().getCity());
+		assertEquals("6th avenue nearby has a lot of sketchballs walking around", listing.getComment());
 	}
 	@Test
-	void test_listing_to_propertyType_mappings() {
+	void test_listing_mapped_to_listingphoto() {
 		assertNotNull(listing);
-		assertEquals("Two-Story House - with Basement", listing.getPropertyType().getType());
-	}
-
-	@Test
-	void test_listing_events_association() {
-		assertNotNull(listing.getEvents());
-		assertEquals(1, listing.getEvents().size());
-	}
-	
-	@Test
-	void test_listing_mapped_rating() {
-		assertNotNull(listing.getRating());
-		assertTrue(listing.getRating().isRating());
+		assertEquals("https://www.zillow.com/homedetails/595-N-Gilpin-St-Denver-CO-80218/13345693_zpid/?mmlb=g,0",listing.getListingPhotos().get(0).getImgUrl());
 	}
 
 	@Test

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +18,10 @@ public class ListingPhoto {
 	private int id;
 	@Column(name="img_url")
 	private String imgUrl;
+	
+	@ManyToOne
+	@JoinColumn(name = "listing_id")
+	private Listing listing;
 
 	public ListingPhoto() {}
 
@@ -33,6 +39,15 @@ public class ListingPhoto {
 
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
+	}
+	
+
+	public Listing getListing() {
+		return listing;
+	}
+
+	public void setListing(Listing listing) {
+		this.listing = listing;
 	}
 
 	@Override
