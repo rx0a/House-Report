@@ -47,5 +47,11 @@ class CommentTest {
 		assertNotNull(comment);
 		assertEquals("6th avenue nearby has a lot of sketchballs walking around", comment.getComment());
 	}
+	@Test
+	void test_comment_mapped_to_user() {
+
+		assertNotNull(comment);
+		assertEquals("admin", comment.getUser().getUsername());
+	}
 
 }

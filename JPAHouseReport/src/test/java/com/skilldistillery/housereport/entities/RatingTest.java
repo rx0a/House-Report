@@ -1,8 +1,7 @@
 package com.skilldistillery.housereport.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Calendar;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,10 +14,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class EventTest {
+class RatingTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Event event;
+	private Rating rating;
+	private RatingId rid;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,30 +32,29 @@ class EventTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		
 		em = emf.createEntityManager();
-		event = em.find(Event.class, 1);
+		rid = new RatingId();
+		rid.setListingId(1);;
+		rid.setUserId(1);;
+		rating = em.find(Rating.class, rid);
+		
+		// OR, if you have an all-arg constructor:
+//		invite = em.find(PartyInvitation.class, new PartyInvitationId(2,1));
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
+		rating = null;
+		rid = null;
 		em.close();
-		event = null;
 	}
 
 	@Test
-	@DisplayName("testing event date")
-	void test() {
-		assertNotNull(event);
-		assertEquals("Hail Storm", event.getEventType());
-		assertEquals(2012, event.getEventDate().getYear());
-		assertEquals(05, event.getEventDate().getMonthValue());
-		assertEquals(21, event.getEventDate().getDayOfMonth());	
+	@DisplayName("testing rating true false")
+	void test1() {
+		assertNotNull(rating);
+		assertTrue(rating.isRating());
 	}
 	
-	@Test
-	@DisplayName("Testing event listing mapping")
-	void test2() {
-		assertNotNull(event.getListings());
-//		assertEquals(1, event.getListings().size());
-	}
 }

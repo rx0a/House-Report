@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Comment {
@@ -14,13 +16,18 @@ public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String comment;
-	
-	@Column(name="comment_date")
+
+	@Column(name = "comment_date")
 	private LocalDateTime commentDate;
-	
-	public Comment () {}
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	public Comment() {
+	}
 
 	public int getId() {
 		return id;
@@ -46,9 +53,17 @@ public class Comment {
 		this.commentDate = commentDate;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", comment=" + comment + ", commentDate=" + commentDate + "]";
+		return "Comment [id=" + id + ", comment=" + comment + ", commentDate=" + commentDate + ", user=" + user + "]";
 	}
 
 	@Override
@@ -72,6 +87,5 @@ public class Comment {
 			return false;
 		return true;
 	}
-	
-	
+
 }

@@ -1,8 +1,7 @@
 package com.skilldistillery.housereport.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Calendar;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,13 +11,13 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class EventTest {
+class PropertyTypeTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Event event;
+	private PropertyType propertyType;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,29 +32,20 @@ class EventTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		event = em.find(Event.class, 1);
+		propertyType = em.find(PropertyType.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		event = null;
+		propertyType = null;
 	}
 
 	@Test
-	@DisplayName("testing event date")
-	void test() {
-		assertNotNull(event);
-		assertEquals("Hail Storm", event.getEventType());
-		assertEquals(2012, event.getEventDate().getYear());
-		assertEquals(05, event.getEventDate().getMonthValue());
-		assertEquals(21, event.getEventDate().getDayOfMonth());	
+	void test_propertyType_mapped_toDB() {
+
+		assertNotNull(propertyType);
+		assertEquals(1, propertyType.getId());
 	}
-	
-	@Test
-	@DisplayName("Testing event listing mapping")
-	void test2() {
-		assertNotNull(event.getListings());
-//		assertEquals(1, event.getListings().size());
-	}
+
 }

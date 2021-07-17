@@ -47,5 +47,11 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
 	}
+	@Test
+	void test_user_mapped_comment() {
+
+		assertNotNull(user);
+		assertEquals(16, user.getComments().get(0).getCommentDate().getDayOfMonth());
+	}
 
 }

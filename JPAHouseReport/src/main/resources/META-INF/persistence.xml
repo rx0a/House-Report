@@ -8,11 +8,12 @@
  		 <class>com.skilldistillery.housereport.entities.Address</class>
         <class>com.skilldistillery.housereport.entities.Event</class>
         <class>com.skilldistillery.housereport.entities.Listing</class>
-     <!--    <class>com.skilldistillery.housereport.entities.Rating</class>
-        <class>com.skilldistillery.housereport.entities.PropertyType</class>  -->
+        <class>com.skilldistillery.housereport.entities.PropertyType</class> 
+ 		 <class>com.skilldistillery.housereport.entities.Comment</class>
         <class>com.skilldistillery.housereport.entities.ListingPhoto</class>
+        <class>com.skilldistillery.housereport.entities.RatingId</class>
+        <class>com.skilldistillery.housereport.entities.Rating</class>
         <class>com.skilldistillery.housereport.entities.User</class>
-        <class>com.skilldistillery.housereport.entities.Comment</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/housereportdb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
