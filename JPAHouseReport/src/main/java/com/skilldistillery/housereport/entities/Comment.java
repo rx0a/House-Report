@@ -25,9 +25,25 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name="listing_id")
+	private Listing listing;
+	
+	
+//	Constructors Below:
 
 	public Comment() {
 	}
+	
+	public Comment(String comment, LocalDateTime commentDate, User user, Listing listing) {
+	super();
+	this.comment = comment;
+	this.commentDate = commentDate;
+	this.user = user;
+	this.listing = listing;
+}
+
 
 	public int getId() {
 		return id;
@@ -59,6 +75,15 @@ public class Comment {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+
+	public Listing getListing() {
+		return listing;
+	}
+
+	public void setListing(Listing listing) {
+		this.listing = listing;
 	}
 
 	@Override

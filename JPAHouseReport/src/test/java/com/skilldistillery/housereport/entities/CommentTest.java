@@ -53,5 +53,10 @@ class CommentTest {
 		assertNotNull(comment);
 		assertEquals("admin", comment.getUser().getUsername());
 	}
+	@Test
+	void test_comment_mapped_to_listing() {
+		assertNotNull(comment);
+		assertEquals(3438, comment.getListing().getSquareFeet());
+	}
 
 }
