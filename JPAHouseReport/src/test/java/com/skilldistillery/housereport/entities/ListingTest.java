@@ -53,5 +53,15 @@ class ListingTest {
 		assertNotNull(listing.getAddress());
 		assertEquals("Denver", listing.getAddress().getCity());
 	}
+	@Test
+	void test_listing_to_propertyType_mappings() {
+		assertNotNull(listing);
+		assertEquals("Two-Story House - with Basement", listing.getPropertyType().getType());
+	}
 
+	@Test
+	void test_listing_events_association() {
+		assertNotNull(listing.getEvents());
+//		assertEquals(1, listing.getEvents().size());
+	}
 }

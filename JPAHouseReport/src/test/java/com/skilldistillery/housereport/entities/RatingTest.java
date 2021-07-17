@@ -1,5 +1,6 @@
 package com.skilldistillery.housereport.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -55,6 +56,13 @@ class RatingTest {
 	void test1() {
 		assertNotNull(rating);
 		assertTrue(rating.isRating());
+	}
+	
+	@Test
+	@DisplayName("testing rating to user mapping")
+	void test2() {
+		assertNotNull(rating);
+		assertEquals("admin", rating.getUser().getUsername());
 	}
 	
 }
