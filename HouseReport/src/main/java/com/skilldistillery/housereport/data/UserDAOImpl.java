@@ -1,5 +1,7 @@
 package com.skilldistillery.housereport.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -21,9 +23,21 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	public User findByUsername(String username) {
-		String jpql = "SELECT u FROM user u WHERE u.username = :username";
+		String jpql = "SELECT u FROM User u WHERE u.username = :username";
 		User user = em.createQuery(jpql, User.class).setParameter("username", username).getSingleResult();
 		return user;
+	}
+	
+	@Override
+	public boolean checkUsername(String username) {
+		String jpql = "SELECT u FROM User u";
+		List<User> usernames = em.createQuery(jpql, User.class).getResultList();
+		for (User user : usernames) {
+			if(user.getUsername().equals(username)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override

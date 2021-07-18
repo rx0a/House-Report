@@ -28,12 +28,16 @@ public class RegisterController {
 		System.out.println(user.getUsername());
 		System.out.println(user.getEnabled());
 		System.out.println(user.getRole());
-		
-		if(user.getPassword().equals(passwordverify)) {
-			userDao.createUser(user);
-			return "redirect:home.do";
-		}
-		else {
+		System.out.println(userDao.checkUsername("admin"));
+		if(!userDao.checkUsername(user.getUsername())) {
+			if(user.getPassword().equals(passwordverify)) {
+				userDao.createUser(user);
+				return "redirect:home.do";
+			}
+			else {
+				return "register";
+			}
+		} else {
 			return "register";
 		}
 	}
