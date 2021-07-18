@@ -58,5 +58,9 @@
 			</div>
 		</form>
 	</div>
+	<c:if test="${creation}">
+  <script>alert("Account created! Please log in to continue!");
+</script>
+</c:if>
 </body>
 </html>

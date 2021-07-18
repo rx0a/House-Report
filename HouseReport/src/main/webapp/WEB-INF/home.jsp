@@ -58,7 +58,7 @@
 						<li class="nav-item"><a class="nav-link active" href="#">Home
 								<span class="visually-hidden"></span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">View
+						<li class="nav-item"><a class="nav-link" href="showListings.do">View
 								Listings</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Add a
 								Listing</a></li>

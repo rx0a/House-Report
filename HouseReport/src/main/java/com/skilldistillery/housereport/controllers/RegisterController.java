@@ -23,13 +23,13 @@ public class RegisterController {
 	@RequestMapping(path = "registerUser.do",
 			        method = RequestMethod.POST)
 	public String login(User user, String passwordverify, RedirectAttributes redir, Model model) {
-		System.out.println("--------------------------------------TEST-----------------------------------------------");
-		System.out.println(user.getEmail());
 		if(!userDao.checkUsername(user.getUsername())) {
 			if(!userDao.checkEmail(user.getEmail())) {
 				if(user.getPassword().equals(passwordverify)) {
 					userDao.createUser(user);
-					return "redirect:home.do";
+					boolean creationSuccessful = true;
+					redir.addFlashAttribute("creation", creationSuccessful);
+					return "redirect:login.do";
 				} else {
 					boolean passwordMatch = true;
 					model.addAttribute("password", passwordMatch);

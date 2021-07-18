@@ -20,7 +20,7 @@
   <!-- END JAVASCRIPT -->
 
   <!-- CSS -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="CSS/style.css" />
   <!-- END CSS -->
 
   <title>House Report</title>
@@ -32,11 +32,11 @@
   <header>
 
     <!-- Navbar -->
-<!--     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-      <br> <img src="images/logo1.png" width="250"
-					alt="House Report Logo"> -->
-        <a class="navbar-brand" href="#">House Report</a>
+      <br>
+        <a class="navbar-brand" href="home.do"><img src="images/logo1.png" width="75px"
+					alt="House Report Logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -44,11 +44,10 @@
         <div class="collapse navbar-collapse" id="navbarColor02">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href=home.do>Home
-              </a>
+              <a class="nav-link" href=home.do>Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">View Listings</a>
+              <a class="nav-link" href="showListings.do">View Listings</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Add a Listing</a>
@@ -71,13 +70,13 @@
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block" src="badhouse1.jpeg" alt="First slide">
+        <img class="d-block" src="images/badhouse1.jpeg" alt="First slide">
       </div>
       <div class="carousel-item">
-        <img class="d-block" src="badhouse2.jpeg" alt="Second slide">
+        <img class="d-block" src="images/badhouse2.jpeg" alt="Second slide">
       </div>
       <div class="carousel-item">
-        <img class="d-block" src="badhouse3.jpeg" alt="Third slide">
+        <img class="d-block" src="images/badhouse3.jpeg" alt="Third slide">
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
