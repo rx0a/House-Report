@@ -82,13 +82,15 @@
   
 
 		<!-- Jumbotron -->
-		<div class="p-5 text-center bg-dark" style="margin-top: 58px;">
+		
+		<div class="p-5 text-center" style="margin-top: 58px;">
+		<img class="logo" src="images/logo1.png" width="250"
+					alt="House Report Logo">
 			<h1 class="mb-3">House Report.</h1>
 			<h5 class="mb-3">
 				<em>because home is where <strong>your</strong> house is.
 				</em>
 			</h5>
-
 		</div>
 		<!-- End Jumbotron -->
 	</header>
