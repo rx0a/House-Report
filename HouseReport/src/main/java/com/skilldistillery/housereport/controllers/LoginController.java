@@ -24,12 +24,21 @@ public class LoginController {
 	public ModelAndView checkAccount(Model model, String username, String password) {
 		ModelAndView mv = new ModelAndView();
 		if (userDao.checkUsername(username)) {
-			User user = userDao.findByUsername(username);		
-			mv.addObject("user", user);
-			mv.setViewName("home");
-			return mv;
-		}
-		else {
+			User user = userDao.findByUsername(username);
+			if (user.getPassword().equals(password)) {
+				mv.addObject("user", user);
+				mv.setViewName("home");
+				//username and password is correct
+				return mv;
+			} else {
+				//Wrong password
+				mv.clear();
+				mv.setViewName("login");
+				return mv;
+			}
+		} else {
+			// No user with that username
+			mv.clear();
 			mv.setViewName("register");
 			return mv;
 		}

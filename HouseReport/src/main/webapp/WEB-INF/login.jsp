@@ -20,7 +20,7 @@
 </head>
 <body class="text-center">
 	<div style="width: 300px; margin: 0 auto;">
-		<form class="form-signin" action="checkAccount.do">
+		<form class="form-signin" action="checkAccount.do" method="POST">
 			<br> <br>
 			<div class="container">
 				<br> <img src="images/logo1.png" width="250"
