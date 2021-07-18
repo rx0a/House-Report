@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.housereport.entities.Address;
@@ -15,6 +16,12 @@ import com.skilldistillery.housereport.entities.User;
 public class ListingDAOImpl implements ListingDAO{
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Autowired
+	AddressDAOImpl addDAO;
+	
+	@Autowired
+	UserDAOImpl userDAO;
 
 	@Override
 	public Listing findById(int id) {
@@ -22,14 +29,18 @@ public class ListingDAOImpl implements ListingDAO{
 	}
 
 	@Override
-	public Listing create(Listing listing) {
+	public Listing create(Listing listing, User user, Address address) {
+		Address dbAddress = addDAO.create(address);
+		User dbUser = em.find(User.class, user.getId());
+		listing.setUser(dbUser);
+		listing.setAddress(dbAddress);
 		em.persist(listing);
 		em.flush();
 		return listing;
 	}
 
 	@Override
-	public Listing update(Listing listing, User user, Address address) {
+	public Listing update(Listing listing, Address address) {
 		Listing dbListing = em.find(Listing.class, listing.getId());
 		dbListing.setPrice(listing.getPrice());
 		dbListing.setSquareFeet(listing.getSquareFeet());
@@ -42,7 +53,9 @@ public class ListingDAOImpl implements ListingDAO{
 		dbListing.setLotSizeSqft(listing.getLotSizeSqft());
 		dbListing.setPropertyTax(listing.getPropertyTax());
 		dbListing.setParkingType(listing.getParkingType());
-		dbListing.setAddress(address);
+		
+		Address dbAddress = addDAO.update(address);
+		dbListing.setAddress(dbAddress);
 		
 		return dbListing;
 	}

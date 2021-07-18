@@ -7,8 +7,8 @@ import com.skilldistillery.housereport.entities.User;
 public interface ListingDAO {
 	
 	Listing findById(int id);
-	Listing create(Listing listing);
+	Listing create(Listing listing, User user, Address address);
 	boolean delete(Listing listing);
-	Listing update(Listing listing, User user, Address address);
+	Listing update(Listing listing, Address address);
 
 }
