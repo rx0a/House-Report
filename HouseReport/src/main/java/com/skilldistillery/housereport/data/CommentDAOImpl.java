@@ -5,57 +5,56 @@ import java.time.LocalDateTime;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.housereport.entities.Comment;
 import com.skilldistillery.housereport.entities.Listing;
 import com.skilldistillery.housereport.entities.User;
 
+@Service
+@Transactional
 public class CommentDAOImpl implements CommentDAO {
 EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAHouseReport");
-
+@PersistenceContext
+private EntityManager em;
 @Override
 	public Comment findById(int id) {
 	Comment comment = new Comment();
-	EntityManager em = emf.createEntityManager();	
 		comment = em.find(Comment.class, id);	
-	em.close();
 		return comment;
 	}
 
 	@Override
-	public Comment createComment(String comment, LocalDateTime commentDate, User user, Listing listing) {
-		Comment commentObject = new Comment(comment, commentDate, user, listing);
-		EntityManager em = emf.createEntityManager();	
+	public Comment createComment(Comment comment) {	
 		 em.getTransaction().begin();    
-		em.persist(commentObject);
+		em.persist(comment);
 		em.flush();
 		em.getTransaction().commit();
-		em.close();
-		return commentObject;
+		return comment;
 	}
 
 	@Override
 	public Comment updateComment(int id, Comment comment) {
-		EntityManager em = emf.createEntityManager();	
-		 em.getTransaction().begin();    
 		    Comment dbComment = em.find(Comment.class, id);
+		    em.getTransaction().begin();    
 		    dbComment.setComment(comment.getComment());
 		    dbComment.setCommentDate(comment.getCommentDate());
+		    em.flush();
 		    em.getTransaction().commit();
-		em.close();
 		return dbComment;
 	}
 
 	@Override
 	public boolean deleteComment(int id) {
-		EntityManager em = emf.createEntityManager();	
-		em.getTransaction().begin();
 		Comment deletedComment = em.find(Comment.class, id);
+		em.getTransaction().begin();
 		em.remove(deletedComment);
 		  boolean successfulRemove;			    
 		    successfulRemove = !em.contains(deletedComment);
 		    em.getTransaction().commit();
-		em.close();
 		return successfulRemove;
 	}
 	
