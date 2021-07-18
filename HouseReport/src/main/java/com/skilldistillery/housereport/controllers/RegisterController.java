@@ -22,7 +22,7 @@ public class RegisterController {
 
 	@RequestMapping(path = "registerUser.do",
 			        method = RequestMethod.POST)
-	public String login(User user, String passwordverify, RedirectAttributes redir) {
+	public String login(User user, String passwordverify, RedirectAttributes redir, Model model) {
 		System.out.println("--------------------------------------TEST-----------------------------------------------");
 		System.out.println(user.getEmail());
 		if(!userDao.checkUsername(user.getUsername())) {
@@ -31,10 +31,17 @@ public class RegisterController {
 					userDao.createUser(user);
 					return "redirect:home.do";
 				} else {
+					boolean passwordMatch = true;
+					model.addAttribute("password", passwordMatch);
 					return "register";
 				}
+			} else {
+				boolean foundEmail = true;
+				model.addAttribute("email", foundEmail);
 			}
 		} else {
+			boolean foundUsername = true;
+			model.addAttribute("username", foundUsername);
 			return "register";
 		}
 		return "register";
