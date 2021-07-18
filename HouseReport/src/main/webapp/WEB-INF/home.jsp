@@ -75,9 +75,10 @@
 		<!-- End Navbar -->
 
 <!-- Redirect to User Profile via UserProfileController-->
- <form action="profile.do" method="GET">
+ <form action="profile.do" method="POST">
+<input type="hidden" name="id" value="${user.id }">
     <input type="submit" value="Profile" />
-  </form> 
+</form> 
 <!-- Redirect to User Profile -->
   
 

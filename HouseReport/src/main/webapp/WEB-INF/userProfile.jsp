@@ -76,16 +76,14 @@
 
 <!-- Display User Info -->
 
-${user.username}
-
 <c:choose>
 		<c:when test="${! empty user}">
-			<c:forEach var="user" items="${user}">
+
 	<h2>${user.username } Account Info</h2><br>
 	First Name: ${user.firstName}<br>
 	Last Name: ${user.lastName}<br>
 	Email: ${user.email}<br>
-		</c:forEach>
+
 		</c:when>
 	</c:choose>		
 	<%-- Listings: ${user.listings}<br>
