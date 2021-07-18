@@ -81,11 +81,7 @@
 				<em>because home is where <strong>your</strong> house is.
 				</em>
 			</h5>
-			<br>
-			<button class="btn btn-lg btn-primary" type="submit">Login</button>
-			<br> <br>
-			<button class="btn btn-lg btn-primary" type="submit">Create
-				Account</button>
+
 		</div>
 		<!-- End Jumbotron -->
 	</header>
