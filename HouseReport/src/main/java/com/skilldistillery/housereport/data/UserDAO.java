@@ -8,5 +8,6 @@ public interface UserDAO {
 	boolean deleteUser(User user);
 	User updateUser(User user);
 	User createUser(User user);
+	User findByUsername(String username);
 	
 }
