@@ -50,39 +50,45 @@
 			</div>
 		</nav>
 		<!-- End Navbar -->
-		<div class="album py-5 ">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 ">
-						<div class="card mb-4 shadow-sm">
-							<div class="card-body">
-								<h3>Left</h3>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="card mb-4 shadow-sm">
-							<div class="card-body">
-								<h3>Center</h3>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="card mb-4 shadow-sm">
-							<div class="card-body">
-								<h3>Right</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-	
+	<div class="container-fluid">
+  <div class="px-lg-5">
+
+    <!-- For demo purpose -->
+    <div class="row py-5">
+      <div class="col-lg-12 mx-auto">
+        <div class="text-white p-5 shadow-sm rounded banner">
+          <h1 class="display-4">Results</h1>
+          <p class="lead">Listings that match your query</p>
+        </div>
+      </div>
+    </div>
+    <!-- End -->
+
+    <div class="row">
+      <!-- Gallery item -->
+      <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+        <div class="card mb-4 shadow-sm"><img src="${listing.image}" alt="" class="img-fluid card-img-top">
+          <div class="p-4">
+            <h5> <a href="#" class="text-dark">${listing.address} listing address placeholder, image will be above this </a></h5>
+            <p class="small text-muted mb-0">${listing.rating } listing rating placeholder</p>
+            <div class="d-flex align-items-center justify-content-between rounded-pill px-3 py-2 mt-4">
+              <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Some info</span></p>
+              <div class="badge badge-danger px-3 rounded-pill font-weight-normal">New</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End -->
+
+    </div>
+    <div class="py-5 text-right"><a href="#" class="btn btn-dark px-5 py-3 text-uppercase">Show more</a></div>
+  </div>
+</div>
 			<div class="container">
 				<br> <a href="https://github.com/ryspc/MidtermProject">Follow
 					the development on Github &nbsp;<i class="fa fa-github"
 					aria-hidden="true"></i>
-				</a>
+				</a> <br>
 			</div>
 
 </body>
