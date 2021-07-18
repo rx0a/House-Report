@@ -8,15 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.skilldistillery.housereport.data.UserDAO;
 
 @Controller
-public class HomeController {
-	
+public class LoginController {
 	@Autowired
 	private UserDAO userDao;
-	
-	@RequestMapping(path= {"home.do"})
-	public String home(Model model) {
-		model.addAttribute("DEBUG", userDao.findById(1));
-		return "home";
-	}
 
+	@RequestMapping(path = { "/", "login.do" })
+	public String login(Model model) {
+		return "login";
+	}
 }

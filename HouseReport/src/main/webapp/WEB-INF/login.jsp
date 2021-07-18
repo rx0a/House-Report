@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +10,6 @@
 <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 <title>House Report</title>
 <link rel="canonical"
-
 	href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark@1.1.0/dist/css/bootstrap-dark.min.css" />
@@ -20,31 +20,31 @@
 </head>
 <body class="text-center">
 	<div style="width: 300px; margin: 0 auto;">
-		<form class="form-create-account" action="register.do" method="POST">
+		<form class="form-signin" action="home.do">
 			<br> <br>
 			<div class="container">
 				<br> <img src="images/logo1.png" width="250"
 					alt="House Report Logo">
 				<h1 class="h2 mb-2 font-weight-heavy">House Report</h1>
-				<h1 class="h4 mb-4 font-weight-light">Register</h1>
-				<input class="form-control me-2" name="firstName" type="text"
-					placeholder="First Name" aria-label="firstName" autofocus>
-				<br> <input class="form-control me-2" name="lastName"
-					type="text" placeholder="Last Name" aria-label="lastName"><br>
-				<input class="form-control me-2" name="username" type="text"
-					placeholder="Username" required aria-label="Username"> <br>
-				<input type="email" id="inputEmail" class="form-control"
-					placeholder="Email address"> <br> <input
-					class="form-control me-2" name="password" type="text"
-					placeholder="Password" aria-label="Password" required> <br>
-				<input class="form-control me-2" name="passwordverify" type="text"
-					placeholder="Password again" aria-label="Passwordverify"><br>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-				<br> Already have an account?<a href=login.do> Login </a> <br>
+				<h1 class="h4 mb-4 font-weight-light">Login</h1>
+				<label for="inputEmail" class="sr-only">Email address</label> <input
+					type="email" id="inputEmail" class="form-control"
+					placeholder="Email address" required autofocus><br> <label
+					for="inputPassword" class="sr-only">Password</label> <input
+					type="password" id="inputPassword" class="form-control"
+					placeholder="Password" required> <br>
+				<div class="checkbox mb-3">
+					<label> <input type="checkbox" value="remember-me">
+						Remember me
+					</label>
+				</div>
+				<button class="btn btn-lg btn-secondary btn-block" type="submit">Login</button>
+				<br>
 			</div>
 		</form>
-		<form class="form-login" action="login.do">
+		<form class="form-create-account" action="register.do">
 			<div class="container">
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 				<br> <a href="https://github.com/ryspc/MidtermProject">Follow
 					the development on Github &nbsp;<i class="fa fa-github"
 					aria-hidden="true"></i>
