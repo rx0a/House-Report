@@ -37,9 +37,9 @@
 					placeholder="Username" required aria-label="Username"> <br>
 				<input type="email" id="inputEmail" class="form-control"
 					placeholder="Email address" name="email"> <br> <input
-					class="form-control me-2" name="password" type="text"
+					class="form-control me-2" name="password" type="password"
 					placeholder="Password" aria-label="Password" required> <br>
-				<input class="form-control me-2" name="passwordverify" type="text"
+				<input class="form-control me-2" name="passwordverify" type="password"
 					placeholder="Password again" aria-label="Passwordverify"><br>
 					<input type="hidden" name ="enabled" value=1>
 					<input type="hidden" name ="role" value="user">
