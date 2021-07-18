@@ -20,18 +20,22 @@
 </head>
 <body class="text-center">
 	<div style="width: 300px; margin: 0 auto;">
-		<form class="form-signin" action="home.do">
+		<form class="form-signin" action="checkAccount.do" method="POST">
 			<br> <br>
 			<div class="container">
 				<br> <img src="images/logo1.png" width="250"
 					alt="House Report Logo">
 				<h1 class="h2 mb-2 font-weight-heavy">House Report</h1>
 				<h1 class="h4 mb-4 font-weight-light">Login</h1>
-				<label for="inputEmail" class="sr-only">Email address</label> <input
-					type="email" id="inputEmail" class="form-control"
-					placeholder="Email address" required autofocus><br> <label
+				
+				
+				<label for="inputUsername" class="sr-only">Username</label> <input
+					type="text" id="inputUsername" name="username" class="form-control"
+					placeholder="Username" required autofocus><br> 
+					
+					<label
 					for="inputPassword" class="sr-only">Password</label> <input
-					type="password" id="inputPassword" class="form-control"
+					type="password" id="inputPassword" name="password" class="form-control"
 					placeholder="Password" required> <br>
 				<div class="checkbox mb-3">
 					<label> <input type="checkbox" value="remember-me">

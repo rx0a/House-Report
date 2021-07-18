@@ -10,7 +10,7 @@ public interface AddressDAO {
 
 	Address create(Address address);
 
-	Address update(int id, Address address);
+	Address update(Address address);
 
 	boolean delete(int id);
 

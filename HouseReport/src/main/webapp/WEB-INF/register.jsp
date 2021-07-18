@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +9,7 @@
 <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 <title>House Report</title>
 <link rel="canonical"
+
 	href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark@1.1.0/dist/css/bootstrap-dark.min.css" />
@@ -20,7 +20,7 @@
 </head>
 <body class="text-center">
 	<div style="width: 300px; margin: 0 auto;">
-		<form class="form-create-account" action="register.do" method="POST">
+		<form class="form-create-account" action="registerUser.do" method="POST">
 			<br> <br>
 			<div class="container">
 				<br> <img src="images/logo1.png" width="250"
@@ -34,11 +34,13 @@
 				<input class="form-control me-2" name="username" type="text"
 					placeholder="Username" required aria-label="Username"> <br>
 				<input type="email" id="inputEmail" class="form-control"
-					placeholder="Email address"> <br> <input
+					placeholder="Email address" name="email"> <br> <input
 					class="form-control me-2" name="password" type="text"
 					placeholder="Password" aria-label="Password" required> <br>
 				<input class="form-control me-2" name="passwordverify" type="text"
 					placeholder="Password again" aria-label="Passwordverify"><br>
+					<input type="hidden" name ="enabled" value=1>
+					<input type="hidden" name ="role" value="user">
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 				<br> Already have an account?<a href=login.do> Login </a> <br>
 			</div>
