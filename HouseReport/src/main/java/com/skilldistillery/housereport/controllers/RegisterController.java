@@ -38,12 +38,12 @@ public class RegisterController {
 			} else {
 				boolean foundEmail = true;
 				model.addAttribute("email", foundEmail);
+				return "register";
 			}
 		} else {
 			boolean foundUsername = true;
 			model.addAttribute("username", foundUsername);
 			return "register";
 		}
-		return "register";
 	}
 }
