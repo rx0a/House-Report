@@ -54,7 +54,7 @@
 				</button>
 
 				<div class="collapse navbar-collapse" id="navbarColor02">
-					<ul class="navbar-nav me-auto">
+					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link active" href="#">Home
 								<span class="visually-hidden"></span>
 						</a></li>
@@ -81,11 +81,7 @@
 				<em>because home is where <strong>your</strong> house is.
 				</em>
 			</h5>
-			<br>
-			<button class="btn btn-lg btn-primary" type="submit">Login</button>
-			<br> <br>
-			<button class="btn btn-lg btn-primary" type="submit">Create
-				Account</button>
+
 		</div>
 		<!-- End Jumbotron -->
 	</header>
