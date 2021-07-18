@@ -53,6 +53,8 @@
 					the development on Github &nbsp;<i class="fa fa-github"
 					aria-hidden="true"></i>
 				</a>
+								<br> <a href="results.do">Temporary link to results page for testing purposes.
+				</a>
 			</div>
 		</form>
 	</div>
