@@ -35,5 +35,14 @@ public class EventController {
 		
 		return "redirect:listing.do";
 	}
+	
+	@RequestMapping(path="deleteEvent.do",
+					method=RequestMethod.POST)
+	public String deleteEvent(RedirectAttributes redir, Event event, Listing listing) {
+		Listing dbListing = listingDao.findById(listing.getId());
+		dbListing.removeEvent(eventDao.findById(event.getId()));
+		redir.addFlashAttribute("listing", dbListing);
+		return "redirect:listing.do";
+	}
 
 }
