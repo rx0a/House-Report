@@ -9,5 +9,6 @@ public interface UserDAO {
 	User updateUser(User user);
 	User createUser(User user);
 	User findByUsername(String username);
+	boolean checkUsername(String username);
 	
 }
