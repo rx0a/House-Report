@@ -18,6 +18,13 @@ public class UserDAOImpl implements UserDAO {
 	public User findById(int id) {
 		return em.find(User.class, id);
 	}
+	
+	@Override
+	public User findByUsername(String username) {
+		String jpql = "SELECT u FROM user u WHERE u.username = :username";
+		User user = em.createQuery(jpql, User.class).setParameter("username", username).getSingleResult();
+		return user;
+	}
 
 	@Override
 	public boolean deleteUser(User user) {
