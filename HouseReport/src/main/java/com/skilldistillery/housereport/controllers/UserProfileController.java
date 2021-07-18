@@ -14,8 +14,8 @@ public class UserProfileController {
 	private UserDAO userDao;
 	
 	@RequestMapping(path= {"profile.do"})
-	public String profile(Model model, User user) {
-		model.addAttribute("user", user);
+	public String profile() {
+//		model.addAttribute("user", user);
 		return "userProfile";
 	}
 

@@ -76,6 +76,8 @@
 
 <!-- Display User Info -->
 
+${user.username}
+
 <c:choose>
 		<c:when test="${! empty user}">
 			<c:forEach var="user" items="${user}">
