@@ -32,8 +32,10 @@
   <header>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!--     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
+      <br> <img src="images/logo1.png" width="250"
+					alt="House Report Logo"> -->
         <a class="navbar-brand" href="#">House Report</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -42,8 +44,7 @@
         <div class="collapse navbar-collapse" id="navbarColor02">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Home
-                <span class="visually-hidden"></span>
+              <a href=home.do>Home
               </a>
             </li>
             <li class="nav-item">
