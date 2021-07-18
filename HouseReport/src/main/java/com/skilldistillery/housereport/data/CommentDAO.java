@@ -9,7 +9,7 @@ import com.skilldistillery.housereport.entities.User;
 public interface CommentDAO {
 
 	Comment findById(int id);
-	Comment createComment(String comment, LocalDateTime commentDate, User user, Listing listing);
+	Comment createComment(Comment comment);
 	Comment updateComment(int id, Comment comment);
 	boolean deleteComment(int id);
 }
