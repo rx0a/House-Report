@@ -1,5 +1,9 @@
 package com.skilldistillery.housereport.controllers;
 
+import java.time.LocalDateTime;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,23 +25,26 @@ public class LoginController {
 	}
 
 	@RequestMapping(path = { "checkAccount.do" }, params = { "username", "password" }, method = RequestMethod.POST)
-	public ModelAndView checkAccount(Model model, String username, String password) {
+	public ModelAndView checkAccount(Model model, String username, String password, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		if (userDao.checkUsername(username)) {
 			User user = userDao.findByUsername(username);
 			if (user.getPassword().equals(password)) {
+				// username and password is correct - going home
 				mv.addObject("user", user);
 				mv.setViewName("home");
-				//username and password is correct
+				// session - add login time
+				LocalDateTime lt = LocalDateTime.now();
+				session.setAttribute("loginTime", lt);
 				return mv;
 			} else {
-				//Wrong password
+				// Wrong password - going back to login
 				mv.clear();
 				mv.setViewName("login");
 				return mv;
 			}
 		} else {
-			// No user with that username
+			// No user with that username - going to register
 			mv.clear();
 			mv.setViewName("register");
 			return mv;
