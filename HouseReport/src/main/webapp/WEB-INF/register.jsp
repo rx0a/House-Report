@@ -20,7 +20,7 @@
 </head>
 <body class="text-center">
 	<div style="width: 300px; margin: 0 auto;">
-		<form class="form-create-account" action="register.do" method="POST">
+		<form class="form-create-account" action="registerUser.do" method="POST">
 			<br> <br>
 			<div class="container">
 				<br> <img src="images/logo1.png" width="250"
@@ -34,11 +34,13 @@
 				<input class="form-control me-2" name="username" type="text"
 					placeholder="Username" required aria-label="Username"> <br>
 				<input type="email" id="inputEmail" class="form-control"
-					placeholder="Email address"> <br> <input
+					placeholder="Email address" name="email"> <br> <input
 					class="form-control me-2" name="password" type="text"
 					placeholder="Password" aria-label="Password" required> <br>
 				<input class="form-control me-2" name="passwordverify" type="text"
 					placeholder="Password again" aria-label="Passwordverify"><br>
+					<input type="hidden" name ="enabled" value=1>
+					<input type="hidden" name ="role" value="user">
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 				<br> Already have an account?<a href=login.do> Login </a> <br>
 			</div>
