@@ -23,22 +23,20 @@ public class RegisterController {
 	@RequestMapping(path = "registerUser.do",
 			        method = RequestMethod.POST)
 	public String login(User user, String passwordverify, RedirectAttributes redir) {
-		System.out.println("------------------------------------TEST----------------------------");
-		System.out.println(passwordverify);
-		System.out.println(user.getUsername());
-		System.out.println(user.getEnabled());
-		System.out.println(user.getRole());
-		System.out.println(userDao.checkUsername("admin"));
+		System.out.println("--------------------------------------TEST-----------------------------------------------");
+		System.out.println(user.getEmail());
 		if(!userDao.checkUsername(user.getUsername())) {
-			if(user.getPassword().equals(passwordverify)) {
-				userDao.createUser(user);
-				return "redirect:home.do";
-			}
-			else {
-				return "register";
+			if(!userDao.checkEmail(user.getEmail())) {
+				if(user.getPassword().equals(passwordverify)) {
+					userDao.createUser(user);
+					return "redirect:home.do";
+				} else {
+					return "register";
+				}
 			}
 		} else {
 			return "register";
 		}
+		return "register";
 	}
 }

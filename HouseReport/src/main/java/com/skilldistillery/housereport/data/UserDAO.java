@@ -10,5 +10,6 @@ public interface UserDAO {
 	User createUser(User user);
 	User findByUsername(String username);
 	boolean checkUsername(String username);
+	boolean checkEmail(String email);
 	
 }

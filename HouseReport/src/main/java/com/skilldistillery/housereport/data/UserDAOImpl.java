@@ -30,11 +30,25 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	public boolean checkUsername(String username) {
-		String jpql = "SELECT u FROM User u";
-		List<User> usernames = em.createQuery(jpql, User.class).getResultList();
-		for (User user : usernames) {
-			if(user.getUsername().equals(username)) {
+		String jpql = "SELECT u.username FROM User u";
+		List<String> usernames = em.createQuery(jpql, String.class).getResultList();
+		for (String userName : usernames) {
+			if(userName.equals(username)) {
 				return true;
+			}
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean checkEmail(String email) {
+		String jpql = "SELECT u.email FROM User u";
+		List<String> emails = em.createQuery(jpql, String.class).getResultList();
+		for (String userEmail : emails) {
+			if(userEmail != null) {
+				if(userEmail.equals(email)) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -69,6 +83,7 @@ public class UserDAOImpl implements UserDAO {
 		em.flush();
 		return user;
 	}
+
 
 
 
