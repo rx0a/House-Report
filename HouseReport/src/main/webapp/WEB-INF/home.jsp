@@ -74,6 +74,13 @@
 		</nav>
 		<!-- End Navbar -->
 
+<!-- Redirect to User Profile via UserProfileController-->
+ <form action="profile.do" method="GET">
+    <input type="submit" value="Profile" />
+  </form> 
+<!-- Redirect to User Profile -->
+  
+
 		<!-- Jumbotron -->
 		
 		<div class="p-5 text-center" style="margin-top: 58px;">
