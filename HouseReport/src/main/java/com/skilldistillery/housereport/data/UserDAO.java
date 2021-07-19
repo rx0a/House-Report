@@ -1,5 +1,7 @@
 package com.skilldistillery.housereport.data;
 
+import java.util.List;
+
 import com.skilldistillery.housereport.entities.User;
 
 public interface UserDAO {
@@ -11,5 +13,5 @@ public interface UserDAO {
 	User findByUsername(String username);
 	boolean checkUsername(String username);
 	boolean checkEmail(String email);
-	
+	List<User> displayUsers();
 }

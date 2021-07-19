@@ -159,5 +159,15 @@
 		You do not have any current comments<br>
 		</c:otherwise>
 	</c:choose>
+	
+		<c:choose>
+		<c:when test="${! empty userList}">
+		Users:
+		</c:when>
+		<c:otherwise>
+		You are not an admin<br>
+		</c:otherwise>
+		</c:choose>
+		
 </body>
 </html>

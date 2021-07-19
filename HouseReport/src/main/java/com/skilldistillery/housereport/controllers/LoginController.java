@@ -31,7 +31,7 @@ public class LoginController {
 			User user = userDao.findByUsername(username);
 			if (user.getPassword().equals(password)) {
 				// username and password is correct - going home
-				mv.addObject("user", user);
+				session.setAttribute("user", user);
 				mv.setViewName("home");
 				// session - add login time
 				LocalDateTime lt = LocalDateTime.now();

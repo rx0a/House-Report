@@ -83,6 +83,13 @@ public class UserDAOImpl implements UserDAO {
 		em.flush();
 		return user;
 	}
+	
+	@Override
+	public List<User> displayUsers(){
+		String jpql = "select u FROM User u";
+		List<User> allUsers = em.createQuery(jpql, User.class).getResultList();
+		return allUsers;
+	}
 
 
 

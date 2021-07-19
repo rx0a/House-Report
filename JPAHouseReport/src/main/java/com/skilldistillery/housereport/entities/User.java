@@ -12,6 +12,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 public class User {
 
@@ -28,16 +31,18 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 	private String email;
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comments;
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "user")
 	private List<Rating> ratings;
-	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany
 	@JoinTable(name="favorite", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="listing_id"))
 	private List<Listing> favorites;
-	
-	@OneToMany(mappedBy="user")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany (mappedBy="user")
 	private List<Listing> listings;
 
 	public User() {
