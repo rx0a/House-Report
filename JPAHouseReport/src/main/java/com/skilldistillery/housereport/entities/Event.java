@@ -1,6 +1,7 @@
 package com.skilldistillery.housereport.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -28,6 +29,21 @@ public class Event {
 	
 	public Event() {}
 	
+	public void addListing(Listing listing) {
+        if(listings == null) listings = new ArrayList<>();
+
+        if (!listings.contains(listing)) {
+            listings.add(listing);
+            listing.addEvent(this);
+        }
+    }
+
+    public void removeListing(Listing listing) {
+        if(listings != null && listings.contains(listing)) {
+            listings.remove(listing);
+            listing.removeEvent(this);
+        }
+    }
 	
 	public int getId() {
 		return id;
