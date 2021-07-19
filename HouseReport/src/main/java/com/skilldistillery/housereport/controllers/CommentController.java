@@ -24,7 +24,7 @@ public class CommentController {
 	@Autowired
 	private CommentDAO commentDao;
 	
-	@RequestMapping(path="accountEditComment.do", method=RequestMethod.GET)
+	@RequestMapping(path="accountEditComment.do", method=RequestMethod.POST)
 	public String accountEditComment(Model model, Comment comment) {
 		Comment dbComment = commentDao.findById(comment.getId());
 		model.addAttribute("comment", dbComment);
@@ -41,7 +41,7 @@ public class CommentController {
 		return "redirect:profile.do";
 	}
 	
-	@RequestMapping(path="listingEditComment.do", method=RequestMethod.GET)
+	@RequestMapping(path="listingEditComment.do", method=RequestMethod.POST)
 	public String listingEditComment(Model model, Comment comment) {
 		Comment dbComment = commentDao.findById(comment.getId());
 		model.addAttribute("comment", dbComment);

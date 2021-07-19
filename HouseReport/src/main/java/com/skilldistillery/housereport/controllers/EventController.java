@@ -55,7 +55,7 @@ public class EventController {
 	}
 	
 	@RequestMapping(path="editEvent.do", 
-					method=RequestMethod.GET)
+					method=RequestMethod.POST)
 	public String editEvent(Model model, Event event, Listing listing) {
 		Event dbEvent = eventDao.findById(event.getId());
 		Listing dbListing = listingDao.findById(listing.getId());
@@ -65,7 +65,7 @@ public class EventController {
 	}
 	
 	@RequestMapping(path="pushEditedEvent.do",
-					method=RequestMethod.GET)
+					method=RequestMethod.POST)
 	public String pushEditedEvent(Model model, Event event, Listing listing) {
 		Event dbEvent = eventDao.findById(event.getId());
 		dbEvent.setEventDate(event.getEventDate());
