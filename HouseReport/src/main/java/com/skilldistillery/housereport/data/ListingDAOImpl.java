@@ -83,6 +83,7 @@ public class ListingDAOImpl implements ListingDAO{
 		int totalVotes = em.createQuery(jpql1, Integer.class).setParameter("id", id).getSingleResult();
 		int upVotes = em.createQuery(jpql2, Integer.class).setParameter("id", id).getSingleResult();
 		int displayRating = upVotes / totalVotes * 100;
+		
 		return displayRating;
 	}
 
