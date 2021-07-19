@@ -29,19 +29,16 @@ public class ListingController {
 	
 	@RequestMapping(path="editListing.do",
 					method=RequestMethod.POST)
-	public String editListing(Model model, Listing listing, User user) {
+	public String editListing(Model model, Listing listing) {
 		Listing dbListing = listingDao.findById(listing.getId());
-		User dbUser = userDao.findById(user.getId());
-		model.addAttribute("user", dbUser);
 		model.addAttribute("listing", dbListing);
 		return "editListing";
 	}
 	
 	@RequestMapping(path="updateListing.do",
 					method=RequestMethod.POST)
-	public String updateListing(Model model, Listing listing) {
+	public String updateListing(Listing listing) {
 		Listing dbListing = listingDao.findById(listing.getId());
-		System.out.println("-------------------------------test-----------------------------");
 		dbListing.setPrice(listing.getPrice());
 		dbListing.setSquareFeet(listing.getSquareFeet());
 		dbListing.setBathNumber(listing.getBathNumber());
