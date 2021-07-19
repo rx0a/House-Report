@@ -4,7 +4,7 @@
 <html>
 
 <head>
-<link rel="shortcut icon" href="favicon.ico"/>
+<link rel="shortcut icon" href="favicon.ico" />
 <meta charset="UTF-8">
 
 <!-- BOOTSTRAP -->
@@ -19,6 +19,7 @@
 <!-- END BOOTSTRAP -->
 
 <!-- JAVASCRIPT -->
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -33,7 +34,7 @@
 <!-- END JAVASCRIPT -->
 
 <!-- CSS -->
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="CSS/style.css" />
 <!-- END CSS -->
 
 <title>House Report</title>
@@ -43,10 +44,12 @@
 
 	<header>
 
+
 		<!-- Navbar -->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<%-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">House Report</a>
+				<br> <a class="navbar-brand" href="home.do"><img
+					src="images/logo1.png" width="75px" alt="House Report Logo"></a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarColor02"
 					aria-controls="navbarColor02" aria-expanded="false"
@@ -59,8 +62,8 @@
 						<li class="nav-item"><a class="nav-link active" href="#">Home
 								<span class="visually-hidden"></span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="showListings.do">View
-								Listings</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="showListings.do">View Listings</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Add a
 								Listing</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">About</a></li>
@@ -72,19 +75,57 @@
 					</form>
 					<form action="profile.do" method="POST">
 						<input type="hidden" name="id" value="${user.id }">
-   						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Profile</button>
-					</form> 
+						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Profile</button>
+					</form>
 				</div>
+			</div>
+		</nav> --%>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<br> <a class="navbar-brand" href="home.do"><img
+				src="images/logo1.png" width="75px" alt="House Report Logo"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link" href="home.do">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> Profile</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="showListings.do">View Listings</a>
+							<a class="dropdown-item" href="profile.do">View Profile</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Logout</a>
+						</div></li>
+					<li class="nav-item"><a class="nav-link disabled" href="#"
+						tabindex="-1" aria-disabled="true"></a></li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="search"
+						placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				</form>
 			</div>
 		</nav>
 		<!-- End Navbar -->
 
 
 		<!-- Jumbotron -->
-		
+
 		<div class="p-5 text-center" style="margin-top: 58px;">
-		<img class="logo" src="images/logo1.png" width="250"
-					alt="House Report Logo">
+			<img class="logo" src="images/logo1.png" width="250"
+				alt="House Report Logo">
 			<h1 class="mb-3">House Report.</h1>
 			<h5 class="mb-3">
 				<em>because home is where <strong>your</strong> house is.
