@@ -1,5 +1,7 @@
 package com.skilldistillery.housereport.data;
 
+import java.util.List;
+
 import com.skilldistillery.housereport.entities.Address;
 import com.skilldistillery.housereport.entities.Listing;
 import com.skilldistillery.housereport.entities.User;
@@ -10,5 +12,6 @@ public interface ListingDAO {
 	Listing create(Listing listing, User user, Address address);
 	boolean delete(Listing listing);
 	Listing update(Listing listing, Address address);
+	List<Listing> listings();
 
 }

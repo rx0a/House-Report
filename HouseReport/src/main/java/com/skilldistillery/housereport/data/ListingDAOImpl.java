@@ -1,5 +1,7 @@
 package com.skilldistillery.housereport.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -26,6 +28,12 @@ public class ListingDAOImpl implements ListingDAO{
 	@Override
 	public Listing findById(int id) {
 		return em.find(Listing.class, id);
+	}
+	@Override
+	public List<Listing> listings() {
+		String jpql = "SELECT l FROM Listing l";
+		List<Listing> listings = em.createQuery(jpql, Listing.class).getResultList();
+		return listings;
 	}
 
 	@Override

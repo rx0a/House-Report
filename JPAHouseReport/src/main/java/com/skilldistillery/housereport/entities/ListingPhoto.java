@@ -52,7 +52,7 @@ public class ListingPhoto {
 
 	@Override
 	public String toString() {
-		return "ListingPhoto [id=" + id + ", imgUrl=" + imgUrl + "]";
+		return imgUrl;
 	}
 
 	@Override
