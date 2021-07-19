@@ -69,18 +69,15 @@
 							placeholder="Search">
 						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
 					</form>
+					<form action="profile.do" method="POST">
+						<input type="hidden" name="id" value="${user.id }">
+   						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Profile</button>
+					</form> 
 				</div>
 			</div>
 		</nav>
 		<!-- End Navbar -->
 
-<!-- Redirect to User Profile via UserProfileController-->
- <form action="profile.do" method="POST">
-<input type="hidden" name="id" value="${user.id }">
-    <input type="submit" value="Profile" />
-</form> 
-<!-- Redirect to User Profile -->
-  
 
 		<!-- Jumbotron -->
 		

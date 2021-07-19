@@ -43,6 +43,27 @@ public class User {
 	public User() {
 	}
 
+
+
+	public User(int id, String username, String password, int enabled, String role, String firstName, String lastName,
+			String email) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.role = role;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+
+
+
+
+
+
+
 	public int getId() {
 		return id;
 	}

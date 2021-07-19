@@ -23,4 +23,28 @@ public class UserProfileController {
 		mv.setViewName("userProfile");
 		return mv;
 	}
+	
+	@RequestMapping(path = {"updateUser.do"},  params = { "id", "username", "password", "firstname", "lastname", "email"}, method = RequestMethod.POST)
+	public String updateUser(Model model, int id, String username, String password, String firstname, String lastname, String email) {
+		int enabled = 1;
+		String role = "user";
+		User user = new User(id, username, password, enabled, role, firstname, lastname, email);
+		userDao.updateUser(user);
+		model.addAttribute("user", user);
+		return "userProfile";
+	}
+	
+	@RequestMapping(path = {"deleteUser.do"}, params = "id")
+	public String deleteUser(int id) {
+		User user = userDao.findById(id);
+		userDao.deleteUser(user);
+		return "userProfile";
+	}
+	
+	@RequestMapping(path = {"editUserPage.do"}, params = "id", method = RequestMethod.POST)
+	public String editUserPage(Model model, int id) {
+		User user = userDao.findById(id);
+		model.addAttribute("user", user);
+		return "editUser";
+	}
 }
