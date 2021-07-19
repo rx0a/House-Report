@@ -17,50 +17,40 @@ import com.skilldistillery.housereport.entities.User;
 @Service
 @Transactional
 public class CommentDAOImpl implements CommentDAO {
-EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAHouseReport");
-@PersistenceContext
-private EntityManager em;
-@Override
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAHouseReport");
+	@PersistenceContext
+	private EntityManager em;
+
+	@Override
 	public Comment findById(int id) {
-	Comment comment = new Comment();
-		comment = em.find(Comment.class, id);	
+		Comment comment = new Comment();
+		comment = em.find(Comment.class, id);
 		return comment;
 	}
 
 	@Override
-	public Comment createComment(Comment comment) {	
-		 em.getTransaction().begin();    
+	public Comment createComment(Comment comment) {
 		em.persist(comment);
 		em.flush();
-		em.getTransaction().commit();
 		return comment;
 	}
 
 	@Override
-	public Comment updateComment(int id, Comment comment) {
-		    Comment dbComment = em.find(Comment.class, id);
-		    em.getTransaction().begin();    
-		    dbComment.setComment(comment.getComment());
-		    dbComment.setCommentDate(comment.getCommentDate());
-		    em.flush();
-		    em.getTransaction().commit();
+	public Comment updateComment(Comment comment) {
+		Comment dbComment = em.find(Comment.class, comment.getId());
+		dbComment.setComment(comment.getComment());
+		dbComment.setCommentDate(comment.getCommentDate());
+		em.flush();
 		return dbComment;
 	}
 
 	@Override
 	public boolean deleteComment(int id) {
 		Comment deletedComment = em.find(Comment.class, id);
-		em.getTransaction().begin();
 		em.remove(deletedComment);
-		  boolean successfulRemove;			    
-		    successfulRemove = !em.contains(deletedComment);
-		    em.getTransaction().commit();
+		boolean successfulRemove;
+		successfulRemove = !em.contains(deletedComment);
 		return successfulRemove;
 	}
-	
-	
-	
-	
-	
-	
+
 }

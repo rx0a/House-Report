@@ -10,6 +10,6 @@ public interface CommentDAO {
 
 	Comment findById(int id);
 	Comment createComment(Comment comment);
-	Comment updateComment(int id, Comment comment);
+	Comment updateComment(Comment comment);
 	boolean deleteComment(int id);
 }

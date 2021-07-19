@@ -81,6 +81,22 @@ public class Listing {
 		
 	}
 	
+	public void addFavoriteUsers(User user) {
+        if(favoriteUsers == null) favoriteUsers = new ArrayList<>();
+
+        if (!favoriteUsers.contains(user)) {
+            favoriteUsers.add(user);
+            user.addFavorite(this);
+        }
+    }
+
+    public void removeFavoriteUsers(User user) {
+        if(events != null && favoriteUsers.contains(user)) {
+            favoriteUsers.remove(user);
+            user.removeFavorite(this);
+        }
+    }
+	
 	public void addEvent(Event event) {
         if(events == null) events = new ArrayList<>();
 
