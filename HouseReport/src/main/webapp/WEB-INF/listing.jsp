@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -119,15 +120,27 @@
 	<div id="carouselExampleControls" class="carousel slide"
 		data-ride="carousel">
 		<div class="carousel-inner">
+		
 			<div class="carousel-item active">
-				<img src="${selectedListing.listingPhotos.get(0)}" alt="First Image of home">
+				<img class="d-block" src="${selectedListing.listingPhotos.get(0).imgUrl}" alt="Image of home">
+				<%-- <img class="d-block" c:each="photo : ${selectedListing.listingPhotos}" alt="Image of home"> --%> 
+				
 			</div>
+			
+			<c:forEach var="photo" items="${selectedListing.listingPhotos}">
+			
 			<div class="carousel-item">
+				<img class="d-block" src="${photo.imgUrl}" alt="Image of home">
+			</div>
+			
+		<!-- 	<div class="carousel-item">
 				<img class="d-block" src="images/badhouse2.jpeg" alt="Second slide">
 			</div>
+			
 			<div class="carousel-item">
 				<img class="d-block" src="images/badhouse3.jpeg" alt="Third slide">
-			</div>
+			</div> -->
+		</c:forEach>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleControls"
 			role="button" data-slide="prev"> <span
@@ -148,14 +161,62 @@
 			<h5 class="card-title">${selectedListing.address.street}, <br>
 				${selectedListing.address.city}, ${selectedListing.address.state}
 				${selectedListing.address.postalCode}</h5>
-			<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-				adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-				dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-				exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-				esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-				cupidatat non proident, sunt in culpa qui officia deserunt mollit
-				anim id est laborum.</p>
+				
+				<table style="width:40%">
+					<tr>
+						<thead>
+						House Info
+						</thead>
+					</tr>
+					<tr>
+						<td>Price:</td>
+						<td>$ ${selectedListing.price }</td>
+					</tr>
+					<tr>
+						<td>Square Feet:</td>
+						<td>${selectedListing.squareFeet }</td>
+					</tr>	
+					<tr>
+						<td>Bedrooms:</td>
+						<td>${selectedListing.bedNumber }</td>
+					</tr>
+					<tr>
+						<td>Bathrooms:</td>
+						<td>${selectedListing.bathNumber }</td>
+					</tr>
+					<tr>
+						<td>Year Built:</td>
+						<td>${selectedListing.yearBuilt }</td>
+					</tr>
+					<tr>
+						<td>Property Crime Rate:</td>
+						<td>${selectedListing.propertyCrimeRate}</td>
+					</tr>
+					<tr>
+						<td>Violent Crime Rate:</td>
+						<td>${selectedListing.violentCrimeRate }</td>
+					</tr>
+					<tr>
+						<td>Lot Size:</td>
+						<td>${selectedListing.lotSizeSqft }</td>
+					</tr>
+					<tr>
+						<td>Property Type:</td>
+						<td>${selectedListing.propertyType.type }</td>
+					</tr>
+					<tr>
+						<td>Parking:</td>
+						<td>${selectedListing.parkingType }</td>
+					<tr>
+						<td>Monthly HOA fees:</td>
+						<td>${selectedListing.hoaMonthlyRate }</td>
+					<tr>
+						<td>Property Tax Rate:</td>
+						<td>${selectedListing.propertyTax } %</td>
+					</tr>	
+					
+					</table>
+					</div>
 			<br>
 
 			<!-- Comment Box -->
@@ -166,20 +227,23 @@
 						<div class="row">
 							<div class="col-sm-5 col-md-6 col-12 pb-4">
 								<h1>Comments</h1>
+								
+							<c:choose>
+							<c:when test="${! empty selectedListing.comments}">	
+							<c:forEach var="comment" items="${selectedListing.comments}">
 								<div class="comment mt-4 text-justify">
 									<img src="https://i.imgur.com/yTFUilP.jpg" alt=""
 										class="rounded-circle" width="40" height="40">
-									<h4>John Doe</h4>
+									<h4>${comment.user.username }</h4>
 									<span>- 18 July, 2021</span> <br>
-									<p>This house is haunted, yo! Do not buy!</p>
+									<p>${comment.comment}</p>
 								</div>
-								<div class="text-justify darker mt-4 float-right">
-									<img src="https://i.imgur.com/CFpa3nK.jpg" alt=""
-										class="rounded-circle" width="40" height="40">
-									<h4>Rob Simpson</h4>
-									<span>- 18 July, 2021</span> <br>
-									<p>Thanks for the heads up, John. I HATE ghosts.</p>
-								</div>
+								</c:forEach>
+								</c:when>
+								<c:otherwise>
+								No comments on this listing<br>
+								</c:otherwise>	
+								</c:choose>
 							</div>
 
 						</div>
