@@ -73,7 +73,8 @@
 
 							<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
 								<div class="card mb-4 shadow-sm">
-									<form action="listing.do" method="POST">
+									<form action="expandListing.do" method="POST">
+									<input type="hidden" name="id" value="${listing.id}">
 										<img src="${listing.listingPhotos.get(0)}"
 											alt="image placeholder" height="200"class="card-img-top">
 										<div class="p-4">

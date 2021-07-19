@@ -186,7 +186,10 @@
       <a href="#" class="btn btn-primary">Submit Comment</a>
       <br>
       <br>
-      <a href="#" class="btn btn-primary">Home</a>
+     <form action="editListing.do" method="GET">
+						<input type="hidden" name="id" value="${listing.id}">
+						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Edit Listing</button>
+					</form>
     </div>
     <div class="card-footer text-muted">
       2 days ago
