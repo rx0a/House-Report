@@ -45,41 +45,7 @@
 	<header>
 
 
-		<!-- Navbar -->
-		<%-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="container-fluid">
-				<br> <a class="navbar-brand" href="home.do"><img
-					src="images/logo1.png" width="75px" alt="House Report Logo"></a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#navbarColor02"
-					aria-controls="navbarColor02" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
 
-				<div class="collapse navbar-collapse" id="navbarColor02">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link active" href="#">Home
-								<span class="visually-hidden"></span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="showListings.do">View Listings</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Add a
-								Listing</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-					</ul>
-					<form class="d-flex">
-						<input class="form-control me-sm- " type="text"
-							placeholder="Search">
-						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-					</form>
-					<form action="profile.do" method="POST">
-						<input type="hidden" name="id" value="${user.id }">
-						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Profile</button>
-					</form>
-				</div>
-			</div>
-		</nav> --%>
 
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<br> <a class="navbar-brand" href="home.do"><img
@@ -108,6 +74,11 @@
 								<form action="profile.do" method="POST">
 						<input type="hidden" name="id" value="${user.id }">
    						<button class="dropdown-item btn btn-secondary my-2 my-sm-0" type="submit">Profile</button>
+							
+							
+							<form action="profile.do" method="POST">
+						<input type="hidden" name="id" value="${user.id }">
+						<button class="btn btn-secondary my-2 my-sm-0" type="submit">View Profile</button>
 					</form>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">Logout</a>
