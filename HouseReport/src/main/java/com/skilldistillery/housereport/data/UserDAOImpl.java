@@ -90,6 +90,15 @@ public class UserDAOImpl implements UserDAO {
 		List<User> allUsers = em.createQuery(jpql, User.class).getResultList();
 		return allUsers;
 	}
+	
+	@Override
+	public User deactivateUser (User user) {
+		User dbUser = em.find(User.class, user.getId());
+		dbUser.setEnabled(0);
+		em.flush();
+		return dbUser;
+	}
+	
 
 
 

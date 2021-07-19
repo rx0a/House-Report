@@ -70,7 +70,7 @@
 							placeholder="Search">
 						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
 					</form>
-					<form action="profile.do" method="POST">
+					<form action="profile.do" method="GET">
 						<input type="hidden" name="id" value="${user.id }">
    						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Profile</button>
 					</form> 

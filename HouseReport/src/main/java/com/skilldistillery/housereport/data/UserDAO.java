@@ -14,4 +14,5 @@ public interface UserDAO {
 	boolean checkUsername(String username);
 	boolean checkEmail(String email);
 	List<User> displayUsers();
+	User deactivateUser (User user);
 }

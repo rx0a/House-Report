@@ -164,6 +164,19 @@
 		<c:choose>
 		<c:when test="${! empty userList}">
 		Users:
+		<c:forEach var="users" items="${userList}">
+		<ul>
+		<li>${users.username}
+			<form action="deactivateUser.do" method="POST">
+							<input type="hidden" name="id" value="${users.id}" /> <input
+								type="submit" value="Deactivate User" />
+								</form>
+			<form action="deleteUser.do" method="POST">
+							<input type="hidden" name="id" value="${users.id}" /> <input
+								type="submit" value="Delete User" />
+								</form>
+		</ul>
+		</c:forEach>
 		</c:when>
 		<c:otherwise>
 		You are not an admin<br>

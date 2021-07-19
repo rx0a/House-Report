@@ -18,7 +18,7 @@ public class UserProfileController {
 	private UserDAO userDao;
 
 
-	@RequestMapping(path = { "profile.do" }, method = RequestMethod.POST)
+	@RequestMapping(path = { "profile.do" }, method = RequestMethod.GET)
 	public ModelAndView profile(HttpSession session) {
 		User user2 = (User)session.getAttribute("user");
 		String userRole = user2.getRole();
@@ -40,7 +40,7 @@ public class UserProfileController {
 		dbUser.setLastName(lastname);
 		dbUser.setEmail(email);
 		userDao.updateUser(dbUser);
-		model.addAttribute("user", dbUser);
+//		model.addAttribute("user", dbUser);
 		return "userProfile";
 	}
 	
@@ -54,10 +54,26 @@ public class UserProfileController {
 	@RequestMapping(path = {"editUserPage.do"}, params = "id", method = RequestMethod.POST)
 	public String editUserPage(Model model, int id) {
 		User user = userDao.findById(id);
-		model.addAttribute("user", user);
+//		model.addAttribute("user", user);
 		return "editUser";
 	}
 	
+	@RequestMapping(path = {"deactivateUser.do"}, method = RequestMethod.POST)
+	public String deactivateUser(User user) {
+		
+		System.out.println(user.getId());
+		ModelAndView mv = new ModelAndView();
+		User dbUser = userDao.findById(user.getId());
+		
+		System.out.println(dbUser);
+		
+		System.out.println(dbUser.getEnabled());
+		userDao.deactivateUser(dbUser);
+		System.out.println(dbUser.getEnabled());
+//		mv.addObject("disabledUser", dbUser);
+		mv.setViewName("userProfile");
+		return "redirect:profile.do";
+	}
 	
 	
 }
