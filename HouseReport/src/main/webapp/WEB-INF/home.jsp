@@ -71,12 +71,6 @@
 						aria-expanded="false"> Profile</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="showListings.do">View Listings</a>
-							<!-- <a class="dropdown-item" href="profile.do">View Profile</a> -->
-								<form action="profile.do" method="POST">
-						<input type="hidden" name="id" value="${user.id }">
-   						<button class="dropdown-item btn btn-secondary my-2 my-sm-0" type="submit">Profile</button>
-							
-							
 							<form action="profile.do" method="GET">
 						<input type="hidden" name="id" value="${user.id }">
 						<button class="btn btn-secondary my-2 my-sm-0" type="submit">View Profile</button>
