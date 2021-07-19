@@ -72,7 +72,6 @@ public class UserDAOImpl implements UserDAO {
 		dbUser.setEmail(user.getEmail());
 		dbUser.setEnabled(user.getEnabled());
 		dbUser.setRole(user.getRole());
-		dbUser.setComments(user.getComments());
 		em.flush();
 		
 		return dbUser;
