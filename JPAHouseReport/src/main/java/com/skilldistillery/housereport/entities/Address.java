@@ -66,7 +66,6 @@ public class Address {
 		this.postalCode = postalCode;
 	}
 	
-	
 	public Listing getListing() {
 		return listing;
 	}
@@ -80,7 +79,5 @@ public class Address {
 		return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", city=" + city + ", state="
 				+ state + ", postalCode=" + postalCode + "]";
 	}
-	
-	
 
 }

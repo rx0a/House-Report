@@ -48,7 +48,7 @@ public class PropertyType {
 
 	@Override
 	public String toString() {
-		return "PropertyType [id=" + id + ", type=" + type + ", listings=" + listings + "]";
+		return "PropertyType [id=" + id + ", type=" + type + "]";
 	}
 
 }
