@@ -72,7 +72,6 @@ public class UserDAOImpl implements UserDAO {
 		dbUser.setEmail(user.getEmail());
 		dbUser.setEnabled(user.getEnabled());
 		dbUser.setRole(user.getRole());
-		dbUser.setComments(user.getComments());
 		em.flush();
 		
 		return dbUser;
@@ -83,6 +82,13 @@ public class UserDAOImpl implements UserDAO {
 		em.persist(user);
 		em.flush();
 		return user;
+	}
+	
+	@Override
+	public List<User> displayUsers(){
+		String jpql = "select u FROM User u";
+		List<User> allUsers = em.createQuery(jpql, User.class).getResultList();
+		return allUsers;
 	}
 
 

@@ -14,9 +14,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Listing {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -43,6 +45,9 @@ public class Listing {
 	private Double propertyTax;
 	@Column(name = "parking_type")
 	private String parkingType;
+	
+	@Transient 
+	private int accuracyRating;
 
 
 	@OneToMany(mappedBy="listing")
@@ -245,8 +250,14 @@ public class Listing {
 		this.rating = rating;
 	}
 
-	
 
+	public int getAccuracyRating() {
+		return accuracyRating;
+	}
+
+	public void setAccuracyRating(int accuracyRating) {
+		this.accuracyRating = accuracyRating;
+	}
 
 	public List<User> getFavoriteUsers() {
 		return favoriteUsers;

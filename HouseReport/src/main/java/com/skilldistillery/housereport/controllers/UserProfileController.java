@@ -1,5 +1,7 @@
 package com.skilldistillery.housereport.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +19,14 @@ public class UserProfileController {
 
 
 	@RequestMapping(path = { "profile.do" }, method = RequestMethod.POST)
-	public ModelAndView profile(User user) {
+	public ModelAndView profile(HttpSession session) {
+		User user2 = (User)session.getAttribute("user");
+		String userRole = user2.getRole();
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("user", userDao.findById(user.getId()));
+		System.out.println(userRole);
+		if(userRole.equals("admin")) {
+			mv.addObject("userList", userDao.displayUsers());
+		}
 		mv.setViewName("userProfile");
 		return mv;
 	}
@@ -50,4 +57,7 @@ public class UserProfileController {
 		model.addAttribute("user", user);
 		return "editUser";
 	}
+	
+	
+	
 }
