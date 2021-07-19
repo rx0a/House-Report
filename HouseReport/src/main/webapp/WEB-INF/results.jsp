@@ -74,7 +74,7 @@
 								<div class="card mb-4 shadow-sm">
 									<form action="listing.do" method="POST">
 										<img src="${listing.listingPhotos.get(0)}"
-											alt="image placeholder" class="img-fluid card-img-top">
+											alt="image placeholder" height="200"class="card-img-top">
 										<div class="p-4">
 											<p class="lead">${listing.address.street}</p>
 											<p class="small text-muted mb-0">${listing.address.city },
