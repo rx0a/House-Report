@@ -63,7 +63,10 @@ public class CommentController {
 		comment.setListing(listing);
 		comment.setUser(user);
 		comment.setCommentDate(LocalDateTime.now());
-		commentDao.createComment(comment);
+		Listing dbListing = listingDao.findById(listing.getId());
+		Comment dbComment = commentDao.createComment(comment);
+		dbListing.addComment(dbComment);
+		listingDao.update(dbListing, dbListing.getAddress());
 		return "redirect:listing.do";
 	}
 

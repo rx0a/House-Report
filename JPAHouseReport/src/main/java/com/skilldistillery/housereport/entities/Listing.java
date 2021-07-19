@@ -81,6 +81,20 @@ public class Listing {
 		
 	}
 	
+	public void addComment(Comment comment) {
+        if(comments == null) comments = new ArrayList<>();
+
+        if (!comments.contains(comment)) {
+            comments.add(comment);
+        }
+    }
+
+    public void removeComment(Comment comment) {
+        if(comments != null && comments.contains(comment)) {
+            comments.remove(comment);
+        }
+    }
+	
 	public void addFavoriteUsers(User user) {
         if(favoriteUsers == null) favoriteUsers = new ArrayList<>();
 
