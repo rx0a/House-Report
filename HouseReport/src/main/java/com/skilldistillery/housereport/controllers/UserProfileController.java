@@ -41,7 +41,7 @@ public class UserProfileController {
 		dbUser.setEmail(email);
 		userDao.updateUser(dbUser);
 //		model.addAttribute("user", dbUser);
-		return "userProfile";
+		return "redirect:profile.do";
 	}
 	
 	@RequestMapping(path = {"deleteUser.do"}, params = "id")

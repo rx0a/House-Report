@@ -51,7 +51,7 @@ public class ListingController {
 		dbListing.setPropertyTax(listing.getPropertyTax());
 		dbListing.setParkingType(listing.getParkingType());
 		listingDao.update(dbListing, dbListing.getAddress());
-		return "userProfile";
+		return "redirect:profile.do";
 	}
 	
 	@RequestMapping(path = { "showRating.do"})
