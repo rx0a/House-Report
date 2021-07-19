@@ -4,6 +4,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<link rel="shortcut icon" href="favicon.ico"/>
 <meta charset="utf-8">
 <meta name="description" content="">
 <meta name="author" content="">
