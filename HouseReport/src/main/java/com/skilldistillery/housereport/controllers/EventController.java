@@ -53,5 +53,25 @@ public class EventController {
 		redir.addFlashAttribute("listing", dbListing);
 		return "redirect:listing.do";
 	}
+	
+	@RequestMapping(path="editEvent.do", 
+					method=RequestMethod.GET)
+	public String editEvent(Model model, Event event, Listing listing) {
+		Event dbEvent = eventDao.findById(event.getId());
+		Listing dbListing = listingDao.findById(listing.getId());
+		model.addAttribute("event", dbEvent);
+		model.addAttribute("listing", dbListing);
+		return "editEvent";
+	}
+	
+	@RequestMapping(path="pushEditedEvent.do",
+					method=RequestMethod.GET)
+	public String pushEditedEvent(Model model, Event event, Listing listing) {
+		Event dbEvent = eventDao.findById(event.getId());
+		dbEvent.setEventDate(event.getEventDate());
+		dbEvent.setEventType(event.getEventType());
+		eventDao.update(dbEvent.getId(), dbEvent);
+		return "redirect:listing.do";
+	}
 
 }
