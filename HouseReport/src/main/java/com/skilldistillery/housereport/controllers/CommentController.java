@@ -60,8 +60,8 @@ public class CommentController {
 	
 	@RequestMapping(path="postComment.do", method=RequestMethod.POST)
 	public String postComment(Comment comment, Listing listing, User user) {
-		comment.setListing(listing);
-		comment.setUser(user);
+		comment.setListing(listingDao.findById(listing.getId()));
+		comment.setUser(userDao.findById(user.getId()));
 		comment.setCommentDate(LocalDateTime.now());
 		Listing dbListing = listingDao.findById(listing.getId());
 		Comment dbComment = commentDao.createComment(comment);
