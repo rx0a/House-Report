@@ -87,5 +87,14 @@ public class ListingController {
 		model.addAttribute("listing", dbListing);
 		return "listingEditListing";
 	}
+	
+	@RequestMapping(path = "expandListing.do", method = RequestMethod.POST)
+	public ModelAndView expandListing(int id) {
+		ModelAndView mv = new ModelAndView();
+		Listing listing = listingDao.findById(id);
+		mv.addObject("selectedListing", listing);
+		mv.setViewName("listing");
+		return mv;
+	}
 
 }
