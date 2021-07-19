@@ -95,11 +95,12 @@
 				<c:forEach var="listing" items="${user.listings}">
 					<li>${listing.address.street }, ${listing.address.city},
 						${listing.address.state}
-						<form action="editListing.do" method="GET">
-							<input type="hidden" name="id" value="${listing.id}" /> <input
-								type="submit" value="Edit Listing" />
+						<form action="editListing.do" method="POST">
+							<input type="hidden" name="id" value="${listing.id}" /> 
+							<input type="hidden" name="id" value="${user.id}">
+							<input type="submit" value="Edit Listing" />
 						</form>
-						<form action="deleteListing.do" method="GET">
+						<form action="deleteListing.do" method="POST">
 							<input type="hidden" name="id" value="${listing.id}" /> <input
 								type="submit" value="Delete Listing" />
 						</form>
