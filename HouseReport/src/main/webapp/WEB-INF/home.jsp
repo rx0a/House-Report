@@ -4,6 +4,7 @@
 <html>
 
 <head>
+<link rel="shortcut icon" href="favicon.ico"/>
 <meta charset="UTF-8">
 
 <!-- BOOTSTRAP -->
