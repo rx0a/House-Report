@@ -1,5 +1,7 @@
 package com.skilldistillery.housereport.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,20 +19,28 @@ public class UserProfileController {
 
 
 	@RequestMapping(path = { "profile.do" }, method = RequestMethod.POST)
-	public ModelAndView profile(User user) {
+	public ModelAndView profile(HttpSession session) {
+		User user2 = (User)session.getAttribute("user");
+		String userRole = user2.getRole();
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("user", userDao.findById(user.getId()));
+		System.out.println(userRole);
+		if(userRole.equals("admin")) {
+			mv.addObject("userList", userDao.displayUsers());
+		}
 		mv.setViewName("userProfile");
 		return mv;
 	}
 	
 	@RequestMapping(path = {"updateUser.do"},  params = { "id", "username", "password", "firstname", "lastname", "email"}, method = RequestMethod.POST)
 	public String updateUser(Model model, int id, String username, String password, String firstname, String lastname, String email) {
-		int enabled = 1;
-		String role = "user";
-		User user = new User(id, username, password, enabled, role, firstname, lastname, email);
-		userDao.updateUser(user);
-		model.addAttribute("user", user);
+		User dbUser = userDao.findById(id);
+		dbUser.setUsername(username);
+		dbUser.setPassword(password);
+		dbUser.setFirstName(firstname);
+		dbUser.setLastName(lastname);
+		dbUser.setEmail(email);
+		userDao.updateUser(dbUser);
+		model.addAttribute("user", dbUser);
 		return "userProfile";
 	}
 	
@@ -47,4 +57,7 @@ public class UserProfileController {
 		model.addAttribute("user", user);
 		return "editUser";
 	}
+	
+	
+	
 }

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="favicon.ico"/>
 <meta charset="UTF-8">
 <!-- BOOTSTRAP -->
 <link rel="canonical"
@@ -75,8 +76,8 @@
 		<c:when test="${! empty user}">
 			<h2>Account Info</h2>
 			<form action="editUserPage.do" method="POST">
-				<input type="hidden" name="id" value="${user.id}" /> <input
-					type="submit" value="Edit Personal Information" />
+				<input type="hidden" name="id" value="${user.id}" />
+				 <input type="submit" value="Edit Personal Information" />
 			</form>
 			<br>
 	Username: ${user.username}<br>
@@ -159,5 +160,15 @@
 		You do not have any current comments<br>
 		</c:otherwise>
 	</c:choose>
+	
+		<c:choose>
+		<c:when test="${! empty userList}">
+		Users:
+		</c:when>
+		<c:otherwise>
+		You are not an admin<br>
+		</c:otherwise>
+		</c:choose>
+		
 </body>
 </html>

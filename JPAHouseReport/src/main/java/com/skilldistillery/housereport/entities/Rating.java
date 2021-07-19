@@ -12,6 +12,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="rating")
 public class Rating {
+	
+	
 	@EmbeddedId
 	private RatingId id;
 	@Column(name="rating")
@@ -24,6 +26,7 @@ public class Rating {
 	@JoinColumn(name="listing_id")
 	@MapsId(value="listingId")
 	private Listing listing;
+	
 	
 	public Rating() {}
 	
