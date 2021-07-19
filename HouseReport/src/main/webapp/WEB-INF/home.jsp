@@ -83,7 +83,7 @@
 
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<br> <a class="navbar-brand" href="home.do"><img
-					src="images/logo1.png" width="75px" alt="House Report Logo"></a>
+				src="images/logo1.png" width="75px" alt="House Report Logo"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -96,16 +96,17 @@
 					<li class="nav-item active"><a class="nav-link" href="home.do">Home
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="profile.do">Profile</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> Listings</a>
+						aria-expanded="false"> Profile</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="showListings.do">View Listings</a> <a
-								class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="showListings.do">View Listings</a>
+							<a class="dropdown-item" href="profile.do">View Profile</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Something else here</a>
+							<a class="dropdown-item" href="#">Logout</a>
 						</div></li>
 					<li class="nav-item"><a class="nav-link disabled" href="#"
 						tabindex="-1" aria-disabled="true"></a></li>
