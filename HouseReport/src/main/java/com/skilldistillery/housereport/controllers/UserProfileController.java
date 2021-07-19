@@ -26,11 +26,14 @@ public class UserProfileController {
 	
 	@RequestMapping(path = {"updateUser.do"},  params = { "id", "username", "password", "firstname", "lastname", "email"}, method = RequestMethod.POST)
 	public String updateUser(Model model, int id, String username, String password, String firstname, String lastname, String email) {
-		int enabled = 1;
-		String role = "user";
-		User user = new User(id, username, password, enabled, role, firstname, lastname, email);
-		userDao.updateUser(user);
-		model.addAttribute("user", user);
+		User dbUser = userDao.findById(id);
+		dbUser.setUsername(username);
+		dbUser.setPassword(password);
+		dbUser.setFirstName(firstname);
+		dbUser.setLastName(lastname);
+		dbUser.setEmail(email);
+		userDao.updateUser(dbUser);
+		model.addAttribute("user", dbUser);
 		return "userProfile";
 	}
 	

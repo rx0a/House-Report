@@ -75,8 +75,8 @@
 		<c:when test="${! empty user}">
 			<h2>Account Info</h2>
 			<form action="editUserPage.do" method="POST">
-				<input type="hidden" name="id" value="${user.id}" /> <input
-					type="submit" value="Edit Personal Information" />
+				<input type="hidden" name="id" value="${user.id}" />
+				 <input type="submit" value="Edit Personal Information" />
 			</form>
 			<br>
 	Username: ${user.username}<br>
