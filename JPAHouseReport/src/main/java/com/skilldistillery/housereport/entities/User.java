@@ -1,5 +1,6 @@
 package com.skilldistillery.housereport.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -63,11 +64,21 @@ public class User {
 		this.email = email;
 	}
 
+	public void addFavorite(Listing listing) {
+        if(favorites == null) favorites = new ArrayList<>();
 
+        if (!favorites.contains(listing)) {
+            favorites.add(listing);
+            listing.addFavoriteUsers(this);
+        }
+    }
 
-
-
-
+    public void removeFavorite(Listing listing) {
+        if(favorites != null && favorites.contains(listing)) {
+            favorites.remove(listing);
+            listing.removeFavoriteUsers(this);
+        }
+    }
 
 	public int getId() {
 		return id;
