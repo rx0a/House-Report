@@ -95,7 +95,7 @@ public class ListingController {
 		mv.addObject("selectedListing", listing);
 		mv.setViewName("listing");
 		return mv;
-		
 	}
+	
 
 }

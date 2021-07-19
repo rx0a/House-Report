@@ -274,12 +274,14 @@
 			<!-- End Comment Box -->
 
 			<a href="#" class="btn btn-primary">Submit Comment</a> <br> <br>
-			<form action="editListing.do" method="GET">
-				<input type="hidden" name="id" value="${listing.id}">
-				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Edit
-					Listing</button>
-			</form>
 		</div>
+		<div>
+			<form action="addToFavorites.do" method="POST">
+							<input type="hidden" name="listingID" value="${selectedListing.id}" /> 
+							<input type="hidden" name="userID" value="${user.id}">
+							<input type="submit" value="Add to Favorites" />
+						</form>
+		</div>				
 		<div class="card-footer text-muted">2 days ago</div>
 	</div>
 	<!-- End Info Card -->
