@@ -19,6 +19,7 @@ public class FavoriteController {
 	public String addToFavorites(User user, Listing listing) {
 		User dbUser = userDao.findById(user.getId());
 		dbUser.addFavorite(listing);
+		userDao.updateUser(dbUser);
 		return "redirect:listing.do";
 	}
 	
@@ -26,6 +27,7 @@ public class FavoriteController {
 	public String deleteFromFavorites(User user, Listing listing) {
 		User dbUser = userDao.findById(user.getId());
 		dbUser.removeFavorite(listing);
-		return "profile.do";
+		userDao.updateUser(dbUser);
+		return "redirect:profile.do";
 	}
 }
