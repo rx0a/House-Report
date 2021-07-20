@@ -104,7 +104,7 @@ public class ListingController {
 	@RequestMapping(path = "expandListing.do", method = RequestMethod.POST)
 	public ModelAndView expandListing(int id) {
 		ModelAndView mv = new ModelAndView();
-//		listingDao.updateRating(id);
+		listingDao.updateRating(id);
 		Listing listing = listingDao.findById(id);
 		mv.addObject("selectedListing", listing);
 		mv.setViewName("listing");

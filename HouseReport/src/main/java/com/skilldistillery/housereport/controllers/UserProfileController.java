@@ -1,7 +1,7 @@
 package com.skilldistillery.housereport.controllers;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.housereport.data.ListingDAO;
 import com.skilldistillery.housereport.data.UserDAO;
+import com.skilldistillery.housereport.entities.Listing;
 import com.skilldistillery.housereport.entities.User;
 
 @Controller
@@ -20,12 +22,19 @@ public class UserProfileController {
 	@Autowired
 	private UserDAO userDao;
 
+	@Autowired
+	private ListingDAO listingDao;
+	
 	@RequestMapping(path = { "profile.do" }, method = RequestMethod.GET)
 	public ModelAndView profile(HttpSession session) {
 		User user2 = (User)session.getAttribute("user");
 		String userRole = user2.getRole();
 		ModelAndView mv = new ModelAndView();
 		System.out.println(userRole);
+		List<Listing> loggedInUserListings = user2.getListings();
+		for (Listing listing : loggedInUserListings) {
+			listingDao.updateRating(listing.getId());
+		}
 		if(userRole.equals("admin")) {
 			mv.addObject("userList", userDao.displayUsers());
 		}
