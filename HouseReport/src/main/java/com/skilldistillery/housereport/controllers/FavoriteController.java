@@ -29,10 +29,11 @@ public class FavoriteController {
 		return "redirect:profile.do";
 	}
 	
-	@RequestMapping(path="deleteFromFavorites.do", method=RequestMethod.POST)
-	public String deleteFromFavorites(User user, Listing listing) {
-		User dbUser = userDao.findById(user.getId());
-		dbUser.removeFavorite(listing);
+	@RequestMapping(path="deleteFromFavorites.do", params = {"userID", "listingID"}, method=RequestMethod.POST)
+	public String deleteFromFavorites(int userID, int listingID) {
+		User dbUser = userDao.findById(userID);
+		Listing dbListing = listingDao.findById(listingID);
+		dbUser.removeFavorite(dbListing);
 		userDao.updateUser(dbUser);
 		return "redirect:profile.do";
 	}

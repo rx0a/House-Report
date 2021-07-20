@@ -30,6 +30,18 @@ public class Rating {
 	
 	public Rating() {}
 	
+	
+	
+	public Rating(RatingId id, boolean rating, User user, Listing listing) {
+		super();
+		this.id = id;
+		this.rating = rating;
+		this.user = user;
+		this.listing = listing;
+	}
+
+
+
 	public RatingId getId() {
 		return id;
 	}

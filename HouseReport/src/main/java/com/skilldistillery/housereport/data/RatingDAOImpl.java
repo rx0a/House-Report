@@ -2,11 +2,15 @@ package com.skilldistillery.housereport.data;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.housereport.entities.Listing;
 import com.skilldistillery.housereport.entities.Rating;
 import com.skilldistillery.housereport.entities.User;
-
+@Service
+@Transactional
 public class RatingDAOImpl implements RatingDAO {
 	@PersistenceContext
 	private EntityManager em;
