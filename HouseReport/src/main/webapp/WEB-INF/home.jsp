@@ -46,8 +46,8 @@
 
 
 
-
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<!-- Navbar -->
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 
 			<br> <a class="navbar-brand" href="home.do"><img
 				src="images/logo1.png" width="75px" alt="House Report Logo"></a>
