@@ -14,6 +14,6 @@ public interface ListingDAO {
 	boolean delete(Listing listing);
 	Listing update(Listing listing, Address address);
 	List<Listing> listings();
-	int updateRating(int id);
+	double updateRating(int id);
 
 }
