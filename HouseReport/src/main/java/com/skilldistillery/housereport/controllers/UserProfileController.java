@@ -1,5 +1,7 @@
 package com.skilldistillery.housereport.controllers;
 
+import java.time.LocalDateTime;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,6 @@ public class UserProfileController {
 	@Autowired
 	private UserDAO userDao;
 
-
 	@RequestMapping(path = { "profile.do" }, method = RequestMethod.GET)
 	public ModelAndView profile(HttpSession session) {
 		User user2 = (User)session.getAttribute("user");
@@ -32,7 +33,8 @@ public class UserProfileController {
 	}
 	
 	@RequestMapping(path = {"updateUser.do"},  params = { "id", "username", "password", "firstname", "lastname", "email"}, method = RequestMethod.POST)
-	public String updateUser(Model model, int id, String username, String password, String firstname, String lastname, String email) {
+	public String updateUser(int id, String username, String password, String firstname, String lastname, String email, HttpSession session) {
+		System.out.println(id);
 		User dbUser = userDao.findById(id);
 		dbUser.setUsername(username);
 		dbUser.setPassword(password);
@@ -40,8 +42,11 @@ public class UserProfileController {
 		dbUser.setLastName(lastname);
 		dbUser.setEmail(email);
 		userDao.updateUser(dbUser);
+		session.setAttribute("user", dbUser);
+		LocalDateTime ut = LocalDateTime.now();
+		session.setAttribute("updatedTime", ut);
 //		model.addAttribute("user", dbUser);
-		return "redirect:profile.do";
+		return "userProfile";
 	}
 	
 	@RequestMapping(path = {"deleteUser.do"}, params = "id")

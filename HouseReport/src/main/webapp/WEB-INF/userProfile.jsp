@@ -40,11 +40,23 @@
 	margin: 0px;
 }
 
+.commentdate {
+	width: 130px;
+}
+
+.td-actions {
+	width: 130px;
+}
+
 .test {
 	height: 30px;
 	padding: 0px;
 	margin: 0;
 	text-align: center
+}
+
+.test2 {
+	margin-top: 20px;
 }
 
 html {
@@ -197,8 +209,8 @@ html {
 									${user.firstName }.</h1>
 								<br>
 								<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Here
-									you can view and edit your listings, comments and profile
-									information.</h5>
+									you can view and edit your listings, favorites, comments and
+									profile information.</h5>
 							</c:when>
 						</c:choose>
 					</div>
@@ -209,7 +221,7 @@ html {
 					<div class="card ">
 						<div class="card-header ">
 							<h4 class="card-title">Listings</h4>
-							<p class="card-category">All listings created by you.</p>
+							<p class="card-category">All listings created by you</p>
 						</div>
 						<div class="card-body ">
 							<div class="table-full-width">
@@ -276,10 +288,77 @@ html {
 					</div>
 				</div>
 				<div class="col-md-6">
+					<div class="card ">
+						<div class="card-header ">
+							<h4 class="card-title">Favorites</h4>
+							<p class="card-category">Your favorite listings</p>
+						</div>
+						<div class="card-body ">
+							<div class="table-full-width">
+								<table class="table" id="container">
+									<tbody>
+										<c:choose>
+											<c:when test="${! empty user.favorites}">
+												<c:forEach var="favorite" items="${user.favorites}">
+													<tr>
+														<td>
+															<div class="form-check">
+																<img src="${favorite.listingPhotos.get(0)}"
+																	height="300px" alt="image placeholder"
+																	class="card-img-top">
+															</div>
+														</td>
+														<td>
+															<table class="table mytable">
+																<tr>
+																	<td valign="top">
+
+																		<form action="listing.do" method="POST">
+																			<input type="hidden" name="id"
+																				value="${favorite.id }">Address:<br>
+																			<button style="padding: 0px"
+																				class="btn btn-link text-left" type="submit">${favorite.address.street },
+																				${favorite.address.city}, ${favorite.address.state}</button>
+																		</form>Rating: ${favorite.accuracyRating} <br> Events:
+																		${favorite.events.size()} <br>
+
+																	</td>
+																</tr>
+																<tr>
+																	<td class="test align-bottom" valign="bottom">
+
+																		<form action="deleteFavorite.do" method="POST">
+																			<input type="hidden" name="id" value="${favorite.id}" />
+																			<input type="hidden" name="id" value="${user.id}">
+																			<button class="btn btn-outline-danger " type="submit"
+																				name="action" value="Delete">
+																				<i class="fa fa-trash" aria-hidden="true"></i>
+																			</button>
+																		</form>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+		You do not have any current listings<br>
+											</c:otherwise>
+										</c:choose>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 test2">
 					<div class="card  card-tasks">
 						<div class="card-header ">
 							<h4 class="card-title">Comments</h4>
-							<p class="card-category">All comments made by you.</p>
+							<p class="card-category">All comments made by you</p>
 						</div>
 						<div class="card-body ">
 							<div class="table-full-width">
@@ -289,7 +368,7 @@ html {
 											<c:when test="${! empty user.comments}">
 												<c:forEach var="comment" items="${user.comments}">
 													<tr>
-														<td>
+														<td class="commentdate">
 															<div class="form-check">
 																<p>${comment.commentDate.getMonth()},
 																	${comment.commentDate.getDayOfMonth()}</p>
