@@ -21,6 +21,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class Listing {
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,6 +86,20 @@ public class Listing {
 	public Listing() {
 		
 	}
+	
+	public void addPhoto(ListingPhoto photo) {
+        if(listingPhotos == null) listingPhotos = new ArrayList<>();
+
+        if (!listingPhotos.contains(photo)) {
+            listingPhotos.add(photo);
+        }
+    }
+
+    public void removePhoto(ListingPhoto photo) {
+        if(listingPhotos != null && listingPhotos.contains(photo)) {
+            listingPhotos.remove(photo);
+        }
+    }
 	
 	public void addComment(Comment comment) {
         if(comments == null) comments = new ArrayList<>();

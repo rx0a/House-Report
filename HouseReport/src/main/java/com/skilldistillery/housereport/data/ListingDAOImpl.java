@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.housereport.entities.Address;
 import com.skilldistillery.housereport.entities.Listing;
+import com.skilldistillery.housereport.entities.ListingPhoto;
+import com.skilldistillery.housereport.entities.PropertyType;
 import com.skilldistillery.housereport.entities.User;
 
 @Service
@@ -24,6 +26,12 @@ public class ListingDAOImpl implements ListingDAO{
 	
 	@Autowired
 	UserDAOImpl userDAO;
+	
+	@Autowired
+	PropertyTypeDAOImpl propertyTypeDao;
+	
+	@Autowired
+	ListingPhotoDAOImpl listingPhotoDao;
 
 	@Override
 	public Listing findById(int id) {
@@ -37,11 +45,15 @@ public class ListingDAOImpl implements ListingDAO{
 	}
 
 	@Override
-	public Listing create(Listing listing, User user, Address address) {
+	public Listing create(Listing listing, User user, Address address, PropertyType propertyType, ListingPhoto photo) {
 		Address dbAddress = addDAO.create(address);
 		User dbUser = em.find(User.class, user.getId());
+		PropertyType dbPropertyType = propertyTypeDao.create(propertyType);
+		ListingPhoto dbPhoto = listingPhotoDao.create(photo);
 		listing.setUser(dbUser);
 		listing.setAddress(dbAddress);
+		listing.setPropertyType(dbPropertyType);
+		listing.addPhoto(dbPhoto);
 		em.persist(listing);
 		em.flush();
 		return listing;
