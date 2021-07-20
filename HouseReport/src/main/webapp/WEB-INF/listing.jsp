@@ -226,6 +226,10 @@
 					</c:forEach>
 					</c:when>
 					</c:choose>
+						<%-- <tr>
+						<td>Accuracy Rating:</td>
+						<td>${selectedListing.accuracyRating } %</td>
+					</tr> --%>
 					
 					</table>
 					</div>
