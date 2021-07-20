@@ -50,6 +50,7 @@ public class UserProfileController {
 //		dbUser.setUpdatedTime(Duration.between(updateTime, now));
 //		session.setAttribute("updateTime", updateTime);
 //		model.addAttribute("user", dbUser);
+
 		return "userProfile";
 	}
 	

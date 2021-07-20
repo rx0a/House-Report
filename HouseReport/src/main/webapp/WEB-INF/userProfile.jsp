@@ -210,7 +210,7 @@ html {
 						
 						Last Updated:
 						
-					${Duration.between(user.updatedTime, LocalDateTime.now())}
+					${Duration.between(user.updatedTime, LocalDateTime.now()).getSeconds()}
 						 seconds ago.
 						
 						
