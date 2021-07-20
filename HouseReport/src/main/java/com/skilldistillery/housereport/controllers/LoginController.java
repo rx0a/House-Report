@@ -32,26 +32,34 @@ public class LoginController {
 	@RequestMapping(path = { "checkAccount.do" }, params = { "username", "password" }, method = RequestMethod.POST)
 	public ModelAndView checkAccount(Model model, String username, String password, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		if (userDao.checkUsername(username)) {
-			User user = userDao.findByUsername(username);
-			if (user.getPassword().equals(password)) {
-				// username and password is correct - going home
-				session.setAttribute("user", user);
-				mv.setViewName("home");
-				// session - add login time
-				LocalDateTime lt = LocalDateTime.now();
-				session.setAttribute("loginTime", lt);
-				return mv;
+		User user = userDao.findByUsername(username);
+		if(user.getEnabled() == 1) {
+			if (userDao.checkUsername(username)) {
+				if (user.getPassword().equals(password)) {
+					// username and password is correct - going home
+					session.setAttribute("user", user);
+					mv.setViewName("home");
+					// session - add login time
+					LocalDateTime lt = LocalDateTime.now();
+					session.setAttribute("loginTime", lt);
+					return mv;
+				} else {
+					// Wrong password - going back to login
+					mv.clear();
+					mv.setViewName("login");
+					return mv;
+				}
 			} else {
-				// Wrong password - going back to login
+				// No user with that username - going to register
 				mv.clear();
-				mv.setViewName("login");
+				mv.setViewName("register");
 				return mv;
 			}
 		} else {
-			// No user with that username - going to register
 			mv.clear();
-			mv.setViewName("register");
+			boolean accountDisabled = true;
+			model.addAttribute("accountDisabled", accountDisabled);
+			mv.setViewName("login");
 			return mv;
 		}
 	}
