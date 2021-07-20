@@ -18,4 +18,6 @@ public interface AddressDAO {
 
 	List<Address> findByCity(String city);
 
+	List<Address> findAddress(String keyword);
+
 }

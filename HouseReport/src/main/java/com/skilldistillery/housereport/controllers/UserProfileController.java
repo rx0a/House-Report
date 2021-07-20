@@ -1,7 +1,7 @@
 package com.skilldistillery.housereport.controllers;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,29 +12,63 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.housereport.data.AddressDAO;
+import com.skilldistillery.housereport.data.ListingDAO;
 import com.skilldistillery.housereport.data.UserDAO;
+import com.skilldistillery.housereport.entities.Address;
+import com.skilldistillery.housereport.entities.Listing;
 import com.skilldistillery.housereport.entities.User;
 
 @Controller
 public class UserProfileController {
 	@Autowired
 	private UserDAO userDao;
+	@Autowired
+	private AddressDAO addressDao;
 
 	@RequestMapping(path = { "profile.do" }, method = RequestMethod.GET)
 	public ModelAndView profile(HttpSession session) {
-		User user2 = (User)session.getAttribute("user");
+		User user2 = (User) session.getAttribute("user");
 		String userRole = user2.getRole();
 		ModelAndView mv = new ModelAndView();
 		System.out.println(userRole);
-		if(userRole.equals("admin")) {
-			mv.addObject("userList", userDao.displayUsers());
-		}
 		mv.setViewName("userProfile");
 		return mv;
 	}
-	
-	@RequestMapping(path = {"updateUser.do"},  params = { "id", "username", "password", "firstname", "lastname", "email"}, method = RequestMethod.POST)
-	public String updateUser(int id, String username, String password, String firstname, String lastname, String email, HttpSession session) {
+
+	@RequestMapping(path = "getUser.do", params = "keyword", method = RequestMethod.POST)
+	public String getUser(String keyword, Model model) {
+		model.addAttribute("userList", userDao.find(keyword));
+		return "admin";
+	}
+
+	@RequestMapping(path = "getListing.do", params = "keyword", method = RequestMethod.POST)
+	public String getListing(String keyword, Model model) {
+		List<Address> addresses = addressDao.findAddress(keyword);
+		model.addAttribute("listingList", addresses);
+		return "admin";
+	}
+
+	@RequestMapping(path = { "admin.do" }, method = RequestMethod.GET)
+	public ModelAndView admin(HttpSession session) {
+		User user2 = (User) session.getAttribute("user");
+		String userRole = user2.getRole();
+		ModelAndView mv = new ModelAndView();
+		System.out.println(userRole);
+		if (userRole.equals("admin")) {
+			mv.addObject("userList", userDao.displayUsers());
+			mv.setViewName("admin");
+			return mv;
+		} else {
+			mv.setViewName("userProfile");
+			return mv;
+		}
+	}
+
+	@RequestMapping(path = { "updateUser.do" }, params = { "id", "username", "password", "firstname", "lastname",
+			"email" }, method = RequestMethod.POST)
+	public String updateUser(int id, String username, String password, String firstname, String lastname, String email,
+			HttpSession session) {
 		System.out.println(id);
 		User dbUser = userDao.findById(id);
 		dbUser.setUsername(username);
@@ -53,30 +87,30 @@ public class UserProfileController {
 
 		return "userProfile";
 	}
-	
-	@RequestMapping(path = {"deleteUser.do"}, params = "id")
+
+	@RequestMapping(path = { "deleteUser.do" }, params = "id")
 	public String deleteUser(int id) {
 		User user = userDao.findById(id);
 		userDao.deleteUser(user);
 		return "userProfile";
 	}
-	
-	@RequestMapping(path = {"editUserPage.do"}, params = "id", method = RequestMethod.POST)
+
+	@RequestMapping(path = { "editUserPage.do" }, params = "id", method = RequestMethod.POST)
 	public String editUserPage(Model model, int id) {
 		User user = userDao.findById(id);
 //		model.addAttribute("user", user);
 		return "editUser";
 	}
-	
-	@RequestMapping(path = {"deactivateUser.do"}, method = RequestMethod.POST)
+
+	@RequestMapping(path = { "deactivateUser.do" }, method = RequestMethod.POST)
 	public String deactivateUser(User user) {
-		
+
 		System.out.println(user.getId());
 		ModelAndView mv = new ModelAndView();
 		User dbUser = userDao.findById(user.getId());
-		
+
 		System.out.println(dbUser);
-		
+
 		System.out.println(dbUser.getEnabled());
 		userDao.deactivateUser(dbUser);
 		System.out.println(dbUser.getEnabled());
@@ -84,6 +118,5 @@ public class UserProfileController {
 		mv.setViewName("userProfile");
 		return "redirect:profile.do";
 	}
-	
-	
+
 }

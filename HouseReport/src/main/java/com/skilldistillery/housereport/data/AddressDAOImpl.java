@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.housereport.entities.Address;
+import com.skilldistillery.housereport.entities.User;
 
 @Service
 @Transactional
@@ -32,6 +33,13 @@ public class AddressDAOImpl implements AddressDAO {
 			.setParameter("postalCode", postalCode)
 			.getSingleResult();
 		return address;
+	}
+	@Override
+	public List<Address> findAddress(String keyword) {
+		String jpql = "SELECT a FROM Address a WHERE a.street LIKE :k OR a.street2 LIKE :k OR a.city LIKE :k OR a.state LIKE :k OR a.postalCode LIKE :k";
+		keyword = "%" + keyword + "%";
+		List<Address> addresses = em.createQuery(jpql, Address.class).setParameter("k", keyword).getResultList();
+		return addresses;
 	}
 	
 	@Override

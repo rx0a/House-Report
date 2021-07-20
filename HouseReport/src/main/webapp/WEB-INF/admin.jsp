@@ -151,8 +151,8 @@ html {
 				<div class="collapse navbar-collapse justify-content-end"
 					id="navigation">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="admin.do"> <span
-								class="no-icon">Admin</span>
+						<li class="nav-item"><a class="nav-link" href="profile.do"> <span
+								class="no-icon">User</span>
 						</a></li>
 					</ul>
 				</div>
@@ -209,14 +209,11 @@ html {
 						<c:choose>
 							<c:when test="${! empty user}">
 								<br>
-								<h1>&nbsp;&nbsp;&nbsp;&nbsp;Welcome to your dashboard,
-									${user.firstName }.</h1>
+								<h1>&nbsp;&nbsp;&nbsp;&nbsp;Admin Dashboard</h1>
 								<br>
 								<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Here
-									you can view and edit your listings, favorites, comments and
-									profile information.</h5>
+									you can view and edit users and listings.</h5>
 							</c:when>
-
 						</c:choose>
 					</div>
 				</div>
@@ -225,20 +222,99 @@ html {
 				<div class="col-md-6">
 					<div class="card ">
 						<div class="card-header ">
-							<h4 class="card-title">Listings</h4>
-							<p class="card-category">All listings created by you</p>
+							<h4 class="card-title">Users</h4>
+							<p class="card-category">All registered users</p>
+							<form class="d-flex" action="getUser.do" method="POST">
+								<input class="form-control me-2" name="keyword" type="search"
+									placeholder="Search Users" aria-label="Search">
+								<button class="btn btn-outline-light" type="submit">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
+							</form>
 						</div>
 						<div class="card-body ">
 							<div class="table-full-width">
 								<table class="table" id="container">
 									<tbody>
 										<c:choose>
-											<c:when test="${! empty user.listings}">
-												<c:forEach var="listing" items="${user.listings}">
+											<c:when test="${! empty userList}">
+												<c:forEach var="user" items="${userList}">
+													<tr>
+														<td>
+															<div class="form-check">ID: ${user.id }</div>
+														</td>
+														<td>
+															<table class="table mytable">
+																<tr>
+																	<td valign="top">
+
+																		<form action="#" method="POST">
+																			<input type="hidden" name="id" value="${user.id }">Name:
+																			<button style="padding: 0px"
+																				class="btn btn-link text-left" type="submit">${user.firstName}
+																				${user.lastName}</button>
+																		</form>Username: ${user.username }<br>Password:
+																		${user.password }<br>Enabled: ${user.enabled } <br>Email:
+																		${user.email}
+
+																	</td>
+																</tr>
+																<tr>
+																	<td class="test align-bottom" valign="bottom">
+
+																		<form action="deactivateUser.do" method="POST">
+																			<input type="hidden" name="id" value="${user.id}">
+																			<button class="btn btn-outline-danger " type="submit"
+																				name="action" value="Delete">
+																				<i class="fa fa-trash" aria-hidden="true"></i>
+																			</button>
+																			&nbsp;&nbsp;
+																			<button class="btn btn-outline-warning  "
+																				type="submit" name="action" value="Deactivate">
+																				<i class="fa fa-power-off" aria-hidden="true"></i>
+																			</button>
+																		</form>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+		You do not have any current listings<br>
+											</c:otherwise>
+										</c:choose>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="card ">
+						<div class="card-header ">
+							<h4 class="card-title">Listings</h4>
+							<p class="card-category">All available listings</p>
+							<form class="d-flex" action="getListing.do" method="POST">
+								<input class="form-control me-2" name="keyword" type="search"
+									placeholder="Search Listings" aria-label="Search">
+								<button class="btn btn-outline-light" type="submit">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
+							</form>
+						</div>
+						<div class="card-body ">
+							<div class="table-full-width">
+								<table class="table" id="container">
+									<tbody>
+										<c:choose>
+											<c:when test="${! empty listingList}">
+												<c:forEach var="address" items="${listingList}">
 													<tr>
 														<td>
 															<div class="form-check">
-																<img src="${listing.listingPhotos.get(0)}"
+																<img src="${address.listing.listingPhotos.get(0)}"
 																	height="300px" alt="image placeholder"
 																	class="card-img-top">
 															</div>
@@ -247,15 +323,14 @@ html {
 															<table class="table mytable">
 																<tr>
 																	<td valign="top">
-
 																		<form action="listing.do" method="POST">
-																			<input type="hidden" name="id" value="${listing.id }">Address:<br>
+																			<input type="hidden" name="id"
+																				value="${address.listing.id }">Address:<br>
 																			<button style="padding: 0px"
-																				class="btn btn-link text-left" type="submit">${listing.address.street },
-																				${listing.address.city}, ${listing.address.state}</button>
-																		</form>Rating: ${listing.accuracyRating} <br> Events:
-																		${listing.events.size()} <br> Created:
-																		${listing.getCreatedOn().getYear()}<br>
+																				class="btn btn-link text-left" type="submit">${address.street },
+																				${address.city}, ${address.state}</button>
+																		</form>Rating: ${address.listing.accuracyRating} <br>
+																		Events: ${address.listing.events.size()} <br>
 
 																	</td>
 																</tr>
@@ -263,7 +338,7 @@ html {
 																	<td class="test align-bottom" valign="bottom">
 
 																		<form action="editListing.do" method="POST">
-																			<input type="hidden" name="id" value="${listing.id}" />
+																			<input type="hidden" name="id" value="${address.listing.id}" />
 																			<input type="hidden" name="id" value="${user.id}">
 																			<button class="btn btn-outline-danger " type="submit"
 																				name="action" value="Delete">
@@ -284,131 +359,6 @@ html {
 											</c:when>
 											<c:otherwise>
 		You do not have any current listings<br>
-											</c:otherwise>
-										</c:choose>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="card ">
-						<div class="card-header ">
-							<h4 class="card-title">Favorites</h4>
-							<p class="card-category">Your favorite listings</p>
-						</div>
-						<div class="card-body ">
-							<div class="table-full-width">
-								<table class="table" id="container">
-									<tbody>
-										<c:choose>
-											<c:when test="${! empty user.favorites}">
-												<c:forEach var="favorite" items="${user.favorites}">
-													<tr>
-														<td>
-															<div class="form-check">
-																<img src="${favorite.listingPhotos.get(0)}"
-																	height="300px" alt="image placeholder"
-																	class="card-img-top">
-															</div>
-														</td>
-														<td>
-															<table class="table mytable">
-																<tr>
-																	<td valign="top">
-
-																		<form action="listing.do" method="POST">
-																			<input type="hidden" name="id"
-																				value="${favorite.id }">Address:<br>
-																			<button style="padding: 0px"
-																				class="btn btn-link text-left" type="submit">${favorite.address.street },
-																				${favorite.address.city}, ${favorite.address.state}</button>
-																		</form>Rating: ${favorite.accuracyRating} <br> Events:
-																		${favorite.events.size()} <br>
-
-																	</td>
-																</tr>
-																<tr>
-																	<td class="test align-bottom" valign="bottom">
-
-																		<form action="deleteFavorite.do" method="POST">
-																			<input type="hidden" name="id" value="${favorite.id}" />
-																			<input type="hidden" name="id" value="${user.id}">
-																			<button class="btn btn-outline-danger " type="submit"
-																				name="action" value="Delete">
-																				<i class="fa fa-trash" aria-hidden="true"></i>
-																			</button>
-																		</form>
-																	</td>
-																</tr>
-															</table>
-														</td>
-													</tr>
-												</c:forEach>
-											</c:when>
-											<c:otherwise>
-		You do not have any current listings<br>
-											</c:otherwise>
-										</c:choose>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 test2">
-					<div class="card  card-tasks">
-						<div class="card-header ">
-							<h4 class="card-title">Comments</h4>
-							<p class="card-category">All comments made by you</p>
-						</div>
-						<div class="card-body ">
-							<div class="table-full-width">
-								<table class="table">
-									<tbody>
-										<c:choose>
-											<c:when test="${! empty user.comments}">
-												<c:forEach var="comment" items="${user.comments}">
-													<tr>
-														<td class="commentdate">
-															<div class="form-check">
-																<p>${comment.commentDate.getMonth()},
-																	${comment.commentDate.getDayOfMonth()}</p>
-																<p>${comment.commentDate.getYear() }</p>
-															</div>
-														</td>
-														<td>
-															<form action="listing.do" method="POST">
-																<input type="hidden" name="id" value="${listing.id }">
-																<button style="padding: 0px"
-																	class="btn btn-link text-left" type="submit">${comment.listing.address.street },
-																	${comment.listing.address.city},
-																	${comment.listing.address.state}</button>
-															</form>
-															<p>"${comment.comment}"</p>
-														</td>
-														<td class="td-actions text-right">
-															<form action="editComment.do" method="GET">
-																<input type="hidden" name="id" value="${comment.id}" />
-																<button class="btn btn-outline-danger" type="submit"
-																	name="action" value="Delete">
-																	<i class="fa fa-trash" aria-hidden="true"></i>
-																</button>
-																&nbsp;&nbsp;
-																<button class="btn btn-outline-warning" type="submit"
-																	name="action" value="Edit">
-																	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-																</button>
-															</form>
-														</td>
-													</tr>
-												</c:forEach>
-											</c:when>
-											<c:otherwise>
-		You do not have any current comments<br>
 											</c:otherwise>
 										</c:choose>
 									</tbody>

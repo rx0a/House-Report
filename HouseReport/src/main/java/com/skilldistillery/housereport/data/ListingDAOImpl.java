@@ -98,5 +98,6 @@ public class ListingDAOImpl implements ListingDAO{
 		
 		return displayRating;
 	}
+	
 
 }
