@@ -23,6 +23,11 @@ public class LoginController {
 	public String login(Model model) {
 		return "login";
 	}
+	
+	@RequestMapping(path = { "user.do" })
+	public String user(Model model) {
+		return "user";
+	}
 
 	@RequestMapping(path = { "checkAccount.do" }, params = { "username", "password" }, method = RequestMethod.POST)
 	public ModelAndView checkAccount(Model model, String username, String password, HttpSession session) {

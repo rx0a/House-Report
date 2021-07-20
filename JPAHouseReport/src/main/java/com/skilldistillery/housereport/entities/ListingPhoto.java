@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table(name="listing_photo")
 public class ListingPhoto {
@@ -16,6 +19,7 @@ public class ListingPhoto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@Column(name="img_url")
 	private String imgUrl;
 	

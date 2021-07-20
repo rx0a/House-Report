@@ -33,55 +33,8 @@
 <link rel="stylesheet" href="style.css" />
 <!-- END CSS -->
 <title>User Profile</title>
-<style>
-.mytable {
-	height: 300px;
-	padding: 0px;
-	margin: 0px;
-}
-
-.test {
-	height: 30px;
-	padding: 0px;
-	margin: 0;
-	text-align: center
-}
-
-html {
-	width: 100%;
-	margin: 0;
-	padding: 0;
-}
-
-.mycontainer {
-	width: 90%;
-	padding: 0;
-}
-
-.demo-wrap {
-	position: relative;
-}
-
-.demo-wrap:before {
-	content: ' ';
-	display: block;
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	opacity: 0.2;
-	background-image: url('images/logo1.png');
-	background-repeat: no-repeat;
-	background-position: 50% 0;
-	background-size: contain;
-}
-
-.demo-content {
-	position: relative;
-}
-</style>
 </head>
+
 <body>
 	<header>
 		<!-- Navbar -->
@@ -123,7 +76,7 @@ html {
 	<div class="main-panel">
 		<nav class="navbar navbar-expand-lg " color-on-scroll="500">
 			<div class=" container-fluid  ">
-				<p></p>
+				<a class="navbar-brand" href="#"> Dashboard </a>
 				<button href="" class="navbar-toggler navbar-toggler-right"
 					type="button" data-toggle="collapse"
 					aria-controls="navigation-index" aria-expanded="false"
@@ -135,19 +88,23 @@ html {
 				<div class="collapse navbar-collapse justify-content-end"
 					id="navigation">
 					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link" href="#pablo"> <span
+								class="no-icon">Account</span>
+						</a></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="https://example.com"
 							id="navbarDropdownMenuLink" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"> <span
-								class="no-icon">Admin</span>
+								class="no-icon">Dropdown</span>
 						</a>
 							<div class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<form action="viewUsers.do" method="POST">
-									<button class="dropdown-item" type="submit" name="action"
-										value="View Users">View Users</button>
-								</form>
-
+								<a class="dropdown-item" href="#">Action</a> <a
+									class="dropdown-item" href="#">Another action</a> <a
+									class="dropdown-item" href="#">Something</a> <a
+									class="dropdown-item" href="#">Something else here</a>
+								<div class="divider"></div>
+								<a class="dropdown-item" href="#">Separated link</a>
 							</div></li>
 						<li class="nav-item"><a class="nav-link" href="#pablo"> <span
 								class="no-icon">Log out</span>
@@ -158,112 +115,86 @@ html {
 		</nav>
 		<!-- End Navbar -->
 		<div class="content"></div>
-		<div class="container-fluid mycontainer">
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-4">
 					<div class="card ">
 						<div class="card-header ">
-							<form action="editUserPage.do" method="POST">
-								<input type="hidden" name="id" value="${user.id}" />
-								<button class="btn btn-outline-warning pull-right" type="submit"
-									name="action" value="Edit">
-									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-								</button>
-								<h4 class="card-title">Profile Info</h4>
-							</form>
+							<h4 class="card-title">Profile Info</h4>
 						</div>
 						<div class="card-footer ">
 							<c:choose>
 								<c:when test="${! empty user}">
+									<h2>Account Info</h2>
+									<form action="editUserPage.do" method="POST">
+										<input type="hidden" name="id" value="${user.id}" /> <input
+											type="submit" value="Edit Personal Information" />
+									</form>
 									<div class="info">Username: ${user.username}</div>
 									<hr>
 									<div class="info">First Name: ${user.firstName}</div>
-									<hr>
 									<div class="info">Last Name: ${user.lastName}</div>
-									<hr>
 									<div class="info">Email: ${user.email}</div>
+									<div class="edit">
+										<form action="editUserPage.do" method="POST">
+											<input type="hidden" name="id" value="${user.id}" />
+											<button class="btn btn-outline-warning" type="submit"
+												name="action" value="Edit">
+												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+											</button>
+										</form>
+									</div>
+
 								</c:when>
 							</c:choose>
 						</div>
 					</div>
 					<br>
 				</div>
-				<div class="col-md-8 demo-wrap">
-					<div class="demo-content">
-						<c:choose>
-							<c:when test="${! empty user}">
-								<br>
-								<h1>&nbsp;&nbsp;&nbsp;&nbsp;Welcome to your dashboard,
-									${user.firstName }.</h1>
-								<br>
-								<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Here
-									you can view and edit your listings, comments and profile
-									information.</h5>
-							</c:when>
-						</c:choose>
-					</div>
-				</div>
+				<div class="col-md-8"></div>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
 					<div class="card ">
 						<div class="card-header ">
 							<h4 class="card-title">Listings</h4>
-							<p class="card-category">All listings created by you.</p>
+							<p class="card-category">All listings of the user</p>
 						</div>
+
 						<div class="card-body ">
 							<div class="table-full-width">
-								<table class="table" id="container">
+								<table class="table">
 									<tbody>
 										<c:choose>
 											<c:when test="${! empty user.listings}">
-												<c:forEach var="listing" items="${user.listings}">
-													<tr>
+												<tr>
+													<c:forEach var="listing" items="${user.listings}">
 														<td>
 															<div class="form-check">
 																<img src="${listing.listingPhotos.get(0)}"
-																	height="300px" alt="image placeholder"
+																	alt="image placeholder" height="200"
 																	class="card-img-top">
 															</div>
 														</td>
-														<td>
-															<table class="table mytable">
-																<tr>
-																	<td valign="top">
-
-																		<form action="listing.do" method="POST">
-																			<input type="hidden" name="id" value="${listing.id }">Address:<br>
-																			<button style="padding: 0px"
-																				class="btn btn-link text-left" type="submit">${listing.address.street },
-																				${listing.address.city}, ${listing.address.state}</button>
-																		</form>Rating: ${listing.accuracyRating} <br> Events:
-																		${listing.events.size()} <br> Created:
-																		${listing.getCreatedOn().getYear()}<br>
-
-																	</td>
-																</tr>
-																<tr>
-																	<td class="test align-bottom" valign="bottom">
-
-																		<form action="editListing.do" method="POST">
-																			<input type="hidden" name="id" value="${listing.id}" />
-																			<input type="hidden" name="id" value="${user.id}">
-																			<button class="btn btn-outline-danger " type="submit"
-																				name="action" value="Delete">
-																				<i class="fa fa-trash" aria-hidden="true"></i>
-																			</button>
-																			&nbsp;&nbsp;
-																			<button class="btn btn-outline-warning  "
-																				type="submit" name="action" value="Edit">
-																				<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-																			</button>
-																		</form>
-																	</td>
-																</tr>
-															</table>
+														<td>${listing.address.street },
+															${listing.address.city}, ${listing.address.state}</td>
+														<td class="td-actions text-right">
+															<form action="editListing.do" method="POST">
+																<input type="hidden" name="id" value="${listing.id}" />
+																<input type="hidden" name="id" value="${user.id}">
+																<button class="btn btn-outline-warning" type="submit"
+																	name="action" value="Edit">
+																	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+																</button>
+																<button class="btn btn-outline-danger" type="submit"
+																	name="action" value="Delete">
+																	<i class="fa fa-trash" aria-hidden="true"></i>
+																</button>
+															</form>
 														</td>
-													</tr>
-												</c:forEach>
+													</c:forEach>
+
+												</tr>
 											</c:when>
 											<c:otherwise>
 		You do not have any current listings<br>
@@ -279,7 +210,7 @@ html {
 					<div class="card  card-tasks">
 						<div class="card-header ">
 							<h4 class="card-title">Comments</h4>
-							<p class="card-category">All comments made by you.</p>
+							<p class="card-category">All comments of the user</p>
 						</div>
 						<div class="card-body ">
 							<div class="table-full-width">
@@ -287,41 +218,29 @@ html {
 									<tbody>
 										<c:choose>
 											<c:when test="${! empty user.comments}">
-												<c:forEach var="comment" items="${user.comments}">
-													<tr>
+												<tr>
+													<c:forEach var="comment" items="${user.comments}">
 														<td>
 															<div class="form-check">
-																<p>${comment.commentDate.getMonth()},
-																	${comment.commentDate.getDayOfMonth()}</p>
-																<p>${comment.commentDate.getYear() }</p>
+																<p>${comment.listing.address.street }</p>
 															</div>
 														</td>
-														<td>
-															<form action="listing.do" method="POST">
-																<input type="hidden" name="id" value="${listing.id }">
-																<button style="padding: 0px"
-																	class="btn btn-link text-left" type="submit">${comment.listing.address.street },
-																	${comment.listing.address.city},
-																	${comment.listing.address.state}</button>
-															</form>
-															<p>"${comment.comment}"</p>
-														</td>
+														<td>"${comment.comment }"</td>
 														<td class="td-actions text-right">
 															<form action="editComment.do" method="GET">
 																<input type="hidden" name="id" value="${comment.id}" />
-																<button class="btn btn-outline-danger" type="submit"
-																	name="action" value="Delete">
-																	<i class="fa fa-trash" aria-hidden="true"></i>
-																</button>
-																&nbsp;&nbsp;
 																<button class="btn btn-outline-warning" type="submit"
 																	name="action" value="Edit">
 																	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 																</button>
+																<button class="btn btn-outline-danger" type="submit"
+																	name="action" value="Delete">
+																	<i class="fa fa-trash" aria-hidden="true"></i>
+																</button>
 															</form>
 														</td>
-													</tr>
-												</c:forEach>
+													</c:forEach>
+												</tr>
 											</c:when>
 											<c:otherwise>
 		You do not have any current comments<br>

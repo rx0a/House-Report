@@ -16,6 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 public class Listing {
 	
@@ -60,7 +63,8 @@ public class Listing {
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-
+			
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(mappedBy = "listings")
 	private List<Event> events;
 	
@@ -74,6 +78,7 @@ public class Listing {
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "listing")
 	private List<ListingPhoto> listingPhotos;
 

@@ -73,7 +73,7 @@
 							<a class="dropdown-item" href="showListings.do">View Listings</a>
 							<form action="profile.do" method="GET">
 						<input type="hidden" name="id" value="${user.id }">
-						<button class="btn btn-secondary my-2 my-sm-0" type="submit">View Profile</button>
+						<button class="dropdown-item" type="submit">View Profile</button>
 					</form>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">Logout</a>
