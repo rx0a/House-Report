@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="favicon.ico"/>
+<link rel="shortcut icon" href="favicon.ico" />
 <meta charset="UTF-8">
 <!-- BOOTSTRAP -->
 <link rel="canonical"
@@ -33,6 +33,54 @@
 <link rel="stylesheet" href="style.css" />
 <!-- END CSS -->
 <title>User Profile</title>
+<style>
+.mytable {
+	height: 300px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.test {
+	height: 30px;
+	padding: 0px;
+	margin: 0;
+	text-align: center
+}
+
+html {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.mycontainer {
+	width: 90%;
+	padding: 0;
+}
+
+.demo-wrap {
+	position: relative;
+}
+
+.demo-wrap:before {
+	content: ' ';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.2;
+	background-image: url('images/logo1.png');
+	background-repeat: no-repeat;
+	background-position: 50% 0;
+	background-size: contain;
+}
+
+.demo-content {
+	position: relative;
+}
+</style>
 </head>
 <body>
 	<header>
@@ -64,125 +112,231 @@
 					</form>
 					<form action="profile.do" method="POST">
 						<input type="hidden" name="id" value="${user.id }">
-   						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Profile</button>
-					</form> 
+						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Profile</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End Navbar -->
+	<!--     <div class="wrapper"> -->
+	<div class="main-panel">
+		<nav class="navbar navbar-expand-lg " color-on-scroll="500">
+			<div class=" container-fluid  ">
+				<p></p>
+				<button href="" class="navbar-toggler navbar-toggler-right"
+					type="button" data-toggle="collapse"
+					aria-controls="navigation-index" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-bar burger-lines"></span> <span
+						class="navbar-toggler-bar burger-lines"></span> <span
+						class="navbar-toggler-bar burger-lines"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end"
+					id="navigation">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="https://example.com"
+							id="navbarDropdownMenuLink" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> <span
+								class="no-icon">Admin</span>
+						</a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<form action="viewUsers.do" method="POST">
+									<button class="dropdown-item" type="submit" name="action"
+										value="View Users">View Users</button>
+								</form>
+
+							</div></li>
+						<li class="nav-item"><a class="nav-link" href="#pablo"> <span
+								class="no-icon">Log out</span>
+						</a></li>
+					</ul>
 				</div>
 			</div>
 		</nav>
 		<!-- End Navbar -->
-	</header>
-	<!-- Display User Info -->
-	<c:choose>
-		<c:when test="${! empty user}">
-			<h2>Account Info</h2>
-			<form action="editUserPage.do" method="POST">
-				<input type="hidden" name="id" value="${user.id}" />
-				 <input type="submit" value="Edit Personal Information" />
-			</form>
-			<br>
-	Username: ${user.username}<br>
-	First Name: ${user.firstName}<br>
-	Last Name: ${user.lastName}<br>
-	Email: ${user.email}<br>
-			<br>
-		</c:when>
-	</c:choose>
+		<div class="content"></div>
+		<div class="container-fluid mycontainer">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card ">
+						<div class="card-header ">
+							<form action="editUserPage.do" method="POST">
+								<input type="hidden" name="id" value="${user.id}" />
+								<button class="btn btn-outline-warning pull-right" type="submit"
+									name="action" value="Edit">
+									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+								</button>
+								<h4 class="card-title">Profile Info</h4>
+							</form>
+						</div>
+						<div class="card-footer ">
+							<c:choose>
+								<c:when test="${! empty user}">
+									<div class="info">Username: ${user.username}</div>
+									<hr>
+									<div class="info">First Name: ${user.firstName}</div>
+									<hr>
+									<div class="info">Last Name: ${user.lastName}</div>
+									<hr>
+									<div class="info">Email: ${user.email}</div>
+								</c:when>
+							</c:choose>
+						</div>
+					</div>
+					<br>
+				</div>
+				<div class="col-md-8 demo-wrap">
+					<div class="demo-content">
+						<c:choose>
+							<c:when test="${! empty user}">
+								<br>
+								<h1>&nbsp;&nbsp;&nbsp;&nbsp;Welcome to your dashboard,
+									${user.firstName }.</h1>
+								<br>
+								<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Here
+									you can view and edit your listings, comments and profile
+									information.</h5>
+							</c:when>
+						</c:choose>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card ">
+						<div class="card-header ">
+							<h4 class="card-title">Listings</h4>
+							<p class="card-category">All listings created by you.</p>
+						</div>
+						<div class="card-body ">
+							<div class="table-full-width">
+								<table class="table" id="container">
+									<tbody>
+										<c:choose>
+											<c:when test="${! empty user.listings}">
+												<c:forEach var="listing" items="${user.listings}">
+													<tr>
+														<td>
+															<div class="form-check">
+																<img src="${listing.listingPhotos.get(0)}"
+																	height="300px" alt="image placeholder"
+																	class="card-img-top">
+															</div>
+														</td>
+														<td>
+															<table class="table mytable">
+																<tr>
+																	<td valign="top">
 
-	<c:choose>
-		<c:when test="${! empty user.listings}">
-		Listings:
-		<ul>
-				<c:forEach var="listing" items="${user.listings}">
-					<li>${listing.address.street }, ${listing.address.city},
-						${listing.address.state}
-						<form action="editListing.do" method="POST">
-							<input type="hidden" name="id" value="${listing.id}" /> 
-							<input type="hidden" name="id" value="${user.id}">
-							<input type="submit" value="Edit Listing" />
-						</form>
-						<form action="deleteListing.do" method="POST">
-							<input type="hidden" name="id" value="${listing.id}" /> <input
-								type="submit" value="Delete Listing" />
-						</form>
-					</li>
-				</c:forEach>
-			</ul>
-		</c:when>
-		<c:otherwise>
+																		<form action="listing.do" method="POST">
+																			<input type="hidden" name="id" value="${listing.id }">Address:<br>
+																			<button style="padding: 0px"
+																				class="btn btn-link text-left" type="submit">${listing.address.street },
+																				${listing.address.city}, ${listing.address.state}</button>
+																		</form>Rating: ${listing.accuracyRating} <br> Events:
+																		${listing.events.size()} <br> Created:
+																		${listing.getCreatedOn().getYear()}<br>
+
+																	</td>
+																</tr>
+																<tr>
+																	<td class="test align-bottom" valign="bottom">
+
+																		<form action="editListing.do" method="POST">
+																			<input type="hidden" name="id" value="${listing.id}" />
+																			<input type="hidden" name="id" value="${user.id}">
+																			<button class="btn btn-outline-danger " type="submit"
+																				name="action" value="Delete">
+																				<i class="fa fa-trash" aria-hidden="true"></i>
+																			</button>
+																			&nbsp;&nbsp;
+																			<button class="btn btn-outline-warning  "
+																				type="submit" name="action" value="Edit">
+																				<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+																			</button>
+																		</form>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
 		You do not have any current listings<br>
-		</c:otherwise>
-	</c:choose>
-
-	<c:choose>
-		<c:when test="${! empty user.favorites}">
-		Favorites:
-		<ul>
-				<c:forEach var="favorite" items="${user.favorites}">
-					<li>${favorite.address.street },${favorite.address.city },
-						${favorite.address.state }
-							<form action="deleteFavorite.do" method="GET">
-							<input type="hidden" name="favoriteID" value="${favorite.id}" /> 
-							<input type="hidden" name="userID" value="${user.id}" /> 
-							<input type="submit" value="Remove from Favorites" />
-						</form>
-						</li>
-				</c:forEach>
-			</ul>
-		</c:when>
-		<c:otherwise>
-		You do not have any current favorites<br>
-		</c:otherwise>
-	</c:choose>
-
-	<c:choose>
-		<c:when test="${! empty user.comments}">
-		Comments:
-		<ul>
-				<c:forEach var="comment" items="${user.comments}">
-					<li>${comment.listing.address.street },
-						${comment.listing.address.city }, ${comment.listing.address.state }</li>
-					<ul>
-						<li>
-						"${comment.comment }"
-							<form action="editComment.do" method="GET">
-							<input type="hidden" name="id" value="${comment.id}" /> <input
-								type="submit" value="Edit Comment" />
-						</form>
-						<form action="deleteComment.do" method="GET">
-							<input type="hidden" name="id" value="${comment.id}" /> <input
-								type="submit" value="Delete Comment" />
-						</form>
-						</li>
-					</ul>
-				</c:forEach>
-			</ul>
-		</c:when>
-		<c:otherwise>
+											</c:otherwise>
+										</c:choose>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="card  card-tasks">
+						<div class="card-header ">
+							<h4 class="card-title">Comments</h4>
+							<p class="card-category">All comments made by you.</p>
+						</div>
+						<div class="card-body ">
+							<div class="table-full-width">
+								<table class="table">
+									<tbody>
+										<c:choose>
+											<c:when test="${! empty user.comments}">
+												<c:forEach var="comment" items="${user.comments}">
+													<tr>
+														<td>
+															<div class="form-check">
+																<p>${comment.commentDate.getMonth()},
+																	${comment.commentDate.getDayOfMonth()}</p>
+																<p>${comment.commentDate.getYear() }</p>
+															</div>
+														</td>
+														<td>
+															<form action="listing.do" method="POST">
+																<input type="hidden" name="id" value="${listing.id }">
+																<button style="padding: 0px"
+																	class="btn btn-link text-left" type="submit">${comment.listing.address.street },
+																	${comment.listing.address.city},
+																	${comment.listing.address.state}</button>
+															</form>
+															<p>"${comment.comment}"</p>
+														</td>
+														<td class="td-actions text-right">
+															<form action="editComment.do" method="GET">
+																<input type="hidden" name="id" value="${comment.id}" />
+																<button class="btn btn-outline-danger" type="submit"
+																	name="action" value="Delete">
+																	<i class="fa fa-trash" aria-hidden="true"></i>
+																</button>
+																&nbsp;&nbsp;
+																<button class="btn btn-outline-warning" type="submit"
+																	name="action" value="Edit">
+																	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+																</button>
+															</form>
+														</td>
+													</tr>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
 		You do not have any current comments<br>
-		</c:otherwise>
-	</c:choose>
-	
-		<c:choose>
-		<c:when test="${! empty userList}">
-		Users:
-		<c:forEach var="users" items="${userList}">
-		<ul>
-		<li>${users.username}
-			<form action="deactivateUser.do" method="POST">
-							<input type="hidden" name="id" value="${users.id}" /> <input
-								type="submit" value="Deactivate User" />
-								</form>
-			<form action="deleteUser.do" method="POST">
-							<input type="hidden" name="id" value="${users.id}" /> <input
-								type="submit" value="Delete User" />
-								</form>
-		</ul>
-		</c:forEach>
-		</c:when>
-		<c:otherwise>
-		You are not an admin<br>
-		</c:otherwise>
-		</c:choose>
-		
+											</c:otherwise>
+										</c:choose>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
 </body>
 </html>

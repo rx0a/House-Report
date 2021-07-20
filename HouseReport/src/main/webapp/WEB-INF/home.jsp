@@ -73,9 +73,10 @@
 							<a class="dropdown-item" href="results.do">View Listings</a>
 							<form action="profile.do" method="GET">
 								<input type="hidden" name="id" value="${user.id }">
-								<button class="btn btn-secondary my-2 my-sm-0" type="submit">View
+								<button class="dropdown-item" type="submit">View
 									Profile</button>
 							</form>
+
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">Logout</a>
 						</div></li>
@@ -101,8 +102,8 @@
 			<h5 class="mb-3">
 				<em>because home is where <strong>your</strong> house is.
 				</em>
-			</h5>			
-			
+			</h5>
+
 		</div>
 		<!-- End Jumbotron -->
 	</header>
