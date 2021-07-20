@@ -64,7 +64,7 @@
 							<span class="sr-only">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-					<li class="nav-item"><a class="nav-link" href="createListing.do">Create Listing</a></li>
+					<li class="nav-item"><a class="nav-link" name="id" value="${user.id}" href="createListing.do">Create Listing</a></li>
 
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"

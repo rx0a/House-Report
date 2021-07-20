@@ -1,5 +1,6 @@
 package com.skilldistillery.housereport.data;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -45,15 +46,15 @@ public class ListingDAOImpl implements ListingDAO{
 	}
 
 	@Override
-	public Listing create(Listing listing, User user, Address address, PropertyType propertyType, ListingPhoto photo) {
+	public Listing create(Listing listing, User user, Address address, PropertyType propertyType) {
 		Address dbAddress = addDAO.create(address);
 		User dbUser = em.find(User.class, user.getId());
+		System.out.println(dbUser.getId() + "TEST FROM IMPL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		PropertyType dbPropertyType = propertyTypeDao.create(propertyType);
-		ListingPhoto dbPhoto = listingPhotoDao.create(photo);
 		listing.setUser(dbUser);
 		listing.setAddress(dbAddress);
 		listing.setPropertyType(dbPropertyType);
-		listing.addPhoto(dbPhoto);
+		listing.setCreatedOn(LocalDateTime.now());
 		em.persist(listing);
 		em.flush();
 		return listing;

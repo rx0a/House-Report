@@ -96,6 +96,8 @@
  <input type="hidden" name="userId" value="${user.id}">
  	<!-- Start of address object -->
  	<br>
+ 	<br>
+ 	<br>
  		<b>Street: </b>
  		<input type="text" name="street"><br>
  		<b>APT:</b>

@@ -1,5 +1,7 @@
 package com.skilldistillery.housereport.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,17 +11,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.housereport.data.AddressDAO;
 import com.skilldistillery.housereport.data.ListingDAO;
+import com.skilldistillery.housereport.data.ListingPhotoDAO;
 import com.skilldistillery.housereport.data.RatingDAO;
 import com.skilldistillery.housereport.data.UserDAO;
 import com.skilldistillery.housereport.entities.Address;
 import com.skilldistillery.housereport.entities.Listing;
-
 import com.skilldistillery.housereport.entities.ListingPhoto;
 import com.skilldistillery.housereport.entities.PropertyType;
-
 import com.skilldistillery.housereport.entities.Rating;
 import com.skilldistillery.housereport.entities.RatingId;
-
 import com.skilldistillery.housereport.entities.User;
 
 @Controller
@@ -35,6 +35,9 @@ public class ListingController {
 
 	@Autowired
 	private RatingDAO ratingDao;
+	
+	@Autowired
+	private ListingPhotoDAO photoDao;
 
 	@RequestMapping(path = { "showListings.do" })
 	public String showListings(Model model) {
@@ -113,15 +116,18 @@ public class ListingController {
 	
 
 	@RequestMapping(path="createListing.do", method=RequestMethod.GET)
-	public String createListing(Model model, User user) {
-		User dbUser = userDao.findById(user.getId());
-		model.addAttribute("user", dbUser);
+	public String createListing(Model model) {
 		return "createListing";
 	}
 	
 	@RequestMapping(path="createdListing.do", method=RequestMethod.POST)
-	public String createdListing(Model model, User user, Address address, Listing listing, PropertyType propertyType, ListingPhoto photo) {
-		listingDao.create(listing, user, address, propertyType, photo);
+	public String createdListing(Model model, HttpSession session, Address address, Listing listing, PropertyType propertyType, ListingPhoto photo) {
+		User dbUser = (User)session.getAttribute("user");
+		Listing dbListing = listingDao.create(listing, dbUser, address, propertyType);
+		System.out.println(dbUser.getId() + "TEST FROM CREATED LISTING!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//		photo.setListing(dbListing);
+		dbListing.getListingPhotos().add(photo);
+		ListingPhoto dbPhoto = photoDao.create(photo);
 		return "userProfile";
 	}
 
