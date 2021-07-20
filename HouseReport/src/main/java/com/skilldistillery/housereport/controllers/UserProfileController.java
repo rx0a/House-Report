@@ -1,5 +1,6 @@
 package com.skilldistillery.housereport.controllers;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpSession;
@@ -43,9 +44,13 @@ public class UserProfileController {
 		dbUser.setEmail(email);
 		userDao.updateUser(dbUser);
 		session.setAttribute("user", dbUser);
-		LocalDateTime ut = LocalDateTime.now();
-		session.setAttribute("updatedTime", ut);
+		LocalDateTime updateTime = LocalDateTime.now();
+		dbUser.setUpdatedTime(updateTime);
+//		LocalDateTime now = LocalDateTime.now();
+//		dbUser.setUpdatedTime(Duration.between(updateTime, now));
+//		session.setAttribute("updateTime", updateTime);
 //		model.addAttribute("user", dbUser);
+
 		return "userProfile";
 	}
 	

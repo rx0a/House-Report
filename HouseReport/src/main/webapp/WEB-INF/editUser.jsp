@@ -190,7 +190,6 @@ html {
 								</button>
 								<h4 class="card-title">Profile Info</h4>
 							</div>
-							<div class="card-footer ">
 								<c:choose>
 									<c:when test="${! empty user}">
 
@@ -220,6 +219,7 @@ html {
 										</div>
 									</c:when>
 								</c:choose>
+							<div class="card-footer ">
 
 							</div>
 
