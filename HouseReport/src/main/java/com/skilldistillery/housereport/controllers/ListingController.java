@@ -112,7 +112,7 @@ public class ListingController {
 	}
 	
 
-	@RequestMapping(path="createListing.do", method=RequestMethod.POST)
+	@RequestMapping(path="createListing.do", method=RequestMethod.GET)
 	public String createListing(Model model, User user) {
 		User dbUser = userDao.findById(user.getId());
 		model.addAttribute("user", dbUser);

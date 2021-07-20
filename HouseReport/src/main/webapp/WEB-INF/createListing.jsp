@@ -36,36 +36,48 @@
 <body>
 	<header>
 		<!-- Navbar -->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">House Report</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#navbarColor02"
-					aria-controls="navbarColor02" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarColor02">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link active" href="#">Home
-								<span class="visually-hidden"></span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">View
-								Listings</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Add a
-								Listing</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-					</ul>
-					<form class="d-flex">
-						<input class="form-control me-sm- " type="text"
-							placeholder="Search">
-						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-					</form>
-					 <form action="profile.do" method="POST">
-						<input type="hidden" name="id" value="${user.id }">
-   						<button class="btn btn-secondary my-2 my-sm-0" type="submit">Profile</button>
-					</form> 
-				</div>
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+
+			<br> <a class="navbar-brand" href="home.do"><img
+				src="images/logo1.png" width="75px" alt="House Report Logo"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link" href="home.do">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+					<li class="nav-item"><a class="nav-link" href="createListing.do">Create Listing</a></li>
+
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> Profile</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="results.do">View Listings</a>
+							<form action="profile.do" method="GET">
+								<input type="hidden" name="id" value="${user.id }">
+								<button class="dropdown-item" type="submit">View
+									Profile</button>
+							</form>
+
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Logout</a>
+						</div></li>
+					<li class="nav-item"><a class="nav-link disabled" href="#"
+						tabindex="-1" aria-disabled="true"></a></li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="search"
+						placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				</form>
 			</div>
 		</nav>
 		<!-- End Navbar -->
@@ -75,11 +87,12 @@
  <input type="hidden" name="userId" value="${user.id}">
  	<!-- Start of address object -->
  		<b>Street: </b>
- 		<input type="text" name="street">
+ 		<input type="text" name="street"><br>
  		<b>APT:</b>
- 		<input type="text" name="street2">
+ 		<input type="text" name="street2"><br>
  		<b>City: </b>
- 		<input type="text" name="city">
+ 		<input type="text" name="city"><br>
+ 		<b>State: </b>
  		<select name="state">
 			<option value="AL">Alabama</option>
 			<option value="AK">Alaska</option>
@@ -132,12 +145,13 @@
 			<option value="WV">West Virginia</option>
 			<option value="WI">Wisconsin</option>
 			<option value="WY">Wyoming</option>
-		</select>
-		<input type="text" name="postalCode">
+		</select><br>
+		<b>Zip code: </b>
+		<input type="text" name="postalCode"><br>
 	<!-- End of address object -->
  
  	<!-- Start of listing object -->
-        <b>Price:</b> <br />
+        <b>Price:</b>
         <input type="text" name="price" value="${listing.price}" > <br />
         <b>Square feet:</b> <br />
         <input type="text" name="squareFeet" value="${listing.squareFeet}" /> <br />
@@ -159,7 +173,6 @@
         <input type="text" name="propertyTax" value="${listing.propertyTax}" > <br />
         <b>Parking type:</b> <br />
         <input type="text" name="parkingType" value="${listing.parkingType}" /> <br />
-        <input type="submit" value="Update" />
         <!-- End of listing object -->
         
         <!-- property type object -->
@@ -170,13 +183,14 @@
 			<option value="Condo">Condo</option>
 			<option value="Duplex">Duplex</option>
 			<option value="Townhouse">Townhouse</option>
-			</select>
+			</select><br>
         <!-- property type object -->
         
         <!-- listing photo object -->
         <b>photo URL: </b>
-        <input type="text" name="imgUrl">
+        <input type="text" name="imgUrl"><br>
         <!-- listing photo object -->
+        <input type="submit" value="Create" />
     </form>
 
 </body>
