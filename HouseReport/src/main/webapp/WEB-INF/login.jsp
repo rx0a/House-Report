@@ -63,5 +63,9 @@
   <script>alert("Account created! Please log in to continue!");
 </script>
 </c:if>
+<c:if test="${accountDisabled}">
+  <script>alert("Account has beed disabled! Please contact a site administrator to re-enable your account!");
+</script>
+</c:if>
 </body>
 </html>
