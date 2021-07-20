@@ -35,6 +35,7 @@ public class CommentDAOImpl implements CommentDAO {
 		User user = em.find(User.class, userID);
 		comment.setListing(listing);
 		comment.setUser(user);
+		user.getComments().add(comment);
 		em.persist(comment);
 		em.flush();
 		return comment;

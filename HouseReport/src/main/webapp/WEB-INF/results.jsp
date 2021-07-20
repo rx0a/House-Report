@@ -47,7 +47,7 @@
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="results.do">View Listings</a>
 						<form action="profile.do" method="GET">
-							<input type="hidden" name="id" value="${user.id }">
+							<input type="hidden" name="id" value="${user.id}">
 							<button class="dropdown-item" type="submit">View Profile</button>
 						</form>
 

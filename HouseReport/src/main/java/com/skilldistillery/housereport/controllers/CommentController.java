@@ -2,12 +2,13 @@ package com.skilldistillery.housereport.controllers;
 
 import java.time.LocalDateTime;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.housereport.data.CommentDAO;
 import com.skilldistillery.housereport.data.ListingDAO;
@@ -60,19 +61,15 @@ public class CommentController {
 	}
 	
 	@RequestMapping(path="postComment.do", params = {"comment", "listingID", "userID"}, method=RequestMethod.POST)
-	public String postComment(Model model, String comment, int listingID, int userID) {
+	public String postComment(Model model, HttpSession session, String comment, int listingID, int userID) {
 		Listing dbListing = listingDao.findById(listingID);
 		User dbUser = userDao.findById(userID);
 		Comment commentObj = new Comment(comment, LocalDateTime.now(), dbUser, dbListing);
-//		comment.setListing(listingDao.findById(listingID));
-//		comment.setUser(userDao.findById(userID));
-//		comment.setCommentDate(LocalDateTime.now());
-//		comment.setComment(commentString);
 		Comment dbComment = commentDao.createComment(commentObj, listingID, userID);
-//		dbListing.addComment(dbComment);
-//		dbUser.addComment(dbComment);
-//		userDao.updateUser(dbUser);
-//		listingDao.update(dbListing, dbListing.getAddress());
+		dbUser = userDao.findByUsername(dbUser.getUsername());
+//		dbUser.getComments().add(dbComment);
+		dbListing = listingDao.findById(listingID);
+		session.setAttribute("user", dbUser);
 		model.addAttribute("selectedListing", dbListing);
 		return "listing";
 	}
