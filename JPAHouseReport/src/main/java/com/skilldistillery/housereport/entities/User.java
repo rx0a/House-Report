@@ -1,5 +1,6 @@
 package com.skilldistillery.housereport.entities;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -40,16 +42,17 @@ public class User {
 	private List<Rating> ratings;
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany
-	@JoinTable(name="favorite", joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="listing_id"))
+	@JoinTable(name = "favorite", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "listing_id"))
 	private List<Listing> favorites;
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany (mappedBy="user")
+	@OneToMany(mappedBy = "user")
 	private List<Listing> listings;
+
+	@Transient
+	private LocalDateTime updatedTime;
 
 	public User() {
 	}
-
-
 
 	public User(int id, String username, String password, int enabled, String role, String firstName, String lastName,
 			String email) {
@@ -64,40 +67,50 @@ public class User {
 		this.email = email;
 	}
 
+	public LocalDateTime getUpdatedTime() {
+		return updatedTime;
+	}
+
+	public void setUpdatedTime(LocalDateTime updatedTime) {
+		this.updatedTime = updatedTime;
+	}
+
 	public void addFavorite(Listing listing) {
-        if(favorites == null) favorites = new ArrayList<>();
+		if (favorites == null)
+			favorites = new ArrayList<>();
 
-        if (!favorites.contains(listing)) {
-            favorites.add(listing);
-            listing.addFavoriteUsers(this);
-        }
-    }
+		if (!favorites.contains(listing)) {
+			favorites.add(listing);
+			listing.addFavoriteUsers(this);
+		}
+	}
 
-    public void removeFavorite(Listing listing) {
-        if(favorites != null && favorites.contains(listing)) {
-            favorites.remove(listing);
-            listing.removeFavoriteUsers(this);
-        }
-    }
-    
-    public void addComment(Comment comment) {
-    	if(comments == null) comments = new ArrayList<>();
-    	
-    	if (!comments.contains(comment)) {
-    		comments.add(comment);
-    		if(comment.getUser() != null) {
-    			comment.getUser().getComments().remove(comment);
-    		}
-    		comment.setUser(this);
-    	}
-    }
-    
-    public void removeComment(Comment comment) {
-    	comment.setUser(null);
-    	if(comments != null) {
-    		comments.remove(comment);
-    	}
-    }
+	public void removeFavorite(Listing listing) {
+		if (favorites != null && favorites.contains(listing)) {
+			favorites.remove(listing);
+			listing.removeFavoriteUsers(this);
+		}
+	}
+
+	public void addComment(Comment comment) {
+		if (comments == null)
+			comments = new ArrayList<>();
+
+		if (!comments.contains(comment)) {
+			comments.add(comment);
+			if (comment.getUser() != null) {
+				comment.getUser().getComments().remove(comment);
+			}
+			comment.setUser(this);
+		}
+	}
+
+	public void removeComment(Comment comment) {
+		comment.setUser(null);
+		if (comments != null) {
+			comments.remove(comment);
+		}
+	}
 
 	public int getId() {
 		return id;
@@ -170,39 +183,30 @@ public class User {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	
 
 	public List<Rating> getRatings() {
 		return ratings;
 	}
 
-
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
 	}
-
 
 	public List<Listing> getFavorites() {
 		return favorites;
 	}
 
-
 	public void setFavorites(List<Listing> favorites) {
 		this.favorites = favorites;
 	}
-
-	
 
 	public List<Listing> getListings() {
 		return listings;
 	}
 
-
 	public void setListings(List<Listing> listings) {
 		this.listings = listings;
 	}
-
-
 
 	@Override
 	public String toString() {

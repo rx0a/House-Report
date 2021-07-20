@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true"%>
+    <%@ page import="java.util.*" %>
+        <%@ page import="java.time.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -184,9 +188,10 @@ html {
 								<h4 class="card-title">Profile Info</h4>
 							</form>
 						</div>
-						<div class="card-footer ">
+						<div class="card-body ">
 							<c:choose>
 								<c:when test="${! empty user}">
+
 									<div class="info">Username: ${user.username}</div>
 									<hr>
 									<div class="info">First Name: ${user.firstName}</div>
@@ -194,9 +199,28 @@ html {
 									<div class="info">Last Name: ${user.lastName}</div>
 									<hr>
 									<div class="info">Email: ${user.email}</div>
+
 								</c:when>
 							</c:choose>
 						</div>
+						<c:choose>
+						<c:when test="${! empty user.updatedTime }">
+						<div class="card-footer ">
+						
+						
+						Last Updated:
+						
+					${Duration.between(user.updatedTime, LocalDateTime.now())}
+						 seconds ago.
+						
+						
+						</div>
+															</c:when>
+																																	<c:otherwise>
+<div class="card-footer ">Last Updated: Never</div>
+											</c:otherwise>
+							</c:choose>
+							
 					</div>
 					<br>
 				</div>
@@ -212,6 +236,7 @@ html {
 									you can view and edit your listings, favorites, comments and
 									profile information.</h5>
 							</c:when>
+
 						</c:choose>
 					</div>
 				</div>
