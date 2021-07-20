@@ -1,5 +1,6 @@
 package com.skilldistillery.housereport.entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Event {
 	@Column(name="event_type")
 	private String eventType;
 	@Column(name="event_date")
-	private LocalDateTime eventDate;
+	private LocalDate eventDate;
 	
 	@ManyToMany
 	@JoinTable(name="listing_event", joinColumns=@JoinColumn(name="event_id"), inverseJoinColumns=@JoinColumn(name="listing_id"))
@@ -58,10 +59,10 @@ public class Event {
 		this.eventType = eventType;
 	}
 	
-	public LocalDateTime getEventDate() {
+	public LocalDate getEventDate() {
 		return eventDate;
 	}
-	public void setEventDate(LocalDateTime eventDate) {
+	public void setEventDate(LocalDate eventDate) {
 		this.eventDate = eventDate;
 	}
 	

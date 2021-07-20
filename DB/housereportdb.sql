@@ -112,7 +112,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `event` ;
 
 CREATE TABLE IF NOT EXISTS `event` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `event_type` VARCHAR(45) NOT NULL,
   `event_date` DATE NULL,
   PRIMARY KEY (`id`))
@@ -149,7 +149,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `comment` ;
 
 CREATE TABLE IF NOT EXISTS `comment` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `comment` VARCHAR(500) NULL,
   `comment_date` DATETIME NOT NULL,
   `user_id` INT NOT NULL,

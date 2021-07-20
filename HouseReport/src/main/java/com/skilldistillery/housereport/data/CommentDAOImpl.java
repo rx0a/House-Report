@@ -29,7 +29,12 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 
 	@Override
-	public Comment createComment(Comment comment) {
+	public Comment createComment(Comment comment, int listingID, int userID) {
+		System.out.println(comment.getComment());
+		Listing listing = em.find(Listing.class, listingID);
+		User user = em.find(User.class, userID);
+		comment.setListing(listing);
+		comment.setUser(user);
 		em.persist(comment);
 		em.flush();
 		return comment;

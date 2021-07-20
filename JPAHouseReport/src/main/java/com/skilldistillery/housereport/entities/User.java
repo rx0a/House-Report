@@ -79,6 +79,25 @@ public class User {
             listing.removeFavoriteUsers(this);
         }
     }
+    
+    public void addComment(Comment comment) {
+    	if(comments == null) comments = new ArrayList<>();
+    	
+    	if (!comments.contains(comment)) {
+    		comments.add(comment);
+    		if(comment.getUser() != null) {
+    			comment.getUser().getComments().remove(comment);
+    		}
+    		comment.setUser(this);
+    	}
+    }
+    
+    public void removeComment(Comment comment) {
+    	comment.setUser(null);
+    	if(comments != null) {
+    		comments.remove(comment);
+    	}
+    }
 
 	public int getId() {
 		return id;
