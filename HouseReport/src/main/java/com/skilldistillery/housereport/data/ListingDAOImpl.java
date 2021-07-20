@@ -104,5 +104,6 @@ public class ListingDAOImpl implements ListingDAO{
 		em.flush();
 		return accuracyRating;
 	}
+	
 
 }

@@ -29,6 +29,14 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
+	public List<User> find(String keyword) {
+		String jpql = "SELECT u FROM User u WHERE u.firstName LIKE :k OR u.username LIKE :k OR u.lastName LIKE :k OR u.email LIKE :k";
+		keyword = "%" + keyword + "%";
+		List<User> users = em.createQuery(jpql, User.class).setParameter("k", keyword).getResultList();
+		return users;
+	}
+	
+	@Override
 	public boolean checkUsername(String username) {
 		String jpql = "SELECT u.username FROM User u";
 		List<String> usernames = em.createQuery(jpql, String.class).getResultList();
