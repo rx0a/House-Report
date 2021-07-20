@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="true"%>
-    <%@ page import="java.util.*" %>
-        <%@ page import="java.time.*" %>
+<%@ page import="java.util.*"%>
+<%@ page import="java.time.*"%>
 
 <!DOCTYPE html>
 <html>
@@ -204,23 +204,17 @@ html {
 							</c:choose>
 						</div>
 						<c:choose>
-						<c:when test="${! empty user.updatedTime }">
-						<div class="card-footer ">
-						
-						
-						Last Updated:
-						
-					${Duration.between(user.updatedTime, LocalDateTime.now()).getSeconds()}
-						 seconds ago.
-						
-						
-						</div>
-															</c:when>
-																																	<c:otherwise>
-<div class="card-footer ">Last Updated: Never</div>
-											</c:otherwise>
-							</c:choose>
-							
+							<c:when test="${! empty user.updatedTime }">
+								<div class="card-footer ">Last Updated:
+
+									${Duration.between(user.updatedTime, LocalDateTime.now()).getSeconds()}
+									seconds ago.</div>
+							</c:when>
+							<c:otherwise>
+								<div class="card-footer ">Last Updated: Never</div>
+							</c:otherwise>
+						</c:choose>
+
 					</div>
 					<br>
 				</div>
