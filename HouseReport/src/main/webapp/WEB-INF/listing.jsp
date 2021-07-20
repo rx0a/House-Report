@@ -213,7 +213,19 @@
 					<tr>
 						<td>Property Tax Rate:</td>
 						<td>${selectedListing.propertyTax } %</td>
+					</tr>
+					<c:choose>
+							<c:when test="${! empty selectedListing.events}">	
+							<c:forEach var="event" items="${selectedListing.events}">	
+					<tr>
+						<td>Event:</td>
+						<td>${event.eventType }</td>
+						<td>Date:</td>
+						<td>${event.eventDate }</td>
 					</tr>	
+					</c:forEach>
+					</c:when>
+					</c:choose>
 					
 					</table>
 					</div>
@@ -251,14 +263,14 @@
 				</div>
 			</section>
 
-			<form>
+		<!-- 	<form>
 				<div class="form-group">
-					<label for="exampleFormControlTextarea1">Enter Comment Here</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1"
+					<label for="userComment">Enter Comment Here</label>
+					<textarea class="form-control" id="userComment" name="userComment"
 						rows="3"></textarea>
 				</div>
 
-				<!-- Like/Dislike -->
+				Like/Dislike
 				<button class="dislike">
 					<i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
 				</button>
@@ -267,21 +279,43 @@
 					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
 				</button>
 				<br> <br>
-				<!-- End Like/Dislike -->
-
-
-			</form>
-			<!-- End Comment Box -->
+				End Like/Dislike
 
 			<a href="#" class="btn btn-primary">Submit Comment</a> <br> <br>
+
+			</form> -->
+			<!-- End Comment Box -->
+	<form action="postComment.do" method="POST">
+	
+							<input type="text" name="comment"/> 
+							<input type="hidden" name="listingID" value="${selectedListing.id}" /> 
+							<input type="hidden" name="userID" value="${user.id}">
+							<input type="submit" value="Post Comment" />
+						</form>
 		</div>
 		<div>
 			<form action="addToFavorites.do" method="POST">
 							<input type="hidden" name="listingID" value="${selectedListing.id}" /> 
 							<input type="hidden" name="userID" value="${user.id}">
 							<input type="submit" value="Add to Favorites" />
-						</form>
-		</div>				
+						</form><br>
+		</div>
+		<div>
+			<h5>Is this listing accurate?</h5>
+			<form action="addRating.do" method="POST">
+			<input type="hidden" name="listingID" value="${selectedListing.id}" /> 
+			<input type="hidden" name="userID" value="${user.id}">
+			<input type="hidden" name="vote" value="1">
+			<input type="submit" value="Yes" />
+			</form>
+			<form action="addRating.do" method="POST">
+			<input type="hidden" name="listingID" value="${selectedListing.id}" /> 
+			<input type="hidden" name="userID" value="${user.id}">
+			<input type="hidden" name="vote" value="0">
+			<input type="submit" value="No" />
+			</form>
+		</div>
+							
 		<div class="card-footer text-muted">2 days ago</div>
 	</div>
 	<!-- End Info Card -->

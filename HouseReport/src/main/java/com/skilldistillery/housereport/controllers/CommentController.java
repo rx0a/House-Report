@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.housereport.data.CommentDAO;
 import com.skilldistillery.housereport.data.ListingDAO;
@@ -58,16 +59,22 @@ public class CommentController {
 		return "redirect:listing.do";
 	}
 	
-	@RequestMapping(path="postComment.do", method=RequestMethod.POST)
-	public String postComment(Comment comment, Listing listing, User user) {
-		comment.setListing(listingDao.findById(listing.getId()));
-		comment.setUser(userDao.findById(user.getId()));
-		comment.setCommentDate(LocalDateTime.now());
-		Listing dbListing = listingDao.findById(listing.getId());
-		Comment dbComment = commentDao.createComment(comment);
-		dbListing.addComment(dbComment);
-		listingDao.update(dbListing, dbListing.getAddress());
-		return "redirect:listing.do";
+	@RequestMapping(path="postComment.do", params = {"comment", "listingID", "userID"}, method=RequestMethod.POST)
+	public String postComment(Model model, String comment, int listingID, int userID) {
+		Listing dbListing = listingDao.findById(listingID);
+		User dbUser = userDao.findById(userID);
+		Comment commentObj = new Comment(comment, LocalDateTime.now(), dbUser, dbListing);
+//		comment.setListing(listingDao.findById(listingID));
+//		comment.setUser(userDao.findById(userID));
+//		comment.setCommentDate(LocalDateTime.now());
+//		comment.setComment(commentString);
+		Comment dbComment = commentDao.createComment(commentObj, listingID, userID);
+//		dbListing.addComment(dbComment);
+//		dbUser.addComment(dbComment);
+//		userDao.updateUser(dbUser);
+//		listingDao.update(dbListing, dbListing.getAddress());
+		model.addAttribute("selectedListing", dbListing);
+		return "listing";
 	}
 
 }

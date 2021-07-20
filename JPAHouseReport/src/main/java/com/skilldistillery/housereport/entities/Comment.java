@@ -1,6 +1,7 @@
 package com.skilldistillery.housereport.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,6 +44,7 @@ public class Comment {
 	this.user = user;
 	this.listing = listing;
 }
+
 
 
 	public int getId() {

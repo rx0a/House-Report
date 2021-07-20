@@ -97,5 +97,12 @@ public class ListingController {
 		return mv;
 	}
 	
+//	@RequestMapping(path = "addRating.do", params= {"listingID", "userID", "vote"}, method= RequestMethod.POST)
+//	public String addRating(int listingID, int userID, String vote) {
+//		int rating = Integer.parseInt(vote);
+//		
+//		
+//	}
+	
 
 }
