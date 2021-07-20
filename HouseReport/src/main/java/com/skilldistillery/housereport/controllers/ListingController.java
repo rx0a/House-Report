@@ -70,8 +70,7 @@ public class ListingController {
 	public ModelAndView showRating(Listing listing) {
 		ModelAndView mv = new ModelAndView();
 		int listingID = listing.getId();
-		int listingRating = listingDao.getListingRating(listingID);
-		listing.setAccuracyRating(listingRating);
+		listingDao.updateRating(listingID);
 		mv.addObject("listing", listing);
 		mv.setViewName("listing");
 		return mv;
@@ -105,6 +104,7 @@ public class ListingController {
 	@RequestMapping(path = "expandListing.do", method = RequestMethod.POST)
 	public ModelAndView expandListing(int id) {
 		ModelAndView mv = new ModelAndView();
+//		listingDao.updateRating(id);
 		Listing listing = listingDao.findById(id);
 		mv.addObject("selectedListing", listing);
 		mv.setViewName("listing");
@@ -112,7 +112,7 @@ public class ListingController {
 	}
 	
 
-	@RequestMapping(path="createListing.do", method=RequestMethod.POST)
+	@RequestMapping(path="createListing.do", method=RequestMethod.GET)
 	public String createListing(Model model, User user) {
 		User dbUser = userDao.findById(user.getId());
 		model.addAttribute("user", dbUser);

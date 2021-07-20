@@ -89,13 +89,15 @@ public class ListingDAOImpl implements ListingDAO{
 	}
 	
 	@Override
-	public int getListingRating(int id) {
+	public int updateRating(int id) {
 		String jpql1 = "SELECT COUNT r from Rating r WHERE listing_id = :id";
 		String jpql2 = "SELECT COUNT r FROM Rating r WHERE listing_id = :id AND rating = 1";
 		int totalVotes = em.createQuery(jpql1, Integer.class).setParameter("id", id).getSingleResult();
 		int upVotes = em.createQuery(jpql2, Integer.class).setParameter("id", id).getSingleResult();
 		int displayRating = upVotes / totalVotes * 100;
-		
+		Listing listing = em.find(Listing.class, id);
+		listing.setAccuracyRating(displayRating);
+		em.flush();
 		return displayRating;
 	}
 	

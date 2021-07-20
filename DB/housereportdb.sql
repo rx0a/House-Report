@@ -200,20 +200,20 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `rating` ;
 
 CREATE TABLE IF NOT EXISTS `rating` (
-  `listing_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `rating` TINYINT NOT NULL,
-  INDEX `fk_rating_listing1_idx` (`listing_id` ASC),
+  `listing_id` INT NOT NULL,
   INDEX `fk_rating_user1_idx` (`user_id` ASC),
-  PRIMARY KEY (`listing_id`, `user_id`),
-  CONSTRAINT `fk_rating_listing1`
-    FOREIGN KEY (`listing_id`)
-    REFERENCES `listing` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  PRIMARY KEY (`user_id`, `listing_id`),
+  INDEX `fk_rating_listing2_idx` (`listing_id` ASC),
   CONSTRAINT `fk_rating_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_rating_listing2`
+    FOREIGN KEY (`listing_id`)
+    REFERENCES `listing` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -255,7 +255,7 @@ START TRANSACTION;
 USE `housereportdb`;
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (1, '595 N Gilpin St', NULL, 'Denver', 'Colorado', '80218');
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (2, '811 E 98th Ave', '#505', 'Thornton', 'Colorado', '80229');
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (3, '4414 N Raleigh St', NULL, 'Dnver', 'Colorado', '80212');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (3, '4414 N Raleigh St', NULL, 'Denver', 'Colorado', '80212');
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (4, '665 N Hooker St', NULL, 'Denver', 'Colorado', '80204');
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (5, '3065 N Gilpin St', NULL, 'Denver', 'Colorado', '80205');
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (6, '2549 Grape St', NULL, 'Denver', 'Colorado', '80207');
@@ -379,7 +379,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `housereportdb`;
-INSERT INTO `rating` (`listing_id`, `user_id`, `rating`) VALUES (1, 1, 1);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (1, 1, 1);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (4, 0, 1);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (2, 1, 2);
 
 COMMIT;
 
@@ -389,7 +391,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `housereportdb`;
-INSERT INTO `listing_photo` (`id`, `img_url`, `listing_id`) VALUES (1, 'https://www.zillow.com/homedetails/595-N-Gilpin-St-Denver-CO-80218/13345693_zpid/?mmlb=g,0', 1);
+INSERT INTO `listing_photo` (`id`, `img_url`, `listing_id`) VALUES (1, 'https://photos.zillowstatic.com/fp/107f101f3a4819cba827fbf6140a2c69-o_a.webp', 1);
 INSERT INTO `listing_photo` (`id`, `img_url`, `listing_id`) VALUES (2, 'https://photos.zillowstatic.com/fp/1762b26447b09ee65cdb31f88e3d04bf-uncropped_scaled_within_1536_1152.webp', 1);
 INSERT INTO `listing_photo` (`id`, `img_url`, `listing_id`) VALUES (3, 'https://photos.zillowstatic.com/fp/54daeca06f7cee5578a29669e187bfd8-uncropped_scaled_within_1536_1152.webp', 1);
 INSERT INTO `listing_photo` (`id`, `img_url`, `listing_id`) VALUES (4, 'https://photos.zillowstatic.com/fp/5582c4e111b8f69ef3e2d10658ae4e12-uncropped_scaled_within_1536_1152.webp', 1);

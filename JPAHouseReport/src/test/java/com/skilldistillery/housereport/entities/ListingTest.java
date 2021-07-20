@@ -69,8 +69,8 @@ class ListingTest {
 
 	@Test
 	void test_listing_mapped_rating() {
-		assertNotNull(listing.getRating());
-		assertTrue(listing.getRating().isRating());
+		assertNotNull(listing.getRatings());
+		assertEquals(2, listing.getRatings().size());
 	}
 
 	@Test
@@ -81,7 +81,7 @@ class ListingTest {
 	@Test
 	void test_listing_mapped_to_listingphoto() {
 		assertNotNull(listing);
-		assertEquals("https://www.zillow.com/homedetails/595-N-Gilpin-St-Denver-CO-80218/13345693_zpid/?mmlb=g,0",listing.getListingPhotos().get(0).getImgUrl());
+		assertEquals("https://photos.zillowstatic.com/fp/107f101f3a4819cba827fbf6140a2c69-o_a.webp",listing.getListingPhotos().get(0).getImgUrl());
 	}
 
 	@Test
