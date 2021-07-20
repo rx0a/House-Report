@@ -22,7 +22,7 @@ public class Rating {
 	@JoinColumn(name="user_id")
 	@MapsId(value="userId")
 	private User user;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="listing_id")
 	@MapsId(value="listingId")
 	private Listing listing;
