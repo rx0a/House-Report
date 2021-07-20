@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+
 <head>
+<link rel="shortcut icon" href="favicon.ico" />
 <meta charset="UTF-8">
+
 <!-- BOOTSTRAP -->
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
@@ -15,7 +17,9 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <!-- END BOOTSTRAP -->
+
 <!-- JAVASCRIPT -->
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -28,11 +32,14 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 <!-- END JAVASCRIPT -->
+
 <!-- CSS -->
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="CSS/style.css" />
 <!-- END CSS -->
-<title>User Profile</title>
-</head>
+
+<title>House Report</title>
+
+<link rel="canonical" />
 <body>
 	<header>
 		<!-- Navbar -->
@@ -80,12 +87,15 @@
 				</form>
 			</div>
 		</nav>
-		<!-- End Navbar -->
 	</header>
-
+		<!-- End Navbar -->
+	
+	
+<div class="form-group overflow-auto">
  <form action="createdListing.do" method="POST">
  <input type="hidden" name="userId" value="${user.id}">
  	<!-- Start of address object -->
+ 	<br>
  		<b>Street: </b>
  		<input type="text" name="street"><br>
  		<b>APT:</b>
@@ -192,6 +202,7 @@
         <!-- listing photo object -->
         <input type="submit" value="Create" />
     </form>
+    </div>
 
 </body>
 </html>

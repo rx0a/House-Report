@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.form-group { 
+    padding-top: 65px; 
+}
+
 .carousel-inner img {
   margin: auto;
   height: 250px;
@@ -40,4 +44,8 @@ button.dislike{
 	
   overflow: auto;
   
+}
+
+.navbar{
+	margin-bottom: 10px;
 }
