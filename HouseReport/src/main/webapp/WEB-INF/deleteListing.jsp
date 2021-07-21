@@ -42,7 +42,7 @@
 
 <link rel="canonical" />
 <body>
-	<!-- Start Raybar -->
+		<!-- Start Raybar -->
 	<header>
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
@@ -68,8 +68,8 @@
 							</form>
 						</li>
 					</ul>
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item dropdown"><a
+					<ul class="navbar-nav ml-auto ">
+						<li class="nav-item dropdown" style="margin-right:20px" ><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> ${user.firstName }
