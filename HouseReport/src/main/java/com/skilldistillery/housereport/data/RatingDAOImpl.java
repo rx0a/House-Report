@@ -31,6 +31,8 @@ public class RatingDAOImpl implements RatingDAO {
 		em.flush();
 		return dbRating;
 	}
+	
+	
 	@Override
 	public boolean deleteRating(Rating rating) {
 		Rating dbRating = em.find(Rating.class, rating.getId());

@@ -87,6 +87,7 @@ public class ListingDAOImpl implements ListingDAO {
 		dbListing.setLotSizeSqft(listing.getLotSizeSqft());
 		dbListing.setPropertyTax(listing.getPropertyTax());
 		dbListing.setParkingType(listing.getParkingType());
+		dbListing.setAccuracyRating(listing.getAccuracyRating());
 
 		Address dbAddress = addDAO.update(address);
 		dbListing.setAddress(dbAddress);
