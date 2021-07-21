@@ -1,8 +1,29 @@
 @charset "UTF-8";
 
+body{
+padding: 10px auto;	
+}
+
 .form-group { 
     padding-top: 65px; 
 }
+
+form{
+	padding: 10px;
+	line-height: 2;
+	margin: 5px;
+}
+
+#state{
+padding: 5px;
+margin-top: 5px;
+margin-left: 5px;	
+}
+
+input[type=text], .txtarea{
+margin-bottom: 10px;
+
+ }
 
 .carousel-inner img {
   margin: auto;
