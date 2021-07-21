@@ -34,15 +34,13 @@ public class UserProfileController {
 	@RequestMapping(path = { "profile.do" }, method = RequestMethod.GET)
 	public ModelAndView profile(HttpSession session) {
 		User user2 = (User) session.getAttribute("user");
+		session.setAttribute("user", userDao.findById(user2.getId()));
 		String userRole = user2.getRole();
 		ModelAndView mv = new ModelAndView();
 		System.out.println(userRole);
 		List<Listing> loggedInUserListings = user2.getListings();
 		for (Listing listing : loggedInUserListings) {
 			listingDao.updateRating(listing.getId());
-		}
-		if(userRole.equals("admin")) {
-			mv.addObject("userList", userDao.displayUsers());
 		}
 		mv.setViewName("userProfile");
 		return mv;

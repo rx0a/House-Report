@@ -137,6 +137,7 @@ public class Listing {
 	public Integer getSquareFeet() {
 		return SquareFeet;
 	}
+	
 	public void setSquareFeet(Integer squareFeet) {
 		SquareFeet = squareFeet;
 	}

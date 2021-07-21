@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.housereport.entities.Address;
+import com.skilldistillery.housereport.entities.Comment;
 import com.skilldistillery.housereport.entities.Listing;
 import com.skilldistillery.housereport.entities.ListingPhoto;
 import com.skilldistillery.housereport.entities.PropertyType;
@@ -85,6 +86,16 @@ public class ListingDAOImpl implements ListingDAO{
 	@Override
 	public boolean delete(Listing listing) {
 		Listing dbListing = em.find(Listing.class, listing.getId());
+//		delete photos attached to listing
+		String jpql = "DELETE p FROM ListingPhoto p WHERE p.listingId = :listingId";
+//		delete address attached to listing 
+		String jpql2 = "DELETE a FROM Address a where a.id = :listingId";
+//		delete comment
+		String jpql3 = "DELETE c FROM Comment c where c.listing.id = :listingId";
+//		List<ListingPhoto>  photoList = em.createQuery(jpql, ListingPhoto.class).setParameter("listingId", listing.getId()).getResultList();
+//		Address address = em.createQuery(jpql2, Address.class).setParameter("listingId", listing.getId()).getSingleResult();
+//		List<Comment> comments = em.createQuery(jpql3, Comment.class).setParameter("listingId", listing.getId()).getResultList();
+		
 		em.remove(dbListing);
 		boolean successfulDelete = !em.contains(dbListing);
 		return successfulDelete;
