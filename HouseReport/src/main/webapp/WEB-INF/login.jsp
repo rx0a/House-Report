@@ -54,8 +54,6 @@
 					the development on Github &nbsp;<i class="fa fa-github"
 					aria-hidden="true"></i>
 				</a>
-								<br> <a href="user.do">profile
-				</a>
 			</div>
 		</form>
 	</div>

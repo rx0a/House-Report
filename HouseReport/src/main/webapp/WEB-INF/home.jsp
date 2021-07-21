@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -38,79 +39,130 @@
 <!-- END CSS -->
 
 <title>House Report</title>
-
+<style>
+</style>
+</head>
 <link rel="canonical" />
 <body>
-
+	<!-- Start Raybar -->
 	<header>
-
-
-
-		<!-- Navbar -->
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-
-			<br> <a class="navbar-brand" href="home.do"><img
-				src="images/logo1.png" width="75px" alt="House Report Logo"></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="home.do">Home
-							<span class="sr-only">(current)</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-					<li class="nav-item"><a class="nav-link" name="id" value="${user.id}" href="createListing.do">Create Listing</a></li>
-
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> Profile</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="results.do">View Listings</a>
-							<form action="profile.do" method="GET">
-								<input type="hidden" name="id" value="${user.id }">
-								<button class="dropdown-item" type="submit">View
-									Profile</button>
+			<div class="container-fluid">
+				<a class="navbar-brand" href="home.do"><img
+					src="images/logo1.png" width="75px" alt="House Report Logo">&nbsp;&nbsp;House
+					Report</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ml-auto"
+						style="max-width: 100%; margin-right: auto; margin-left: auto; padding-left: 120px">
+						<li class="nav-item search">
+							<form class="d-flex" action="home.do" method="POST">
+								<input class="form-control me-2" name="keyword" type="search"
+									placeholder="Search Listings" aria-label="Search">
+								<button class="btn btn-outline-light" type="submit">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
 							</form>
+						</li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> ${user.firstName }
+								${user.lastName}&nbsp; </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<form action="profile.do" method="GET">
+									<input type="hidden" name="id" value="${user.id}">
+									<button class="dropdown-item" type="submit">View
+										Profile</button>
+								</form>
+								<c:if test="${user.role == 'admin'}">
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="admin.do"> <span
+										class="no-icon">Admin Dashboard</span>
+									</a>
+								</c:if>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="createListing.do">Create
+									Listing</a>
 
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Logout</a>
-						</div></li>
-					<li class="nav-item"><a class="nav-link disabled" href="#"
-						tabindex="-1" aria-disabled="true"></a></li>
-				</ul>
-				<form action="results.do" class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="logOut.do">Logout</a>
+							</div></li>
+					</ul>
+				</div>
 			</div>
 		</nav>
-		<!-- End Navbar -->
-
-
-		<!-- Jumbotron -->
-
-		<div class="p-5 text-center" style="margin-top: 58px;">
-			<img class="logo" src="images/logo1.png" width="250"
-				alt="House Report Logo">
-			<h1 class="mb-3">House Report.</h1>
-			<h5 class="mb-3">
-				<em>because home is where <strong>your</strong> house is.
-				</em>
-			</h5>
-
-		</div>
-		<!-- End Jumbotron -->
 	</header>
+	<!-- End Raybar -->
 
-	<!-- ${DEBUG } -->
+	<div class="container-fluid">
+		<div class="px-lg-5">
 
+			<!-- For demo purpose -->
+			<div class="row py-5">
+<!-- 				 <div class="col-lg-12 mx-auto"> 
+					<div class="text-white p-5 shadow-sm rounded banner"> -->
+						<p class="lead"></p>
+					<!-- </div>
+				 </div>  -->
+			</div> 
+			<!-- End -->
+
+			<div class="row">
+				<!-- Gallery item -->
+				<c:choose>
+					<c:when test="${! empty AddressList}">
+						<c:forEach var="address" items="${AddressList}">
+
+							<div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+								<div class="card mb-4 shadow-sm">
+									<form action="expandListing.do" method="POST">
+										<input type="hidden" name="id" value="${address.listing.id}">
+										<img src="${address.listing.listingPhotos.get(0)}"
+											alt="image placeholder" height="200" class="card-img-top">
+										<div class="p-4">
+											<p class="lead">${address.street}</p>
+											<p class="small text-muted mb-0">${address.city },
+												${address.state }</p>
+											<div
+												class="d-flex align-items-center justify-content-between rounded-pill px-3 py-2 mt-4">
+												<div
+													class="badge badge-primary px-3 rounded-pill font-weight-normal">
+													Rating: ${address.listing.accuracyRating}
+												</div>
+												<div
+													class="badge badge-warning px-3 rounded-pill font-weight-normal">Events: ${address.listing.events.size()}</div>
+												<button class="stretched-link" type="submit"
+													style="background: transparent; border: none; color: transparent;"></button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+					
+					<p>No listings found</p>
+						
+					</c:otherwise>
+				</c:choose>
+				<!-- End -->
+
+			</div>
+<!-- 			<div class="py-5 text-right">
+				<a href="#" class="btn btn-dark px-5 py-3 text-uppercase">Show
+					more</a>
+			</div> -->
+		</div>
+	</div>
 </body>
 
 </html>
