@@ -31,10 +31,13 @@ public class ListingPhotoDAOImpl implements ListingPhotoDAO{
 	public ListingPhoto create(Listing listing, User user, Address address, PropertyType propertyType, ListingPhoto listingPhoto) {
 		Listing dbListing = listingDao.create(listing, user, address, propertyType);
 		listingPhoto.setListing(dbListing);
+//		listing.setListingPhotos(null);
 //		listing.getListingPhotos().add(listingPhoto);
+		em.persist(dbListing);
 		em.persist(listingPhoto);
 		em.flush();
-		return listingPhoto;
+		dbListing.addPhoto(listingPhoto);
+		return dbListing.getListingPhotos().get(0);
 	}
 
 	@Override

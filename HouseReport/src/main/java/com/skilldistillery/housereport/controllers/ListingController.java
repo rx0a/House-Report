@@ -124,8 +124,10 @@ public class ListingController {
 	public String createdListing(Model model, HttpSession session, Address address, Listing listing, PropertyType propertyType, ListingPhoto photo) {
 		User dbUser = (User)session.getAttribute("user");
 		System.out.println(dbUser);
-		photoDao.create(listing, dbUser, address, propertyType, photo);
-		
+		ListingPhoto lp = photoDao.create(listing, dbUser, address, propertyType, photo);
+		session.setAttribute("user", lp.getListing().getUser());
+//		dbUser.getListings().get(listing.getId()).getListingPhotos().add(photo);
+//		session.setAttribute("user", dbUser);
 //		photo.setListing(listing);
 //		Listing dbListing = listingDao.create(listing, dbUser, address, propertyType, photo);
 //		System.out.println(dbUser.getId() + "TEST FROM CREATED LISTING!!!!!!!!!!!!!!!!!!!!!!!!!!!");

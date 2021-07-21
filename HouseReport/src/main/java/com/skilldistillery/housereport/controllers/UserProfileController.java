@@ -48,6 +48,7 @@ public class UserProfileController {
 		return mv;
 	}
 
+	
 	@RequestMapping(path = "getUser.do", params = "keyword", method = RequestMethod.POST)
 	public String getUser(String keyword, Model model) {
 		model.addAttribute("userList", userDao.find(keyword));
