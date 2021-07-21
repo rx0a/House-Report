@@ -44,7 +44,7 @@ public class Listing {
 	@Column(name = "parking_type")
 	private String parkingType;
 	@Transient 
-	private int accuracyRating;
+	private double accuracyRating;
 	@OneToMany(mappedBy="listing")
 	private List<Comment> comments;
 	@ManyToOne
@@ -137,6 +137,7 @@ public class Listing {
 	public Integer getSquareFeet() {
 		return SquareFeet;
 	}
+	
 	public void setSquareFeet(Integer squareFeet) {
 		SquareFeet = squareFeet;
 	}
@@ -231,10 +232,10 @@ public class Listing {
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
 	}
-	public int getAccuracyRating() {
+	public double getAccuracyRating() {
 		return accuracyRating;
 	}
-	public void setAccuracyRating(int accuracyRating) {
+	public void setAccuracyRating(double accuracyRating) {
 		this.accuracyRating = accuracyRating;
 	}
 	public List<User> getFavoriteUsers() {

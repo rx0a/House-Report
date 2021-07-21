@@ -172,11 +172,11 @@
 			<label for="city" class="form-label">City</label> <input type="text"
 				class="form-control" id="city">
 		</div>
-<br>
-		<div class="col-md-4">
-			<label for="state" class="form-label">State</label> <select
-				id="state" class="form-select">
-				<option selected>Choose...</option>
+		<br>
+		<div class="col-md-3">
+			<label for="state" class="form-label"> State </label> <br> <select
+				id="state" class="form-select bg-dark">
+				<option selected>State...</option>
 				<option value="AL">Alabama</option>
 				<option value="AK">Alaska</option>
 				<option value="AZ">Arizona</option>
@@ -185,7 +185,7 @@
 				<option value="CO">Colorado</option>
 				<option value="CT">Connecticut</option>
 				<option value="DE">Delaware</option>
-				<option value="DC">District Of Columbia</option>
+				<option value="DC">DC</option>
 				<option value="FL">Florida</option>
 				<option value="GA">Georgia</option>
 				<option value="HI">Hawaii</option>
@@ -231,7 +231,7 @@
 			</select>
 		</div>
 
-		<div class="col-md-2">
+		<div class="col-md-3">
 			<label for="postalCode" class="form-label">Zip Code</label> <input
 				type="text" class="form-control" id="postalCode">
 		</div>
@@ -378,9 +378,9 @@
 
 		<!-- property type object -->
 		<div class="col-md-3">
-			<label for="state" class="form-label">Property Type</label> <select
-				id="state" class="form-select">
-				<option selected>Choose...</option>
+			<label for="state" class="form-label"> Type </label> <br> <select
+				id="state" class="form-select bg-dark">
+				<option selected>Property Type...</option>
 				<option value="Apartment">Apartment</option>
 				<option value="House">House</option>
 				<option value="Condo">Condo</option>

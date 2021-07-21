@@ -11,10 +11,11 @@ import com.skilldistillery.housereport.entities.User;
 public interface ListingDAO {
 	
 	Listing findById(int id);
-	Listing create(Listing listing, User user, Address address, PropertyType propertyType, ListingPhoto photo);
 	boolean delete(Listing listing);
 	Listing update(Listing listing, Address address);
 	List<Listing> listings();
-	int updateRating(int id);
+	double updateRating(int id);
+	Listing create(Listing listing, User user, Address address, PropertyType propertyType);
+	List<Listing> displayListings();
 
 }

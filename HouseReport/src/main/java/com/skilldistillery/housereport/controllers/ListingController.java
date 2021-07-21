@@ -1,25 +1,26 @@
 package com.skilldistillery.housereport.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.housereport.data.AddressDAO;
 import com.skilldistillery.housereport.data.ListingDAO;
+import com.skilldistillery.housereport.data.ListingPhotoDAO;
 import com.skilldistillery.housereport.data.RatingDAO;
 import com.skilldistillery.housereport.data.UserDAO;
 import com.skilldistillery.housereport.entities.Address;
 import com.skilldistillery.housereport.entities.Listing;
-
 import com.skilldistillery.housereport.entities.ListingPhoto;
 import com.skilldistillery.housereport.entities.PropertyType;
-
 import com.skilldistillery.housereport.entities.Rating;
 import com.skilldistillery.housereport.entities.RatingId;
-
 import com.skilldistillery.housereport.entities.User;
 
 @Controller
@@ -35,6 +36,9 @@ public class ListingController {
 
 	@Autowired
 	private RatingDAO ratingDao;
+	
+	@Autowired
+	private ListingPhotoDAO photoDao;
 
 	@RequestMapping(path = { "showListings.do" })
 	public String showListings(Model model) {
@@ -104,7 +108,7 @@ public class ListingController {
 	@RequestMapping(path = "expandListing.do", method = RequestMethod.POST)
 	public ModelAndView expandListing(int id) {
 		ModelAndView mv = new ModelAndView();
-//		listingDao.updateRating(id);
+		listingDao.updateRating(id);
 		Listing listing = listingDao.findById(id);
 		mv.addObject("selectedListing", listing);
 		mv.setViewName("listing");
@@ -113,16 +117,28 @@ public class ListingController {
 	
 
 	@RequestMapping(path="createListing.do", method=RequestMethod.GET)
-	public String createListing(Model model, User user) {
-		User dbUser = userDao.findById(user.getId());
-		model.addAttribute("user", dbUser);
+	public String createListing(Model model) {
 		return "createListing";
 	}
 	
 	@RequestMapping(path="createdListing.do", method=RequestMethod.POST)
-	public String createdListing(Model model, User user, Address address, Listing listing, PropertyType propertyType, ListingPhoto photo) {
-		listingDao.create(listing, user, address, propertyType, photo);
-		return "userProfile";
+	public String createdListing(Model model, HttpSession session, Address address, Listing listing, PropertyType propertyType, ListingPhoto photo) {
+		User dbUser = (User)session.getAttribute("user");
+		System.out.println(dbUser);
+		listing.setUser(dbUser);
+		ListingPhoto lp = photoDao.create(listing, dbUser, address, propertyType, photo);
+		dbUser = userDao.findById(dbUser.getId());
+		dbUser.getListings().size();
+		session.setAttribute("user", dbUser);
+//		dbUser.getListings().get(listing.getId()).getListingPhotos().add(photo);
+//		session.setAttribute("user", dbUser);
+//		photo.setListing(listing);
+//		Listing dbListing = listingDao.create(listing, dbUser, address, propertyType, photo);
+//		System.out.println(dbUser.getId() + "TEST FROM CREATED LISTING!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//		photo.setListing(dbListing);
+//		dbListing.getListingPhotos().add(photo);
+//		ListingPhoto dbPhoto = photoDao.create(photo);
+		return "redirect:profile.do";
 	}
 
 	@RequestMapping(path = "addRating.do", params= {"listingID", "userID", "vote"}, method= RequestMethod.POST)
@@ -139,6 +155,25 @@ public class ListingController {
 		model.addAttribute("rating", persistedRating);
 		return "listing";
 		
+	}
+	
+	@RequestMapping(path="deleteListing.do", method=RequestMethod.POST)
+	public String deleteListing(Listing listing) {
+		listingDao.delete(listing);
+		return "redirect:profile.do";
+	}
+	
+	@RequestMapping(path="modifyListing.do", params= {"action"}, method=RequestMethod.POST)
+	public String modifyListing(RedirectAttributes redir, Listing listing, String action) {
+		if(action.equals("Delete")) {
+			redir.addFlashAttribute("listing", listing);
+			return "redirect:deleteListing.do";
+		} else if(action.equals("Edit")) {
+			redir.addFlashAttribute("listing", listing);
+			return "redirect:editListing.do";
+		} else {
+			return "userProfile";
+		}
 	}
 
 	
