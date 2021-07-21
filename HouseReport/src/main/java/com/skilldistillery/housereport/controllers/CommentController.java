@@ -41,10 +41,10 @@ public class CommentController {
 		return "userProfile";
 	}
 	
-	@RequestMapping(path="accountEditedComment.do", method=RequestMethod.POST)
-	public String accountEditedComment(Comment comment) {
-		Comment dbComment = commentDao.findById(comment.getId());
-		dbComment.setComment(comment.getComment());
+	@RequestMapping(path="accountEditedComment.do", params = {"id", "commentText"}, method=RequestMethod.POST)
+	public String accountEditedComment(int id, String commentText) {
+		Comment dbComment = commentDao.findById(id);
+		dbComment.setComment(commentText);
 		commentDao.updateComment(dbComment);
 		return "redirect:profile.do";
 	}
