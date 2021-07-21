@@ -27,10 +27,9 @@ public class UserProfileController {
 	private UserDAO userDao;
 	@Autowired
 	private AddressDAO addressDao;
-
 	@Autowired
 	private ListingDAO listingDao;
-	
+
 	@RequestMapping(path = { "profile.do" }, method = RequestMethod.GET)
 	public ModelAndView profile(HttpSession session) {
 		User user2 = (User) session.getAttribute("user");
@@ -46,18 +45,39 @@ public class UserProfileController {
 		return mv;
 	}
 
-	
 	@RequestMapping(path = "getUser.do", params = "keyword", method = RequestMethod.POST)
-	public String getUser(String keyword, Model model) {
+	public ModelAndView getUser(String keyword, Model model, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		User user2 = (User) session.getAttribute("user");
+		String userRole = user2.getRole();
 		model.addAttribute("userList", userDao.find(keyword));
-		return "admin";
+		if (userRole.equals("admin")) {
+			mv.addObject("allUserList", userDao.displayUsers());
+			mv.addObject("listingList", listingDao.displayListings());
+			mv.setViewName("admin");
+			return mv;
+		} else {
+			mv.setViewName("userProfile");
+			return mv;
+		}
 	}
 
 	@RequestMapping(path = "getListing.do", params = "keyword", method = RequestMethod.POST)
-	public String getListing(String keyword, Model model) {
+	public ModelAndView getListing(String keyword, Model model, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		User user2 = (User) session.getAttribute("user");
+		String userRole = user2.getRole();
 		List<Address> addresses = addressDao.findAddress(keyword);
-		model.addAttribute("listingList", addresses);
-		return "admin";
+		model.addAttribute("AddressList", addresses);
+		if (userRole.equals("admin")) {
+			mv.addObject("allUserList", userDao.displayUsers());
+			mv.addObject("listingList", listingDao.displayListings());
+			mv.setViewName("admin");
+			return mv;
+		} else {
+			mv.setViewName("userProfile");
+			return mv;
+		}
 	}
 
 	@RequestMapping(path = { "admin.do" }, method = RequestMethod.GET)
@@ -67,7 +87,8 @@ public class UserProfileController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println(userRole);
 		if (userRole.equals("admin")) {
-			mv.addObject("userList", userDao.displayUsers());
+			mv.addObject("allUserList", userDao.displayUsers());
+			mv.addObject("listingList", listingDao.displayListings());
 			mv.setViewName("admin");
 			return mv;
 		} else {

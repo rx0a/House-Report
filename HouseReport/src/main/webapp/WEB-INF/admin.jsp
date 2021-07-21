@@ -151,8 +151,8 @@ html {
 				<div class="collapse navbar-collapse justify-content-end"
 					id="navigation">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="profile.do"> <span
-								class="no-icon">User</span>
+						<li class="nav-item"><a class="nav-link" href="profile.do">
+								<span class="no-icon">User Dashboard</span>
 						</a></li>
 					</ul>
 				</div>
@@ -165,42 +165,37 @@ html {
 				<div class="col-md-4">
 					<div class="card ">
 						<div class="card-header ">
-							<form action="editUserPage.do" method="POST">
+							<!-- 							<form action="editUserPage.do" method="POST">
 								<input type="hidden" name="id" value="${user.id}" />
 								<button class="btn btn-outline-warning pull-right" type="submit"
 									name="action" value="Edit">
 									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-								</button>
-								<h4 class="card-title">Profile Info</h4>
-							</form>
+								</button> -->
+							<h4 class="card-title">Stats</h4>
+							<!-- 							</form> -->
 						</div>
 						<div class="card-body ">
 							<c:choose>
-								<c:when test="${! empty user}">
+								<c:when test="${! empty allUserList}">
 
-									<div class="info">Username: ${user.username}</div>
-									<hr>
-									<div class="info">First Name: ${user.firstName}</div>
-									<hr>
-									<div class="info">Last Name: ${user.lastName}</div>
-									<hr>
-									<div class="info">Email: ${user.email}</div>
-
+									<div class="info">Total Users: ${allUserList.size()}</div>
+								</c:when>
+							</c:choose>
+							<hr>
+							<c:choose>
+								<c:when test="${! empty listingList}">
+									<div class="info">Total Listings: ${listingList.size()}</div>
 								</c:when>
 							</c:choose>
 						</div>
 						<c:choose>
 							<c:when test="${! empty user.updatedTime }">
-								<div class="card-footer ">Last Updated:
-
-									${Duration.between(user.updatedTime, LocalDateTime.now()).getSeconds()}
-									seconds ago.</div>
+								<div class="card-footer ">Last Updated: Now.</div>
 							</c:when>
 							<c:otherwise>
-								<div class="card-footer ">Last Updated: Never</div>
+								<div class="card-footer ">Last Updated: Now.</div>
 							</c:otherwise>
 						</c:choose>
-
 					</div>
 					<br>
 				</div>
@@ -282,7 +277,7 @@ html {
 												</c:forEach>
 											</c:when>
 											<c:otherwise>
-		You do not have any current listings<br>
+		No users found for this query.<br>
 											</c:otherwise>
 										</c:choose>
 									</tbody>
@@ -309,8 +304,8 @@ html {
 								<table class="table" id="container">
 									<tbody>
 										<c:choose>
-											<c:when test="${! empty listingList}">
-												<c:forEach var="address" items="${listingList}">
+											<c:when test="${! empty AddressList}">
+												<c:forEach var="address" items="${AddressList}">
 													<tr>
 														<td>
 															<div class="form-check">
@@ -338,8 +333,9 @@ html {
 																	<td class="test align-bottom" valign="bottom">
 
 																		<form action="editListing.do" method="POST">
-																			<input type="hidden" name="id" value="${address.listing.id}" />
-																			<input type="hidden" name="id" value="${user.id}">
+																			<input type="hidden" name="id"
+																				value="${address.listing.id}" /> <input
+																				type="hidden" name="id" value="${user.id}">
 																			<button class="btn btn-outline-danger " type="submit"
 																				name="action" value="Delete">
 																				<i class="fa fa-trash" aria-hidden="true"></i>
@@ -358,7 +354,7 @@ html {
 												</c:forEach>
 											</c:when>
 											<c:otherwise>
-		You do not have any current listings<br>
+		No listings found for this query.<br>
 											</c:otherwise>
 										</c:choose>
 									</tbody>
