@@ -39,85 +39,67 @@
 <title>House Report</title>
 
 <link rel="canonical" />
-<body>
-
+<body>	<!-- Start Raybar -->
 	<header>
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="home.do"><img
+					src="images/logo1.png" width="75px" alt="House Report Logo">&nbsp;&nbsp;House
+					Report</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ml-auto"
+						style="max-width: 100%; margin-right: auto; margin-left: auto; padding-left: 120px">
+						<li class="nav-item search">
+							<form class="d-flex" action="home.do" method="POST">
+								<input class="form-control me-2" name="keyword" type="search"
+									placeholder="Search Listings" aria-label="Search">
+								<button class="btn btn-outline-light" type="submit">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
+							</form>
+						</li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> ${user.firstName }
+								${user.lastName}&nbsp; </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<form action="profile.do" method="GET">
+									<input type="hidden" name="id" value="${user.id}">
+									<button class="dropdown-item" type="submit">View
+										Profile</button>
+								</form>
+								<c:if test="${user.role == 'admin'}">
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="admin.do"> <span
+										class="no-icon">Admin Dashboard</span>
+									</a>
+								</c:if>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="createListing.do">Create
+									Listing</a>
 
-		<!-- Navbar -->
-		<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-      <br>
-        <a class="navbar-brand" href="home.do"><img src="images/logo1.png" width="75px"
-					alt="House Report Logo"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor02">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href=home.do>Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="showListings.do">View Listings</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Add a Listing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input class="form-control me-sm- " type="text" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-      </div>
-    </nav>
-  </header> -->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<br> <a class="navbar-brand" href="home.do"><img
-				src="images/logo1.png" width="75px" alt="House Report Logo"></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="home.do">Home
-							<span class="sr-only">(current)</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">About</a></li>
-
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> Profile</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="showListings.do">View Listings</a>
-							<a class="dropdown-item" href="profile.do">View Profile</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Logout</a>
-						</div></li>
-					<li class="nav-item"><a class="nav-link disabled" href="#"
-						tabindex="-1" aria-disabled="true"></a></li>
-				</ul>
-				<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="logOut.do">Logout</a>
+							</div></li>
+					</ul>
+				</div>
 			</div>
 		</nav>
 	</header>
-	<!-- End Navbar -->
+	<!-- End Raybar -->
+
 
 	<!-- Carousel -->
-	<div id="carouselExampleControls" class="carousel slide"
+	<div id="carouselExampleControls" class="carousel slide" style="padding-top:80px"
 		data-ride="carousel">
 		<div class="carousel-inner">
 		

@@ -35,7 +35,7 @@
 <!-- END JAVASCRIPT -->
 
 <!-- CSS -->
-<link rel="stylesheet" href="CSS/style.css" />
+<link rel="stylesheet" href="style.css" />
 <!-- END CSS -->
 
 <title>House Report</title>
@@ -102,17 +102,17 @@
 	</header>
 	<!-- End Raybar -->
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="padding-top:120px">
 		<div class="px-lg-5">
 
 			<!-- For demo purpose -->
-			<div class="row py-5">
+			<!-- <div class="row py-5"> -->
 <!-- 				 <div class="col-lg-12 mx-auto"> 
 					<div class="text-white p-5 shadow-sm rounded banner"> -->
-						<p class="lead"></p>
+						<!-- <p class="lead"></p> -->
 					<!-- </div>
 				 </div>  -->
-			</div> 
+			<!-- </div>  -->
 			<!-- End -->
 
 			<div class="row">

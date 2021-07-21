@@ -20,9 +20,13 @@ public class HomeController {
 	@RequestMapping(path = { "home.do" })
 	public ModelAndView LetsGoHome(String keyword, Model model) {
 		ModelAndView mv = new ModelAndView();
-		List<Address> addresses = addressDao.findAddress(keyword);
-
-		model.addAttribute("AddressList", addresses);
+		if (keyword != null) {
+			List<Address> addresses = addressDao.findAddress(keyword);
+			model.addAttribute("AddressList", addresses);
+		} else {
+			List<Address> addresses = addressDao.findAddress("");
+			model.addAttribute("AddressList", addresses);
+		}
 		mv.setViewName("home");
 		return mv;
 	}
