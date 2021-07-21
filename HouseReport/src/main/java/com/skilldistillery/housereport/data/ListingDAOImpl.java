@@ -12,8 +12,11 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.housereport.entities.Address;
 import com.skilldistillery.housereport.entities.Comment;
+import com.skilldistillery.housereport.entities.Event;
 import com.skilldistillery.housereport.entities.Listing;
+import com.skilldistillery.housereport.entities.ListingPhoto;
 import com.skilldistillery.housereport.entities.PropertyType;
+import com.skilldistillery.housereport.entities.Rating;
 import com.skilldistillery.housereport.entities.User;
 
 @Service
@@ -33,6 +36,15 @@ public class ListingDAOImpl implements ListingDAO {
 
 	@Autowired
 	ListingPhotoDAOImpl listingPhotoDao;
+	
+	@Autowired
+	AddressDAOImpl addressDao;
+	
+	@Autowired
+	CommentDAOImpl commentDao;
+	
+	@Autowired
+	EventDAOImpl eventDao;
 
 	@Override
 	public Listing findById(int id) {
@@ -85,18 +97,54 @@ public class ListingDAOImpl implements ListingDAO {
 	@Override
 	public boolean delete(Listing listing) {
 		Listing dbListing = em.find(Listing.class, listing.getId());
-//		delete photos attached to listing
-		String jpql = "DELETE p FROM ListingPhoto p WHERE p.listingId = :listingId";
-//		delete address attached to listing 
-		String jpql2 = "DELETE a FROM Address a where a.id = :listingId";
-//		delete comment
-		String jpql3 = "DELETE c FROM Comment c where c.listing.id = :listingId";
-//		List<ListingPhoto>  photoList = em.createQuery(jpql, ListingPhoto.class).setParameter("listingId", listing.getId()).getResultList();
-//		Address address = em.createQuery(jpql2, Address.class).setParameter("listingId", listing.getId()).getSingleResult();
-//		List<Comment> comments = em.createQuery(jpql3, Comment.class).setParameter("listingId", listing.getId()).getResultList();
-		
+		System.out.println("--------------------------break1---------------------------");
+		Address address = addressDao.findById(dbListing.getAddress().getId());
+		System.out.println("--------------------------break2---------------------------");
+		PropertyType property = propertyTypeDao.findById(dbListing.getPropertyType().getId());
+		System.out.println("--------------------------break3---------------------------");
+		for (Event event : dbListing.getEvents()) {
+			eventDao.delete(event.getId());
+			em.remove(event);
+		}
+		System.out.println("--------------------------break4---------------------------");
+		for (ListingPhoto photo : dbListing.getListingPhotos()) {
+			listingPhotoDao.delete(photo);
+			em.remove(photo);
+		}
+		System.out.println("--------------------------break5---------------------------");
+		for (Comment comment : dbListing.getComments()) {
+			commentDao.deleteComment(comment.getId());
+			em.remove(comment);
+		}
+		System.out.println("--------------------------break6---------------------------");
+		for (User user : dbListing.getFavoriteUsers()) {
+			List<Listing> userFavoriteList = user.getFavorites();
+			for (Listing favListing : userFavoriteList) {
+				if (favListing.getId() == dbListing.getId());
+				em.remove(favListing);
+			}
+			System.out.println("--------------------------break7---------------------------");
+		}
+		System.out.println("--------------------------break8---------------------------");
+		for (Listing userListing : dbListing.getUser().getListings()) {
+			if(dbListing.getId() == userListing.getId()) {
+				em.remove(userListing);
+			}
+			System.out.println("--------------------------break9---------------------------");
+		}
+		System.out.println("--------------------------break10---------------------------");
+//		for (Rating rating : dbListing.getRatings()) {
+//			em.remove(rating);
+//		}
+		System.out.println("--------------------------break11---------------------------");
+		em.remove(property);
+		System.out.println("--------------------------break12---------------------------");
+		em.remove(address);
+		System.out.println("--------------------------break13---------------------------");
 		em.remove(dbListing);
+		System.out.println("--------------------------break14---------------------------");
 		boolean successfulDelete = !em.contains(dbListing);
+		System.out.println("--------------------------break15---------------------------");
 		return successfulDelete;
 	}
 
