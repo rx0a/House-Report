@@ -408,7 +408,7 @@ html {
 																		${comment.listing.address.state}</button>
 																</form> <c:choose>
 																	<c:when test="${!empty editComment}">
-																		<form action="listing.do" method="POST">
+																		<form action="accountEditedComment.do" method="POST">
 																			<input type="hidden" name="id" value="${comment.id }">
 																			<input type="text" name="commentText"
 																				value="${comment.comment }"> <input
