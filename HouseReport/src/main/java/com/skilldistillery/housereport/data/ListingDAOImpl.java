@@ -103,45 +103,46 @@ public class ListingDAOImpl implements ListingDAO {
 		PropertyType property = propertyTypeDao.findById(dbListing.getPropertyType().getId());
 		System.out.println("--------------------------break3---------------------------");
 		for (Event event : dbListing.getEvents()) {
-			eventDao.delete(event.getId());
+//			eventDao.delete(event.getId());
 			em.remove(event);
 		}
 		System.out.println("--------------------------break4---------------------------");
 		for (ListingPhoto photo : dbListing.getListingPhotos()) {
-			listingPhotoDao.delete(photo);
+//			listingPhotoDao.delete(photo);
 			em.remove(photo);
 		}
 		System.out.println("--------------------------break5---------------------------");
 		for (Comment comment : dbListing.getComments()) {
-			commentDao.deleteComment(comment.getId());
+//			commentDao.deleteComment(comment.getId());
 			em.remove(comment);
 		}
 		System.out.println("--------------------------break6---------------------------");
 		for (User user : dbListing.getFavoriteUsers()) {
-			List<Listing> userFavoriteList = user.getFavorites();
-			for (Listing favListing : userFavoriteList) {
-				if (favListing.getId() == dbListing.getId());
-				em.remove(favListing);
+//			List<Listing> userFavoriteList = user.getFavorites();
+//			for (Listing favListing : userFavoriteList) {
+//				if (favListing.getId() == dbListing.getId());
+//				em.remove(favListing);
+			em.remove(user);
 			}
 			System.out.println("--------------------------break7---------------------------");
-		}
-		System.out.println("--------------------------break8---------------------------");
-		for (Listing userListing : dbListing.getUser().getListings()) {
-			if(dbListing.getId() == userListing.getId()) {
-				em.remove(userListing);
-			}
-			System.out.println("--------------------------break9---------------------------");
-		}
-		System.out.println("--------------------------break10---------------------------");
-//		for (Rating rating : dbListing.getRatings()) {
-//			em.remove(rating);
 //		}
+		System.out.println("--------------------------break8---------------------------");
+//		for (Listing userListing : dbListing.getUser().getListings()) {
+//			if(dbListing.getId() == userListing.getId()) {
+//				em.remove(userListing);
+//			}
+			System.out.println("--------------------------break9---------------------------");
+//		}
+		System.out.println("--------------------------break10---------------------------");
+		for (Rating rating : dbListing.getRatings()) {
+			em.remove(rating);
+		}
 		System.out.println("--------------------------break11---------------------------");
-		em.remove(property);
+		em.remove(dbListing);
+//		em.remove(property);
 		System.out.println("--------------------------break12---------------------------");
 		em.remove(address);
 		System.out.println("--------------------------break13---------------------------");
-		em.remove(dbListing);
 		System.out.println("--------------------------break14---------------------------");
 		boolean successfulDelete = !em.contains(dbListing);
 		System.out.println("--------------------------break15---------------------------");
