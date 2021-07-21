@@ -6,25 +6,36 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.housereport.entities.Address;
 import com.skilldistillery.housereport.entities.Listing;
 import com.skilldistillery.housereport.entities.ListingPhoto;
+import com.skilldistillery.housereport.entities.PropertyType;
+import com.skilldistillery.housereport.entities.User;
 
 @Service
 @Transactional
 public class ListingPhotoDAOImpl implements ListingPhotoDAO{
+	ListingDAO listingDao;
+	
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
 	public ListingPhoto findById(int id) {
-		return em.find(ListingPhoto.class, id);
+		return em.find(ListingPhoto.class,id);
 	}
 
 	@Override
-	public ListingPhoto create(ListingPhoto listingPhoto) {
+	public ListingPhoto create(Listing listing, User user, Address address, PropertyType propertyType, ListingPhoto listingPhoto) {
+		Listing dbListing = listingDao.create(listing, user, address, propertyType);
+		listingPhoto.setListing(dbListing);
+//		listing.setListingPhotos(null);
+//		listing.getListingPhotos().add(listingPhoto);
+		em.persist(dbListing);
 		em.persist(listingPhoto);
 		em.flush();
-		return listingPhoto;
+		dbListing.addPhoto(listingPhoto);
+		return dbListing.getListingPhotos().get(0);
 	}
 
 	@Override

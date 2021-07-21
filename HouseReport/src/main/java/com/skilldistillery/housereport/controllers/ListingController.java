@@ -123,11 +123,17 @@ public class ListingController {
 	@RequestMapping(path="createdListing.do", method=RequestMethod.POST)
 	public String createdListing(Model model, HttpSession session, Address address, Listing listing, PropertyType propertyType, ListingPhoto photo) {
 		User dbUser = (User)session.getAttribute("user");
-		Listing dbListing = listingDao.create(listing, dbUser, address, propertyType);
-		System.out.println(dbUser.getId() + "TEST FROM CREATED LISTING!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println(dbUser);
+		ListingPhoto lp = photoDao.create(listing, dbUser, address, propertyType, photo);
+		session.setAttribute("user", lp.getListing().getUser());
+//		dbUser.getListings().get(listing.getId()).getListingPhotos().add(photo);
+//		session.setAttribute("user", dbUser);
+//		photo.setListing(listing);
+//		Listing dbListing = listingDao.create(listing, dbUser, address, propertyType, photo);
+//		System.out.println(dbUser.getId() + "TEST FROM CREATED LISTING!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 //		photo.setListing(dbListing);
-		dbListing.getListingPhotos().add(photo);
-		ListingPhoto dbPhoto = photoDao.create(photo);
+//		dbListing.getListingPhotos().add(photo);
+//		ListingPhoto dbPhoto = photoDao.create(photo);
 		return "userProfile";
 	}
 

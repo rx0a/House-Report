@@ -411,6 +411,11 @@ html {
 		You do not have any current comments<br>
 											</c:otherwise>
 										</c:choose>
+										
+			<form action="deleteUser.do" method="POST">
+			<input type="hidden" name="id" value="${user.id}">
+			<input type="submit" value="Kill Yo-self" />
+			</form>
 									</tbody>
 								</table>
 							</div>

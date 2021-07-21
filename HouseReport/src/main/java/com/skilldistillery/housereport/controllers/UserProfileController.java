@@ -100,11 +100,11 @@ public class UserProfileController {
 		return "userProfile";
 	}
 
-	@RequestMapping(path = { "deleteUser.do" }, params = "id")
+	@RequestMapping(path = { "deleteUser.do" }, params = "id", method = RequestMethod.POST)
 	public String deleteUser(int id) {
 		User user = userDao.findById(id);
 		userDao.deleteUser(user);
-		return "userProfile";
+		return "login";
 	}
 
 	@RequestMapping(path = { "editUserPage.do" }, params = "id", method = RequestMethod.POST)
