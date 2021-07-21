@@ -48,6 +48,7 @@ public class ListingDAOImpl implements ListingDAO{
 	@Override
 	public Listing create(Listing listing, User user, Address address, PropertyType propertyType) {
 		Address dbAddress = addDAO.create(address);
+		
 		User dbUser = em.find(User.class, user.getId());
 		System.out.println(dbUser.getId() + "TEST FROM IMPL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		PropertyType dbPropertyType = propertyTypeDao.create(propertyType);
