@@ -44,9 +44,11 @@ public class CommentController {
 	
 	@RequestMapping(path="accountEditedComment.do", params = {"id", "commentText"}, method=RequestMethod.POST)
 	public String accountEditedComment(int id, String commentText) {
+		System.out.println(commentText);
 		Comment dbComment = commentDao.findById(id);
 		dbComment.setComment(commentText);
 		commentDao.updateComment(dbComment);
+		System.out.println(dbComment.getComment());
 		return "redirect:profile.do";
 	}
 	
