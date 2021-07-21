@@ -11,26 +11,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.housereport.entities.Address;
+import com.skilldistillery.housereport.entities.Comment;
 import com.skilldistillery.housereport.entities.Listing;
-import com.skilldistillery.housereport.entities.ListingPhoto;
 import com.skilldistillery.housereport.entities.PropertyType;
 import com.skilldistillery.housereport.entities.User;
 
 @Service
 @Transactional
-public class ListingDAOImpl implements ListingDAO{
+public class ListingDAOImpl implements ListingDAO {
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Autowired
 	AddressDAOImpl addDAO;
-	
+
 	@Autowired
 	UserDAOImpl userDAO;
-	
+
 	@Autowired
 	PropertyTypeDAOImpl propertyTypeDao;
-	
+
 	@Autowired
 	ListingPhotoDAOImpl listingPhotoDao;
 
@@ -38,6 +38,7 @@ public class ListingDAOImpl implements ListingDAO{
 	public Listing findById(int id) {
 		return em.find(Listing.class, id);
 	}
+
 	@Override
 	public List<Listing> listings() {
 		String jpql = "SELECT l FROM Listing l";
@@ -74,21 +75,31 @@ public class ListingDAOImpl implements ListingDAO{
 		dbListing.setLotSizeSqft(listing.getLotSizeSqft());
 		dbListing.setPropertyTax(listing.getPropertyTax());
 		dbListing.setParkingType(listing.getParkingType());
-		
+
 		Address dbAddress = addDAO.update(address);
 		dbListing.setAddress(dbAddress);
-		
+
 		return dbListing;
 	}
 
 	@Override
 	public boolean delete(Listing listing) {
 		Listing dbListing = em.find(Listing.class, listing.getId());
+//		delete photos attached to listing
+		String jpql = "DELETE p FROM ListingPhoto p WHERE p.listingId = :listingId";
+//		delete address attached to listing 
+		String jpql2 = "DELETE a FROM Address a where a.id = :listingId";
+//		delete comment
+		String jpql3 = "DELETE c FROM Comment c where c.listing.id = :listingId";
+//		List<ListingPhoto>  photoList = em.createQuery(jpql, ListingPhoto.class).setParameter("listingId", listing.getId()).getResultList();
+//		Address address = em.createQuery(jpql2, Address.class).setParameter("listingId", listing.getId()).getSingleResult();
+//		List<Comment> comments = em.createQuery(jpql3, Comment.class).setParameter("listingId", listing.getId()).getResultList();
+		
 		em.remove(dbListing);
 		boolean successfulDelete = !em.contains(dbListing);
 		return successfulDelete;
 	}
-	
+
 	@Override
 	public double updateRating(int id) {
 		String jpql1 = "SELECT COUNT(r) from Rating r WHERE r.listing.id = :id";
@@ -105,6 +116,12 @@ public class ListingDAOImpl implements ListingDAO{
 		em.flush();
 		return accuracyRating;
 	}
-	
+
+	@Override
+	public List<Listing> displayListings() {
+		String jpql = "select l FROM Listing l";
+		List<Listing> allListings = em.createQuery(jpql, Listing.class).getResultList();
+		return allListings;
+	}
 
 }

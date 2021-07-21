@@ -12,5 +12,6 @@ public interface ListingPhotoDAO {
 	ListingPhoto create(Listing listing, User user, Address address, PropertyType propertyType, ListingPhoto listingPhoto);
 	boolean delete(ListingPhoto listingPhoto);
 	ListingPhoto update(ListingPhoto listingPhoto, Listing listing);
+	
 
 }
