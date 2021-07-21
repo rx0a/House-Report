@@ -28,6 +28,14 @@ public class ListingPhoto {
 	private Listing listing;
 
 	public ListingPhoto() {}
+	
+
+	public ListingPhoto(String imgUrl, Listing listing) {
+		super();
+		this.imgUrl = imgUrl;
+		this.listing = listing;
+	}
+
 
 	public int getId() {
 		return id;
