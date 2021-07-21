@@ -33,6 +33,7 @@ public class UserProfileController {
 	@RequestMapping(path = { "profile.do" }, method = RequestMethod.GET)
 	public ModelAndView profile(HttpSession session) {
 		User user2 = (User) session.getAttribute("user");
+		session.setAttribute("user", userDao.findById(user2.getId()));
 		String userRole = user2.getRole();
 		ModelAndView mv = new ModelAndView();
 		System.out.println(userRole);
@@ -119,11 +120,11 @@ public class UserProfileController {
 		return "userProfile";
 	}
 
-	@RequestMapping(path = { "deleteUser.do" }, params = "id")
+	@RequestMapping(path = { "deleteUser.do" }, params = "id", method = RequestMethod.POST)
 	public String deleteUser(int id) {
 		User user = userDao.findById(id);
 		userDao.deleteUser(user);
-		return "userProfile";
+		return "login";
 	}
 
 	@RequestMapping(path = { "editUserPage.do" }, params = "id", method = RequestMethod.POST)

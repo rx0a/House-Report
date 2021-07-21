@@ -8,6 +8,12 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.housereport.entities.Address;
+import com.skilldistillery.housereport.entities.Comment;
+import com.skilldistillery.housereport.entities.Event;
+import com.skilldistillery.housereport.entities.Listing;
+import com.skilldistillery.housereport.entities.ListingPhoto;
+import com.skilldistillery.housereport.entities.Rating;
 import com.skilldistillery.housereport.entities.User;
 
 @Service
@@ -65,6 +71,27 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public boolean deleteUser(User user) {
 		User dbUser = em.find(User.class, user.getId());
+		for (Rating rating : dbUser.getRatings()) {
+			em.remove(rating);
+		}
+		for (Comment comment : dbUser.getComments()) {
+			em.remove(comment);
+		}
+		for (Listing favorite : dbUser.getFavorites()) {
+			em.remove(favorite);
+		}
+		List<Listing> deletedUserListings = dbUser.getListings();
+		for (Listing listing : deletedUserListings) {
+			Address address =listing.getAddress();
+			for (Event event : listing.getEvents()) {
+				em.remove(event);
+			}
+			for (ListingPhoto photo : listing.getListingPhotos()) {
+				em.remove(photo);
+			}
+			em.remove(listing);
+			em.remove(address);
+		}
 		em.remove(dbUser);
 		boolean successfulDelete = !em.contains(dbUser);
 		return successfulDelete;

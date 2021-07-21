@@ -230,6 +230,7 @@ CREATE TABLE IF NOT EXISTS `listing_photo` (
   `listing_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_listing_photo_listing1_idx` (`listing_id` ASC),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   CONSTRAINT `fk_listing_photo_listing1`
     FOREIGN KEY (`listing_id`)
     REFERENCES `listing` (`id`)
@@ -311,7 +312,7 @@ INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`
 INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (3, 684900, 1472, 2, 2, NULL, NULL, 0.0, '2021-06-18 11:29:21', 1946, 5000, 0.6, '2-Car Garage', 3, 3, 5);
 INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (4, 359900, 805, 2, 1, NULL, NULL, 0.0, '2021-06-18 11:56:12', 1949, 6750, 0.6, 'Street Parking', 4, 7, 6);
 INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (5, 575000, 1575, 3, 2, NULL, NULL, 0.0, '2021-06-18 12:22:18', 1891, 1880, 0.6, 'Street Parking', 5, 10, 4);
-INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (6, 710000, 1822, 3, 2, NULL, NULL, 0.00, '2021-06-18 12:29:34', 1931, 4791, 0.6, '1-Car Garage', 6, 1, 5);
+INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (6, 710000, 1822, 3, 2, NULL, NULL, 0.00, '2021-06-18 12:29:34', 1931, 4791, 0.6, '1-Car Garage', 6, 4, 5);
 INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (7, 1050000, 3161, 5, 5, NULL, NULL, 0.0, '2021-06-18 12:36:12', 2015, 3500, 0.6, '2-Car Garage', 7, 1, 1);
 INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (8, 299000, 1360, 3, 1, NULL, NULL, 0.0, '2021-06-18 12:44:15', 1955, 6098, 0.6, 'Street Parking', 8, 1, 5);
 INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (9, 300000, 2210, 4, 2, NULL, NULL, 0.0, '2021-06-18 12:50:14', 1912, 6534, 0.58, 'Street Parking', 9, 6, 5);
@@ -345,6 +346,7 @@ COMMIT;
 START TRANSACTION;
 USE `housereportdb`;
 INSERT INTO `favorite` (`listing_id`, `user_id`) VALUES (1, 1);
+INSERT INTO `favorite` (`listing_id`, `user_id`) VALUES (1, 4);
 
 COMMIT;
 
@@ -358,6 +360,7 @@ INSERT INTO `comment` (`id`, `comment`, `comment_date`, `user_id`, `listing_id`)
 INSERT INTO `comment` (`id`, `comment`, `comment_date`, `user_id`, `listing_id`) VALUES (2, 'Musicians live next door', '2021-06-18 11:43:00', 9, 2);
 INSERT INTO `comment` (`id`, `comment`, `comment_date`, `user_id`, `listing_id`) VALUES (3, 'Used to live nearby. Great neighborhood!', '2021-06-18 12:00:23', 2, 3);
 INSERT INTO `comment` (`id`, `comment`, `comment_date`, `user_id`, `listing_id`) VALUES (4, 'Pretty sure the old owner got evicted for an illegal giraffe ring', '2021-06-18 12:48:13', 6, 8);
+INSERT INTO `comment` (`id`, `comment`, `comment_date`, `user_id`, `listing_id`) VALUES (5, 'Test Comment for User Deletion', '2021-06-21 09:50:12', 4, 10);
 
 COMMIT;
 
@@ -370,6 +373,7 @@ USE `housereportdb`;
 INSERT INTO `listing_event` (`listing_id`, `event_id`) VALUES (1, 1);
 INSERT INTO `listing_event` (`listing_id`, `event_id`) VALUES (4, 3);
 INSERT INTO `listing_event` (`listing_id`, `event_id`) VALUES (8, 2);
+INSERT INTO `listing_event` (`listing_id`, `event_id`) VALUES (6, 6);
 
 COMMIT;
 
@@ -380,8 +384,9 @@ COMMIT;
 START TRANSACTION;
 USE `housereportdb`;
 INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (1, 1, 1);
-INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (4, 0, 1);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (5, 0, 1);
 INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (2, 1, 2);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (4, 1, 2);
 
 COMMIT;
 

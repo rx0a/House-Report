@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.housereport.data.AddressDAO;
 import com.skilldistillery.housereport.data.ListingDAO;
@@ -124,8 +125,11 @@ public class ListingController {
 	public String createdListing(Model model, HttpSession session, Address address, Listing listing, PropertyType propertyType, ListingPhoto photo) {
 		User dbUser = (User)session.getAttribute("user");
 		System.out.println(dbUser);
+		listing.setUser(dbUser);
 		ListingPhoto lp = photoDao.create(listing, dbUser, address, propertyType, photo);
-		session.setAttribute("user", lp.getListing().getUser());
+		dbUser = userDao.findById(dbUser.getId());
+		dbUser.getListings().size();
+		session.setAttribute("user", dbUser);
 //		dbUser.getListings().get(listing.getId()).getListingPhotos().add(photo);
 //		session.setAttribute("user", dbUser);
 //		photo.setListing(listing);
@@ -134,7 +138,7 @@ public class ListingController {
 //		photo.setListing(dbListing);
 //		dbListing.getListingPhotos().add(photo);
 //		ListingPhoto dbPhoto = photoDao.create(photo);
-		return "userProfile";
+		return "redirect:profile.do";
 	}
 
 	@RequestMapping(path = "addRating.do", params= {"listingID", "userID", "vote"}, method= RequestMethod.POST)
@@ -151,6 +155,25 @@ public class ListingController {
 		model.addAttribute("rating", persistedRating);
 		return "listing";
 		
+	}
+	
+	@RequestMapping(path="deleteListing.do", method=RequestMethod.POST)
+	public String deleteListing(Listing listing) {
+		listingDao.delete(listing);
+		return "redirect:profile.do";
+	}
+	
+	@RequestMapping(path="modifyListing.do", params= {"action"}, method=RequestMethod.POST)
+	public String modifyListing(RedirectAttributes redir, Listing listing, String action) {
+		if(action.equals("Delete")) {
+			redir.addFlashAttribute("listing", listing);
+			return "redirect:deleteListing.do";
+		} else if(action.equals("Edit")) {
+			redir.addFlashAttribute("listing", listing);
+			return "redirect:editListing.do";
+		} else {
+			return "userProfile";
+		}
 	}
 
 	

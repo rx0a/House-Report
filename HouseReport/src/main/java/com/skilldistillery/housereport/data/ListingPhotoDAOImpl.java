@@ -15,7 +15,7 @@ import com.skilldistillery.housereport.entities.User;
 
 @Service
 @Transactional
-public class ListingPhotoDAOImpl implements ListingPhotoDAO{
+public class ListingPhotoDAOImpl implements ListingPhotoDAO{	
 	@PersistenceContext
 	private EntityManager em;
 	
@@ -24,7 +24,7 @@ public class ListingPhotoDAOImpl implements ListingPhotoDAO{
 
 	@Override
 	public ListingPhoto findById(int id) {
-		return em.find(ListingPhoto.class, id);
+		return em.find(ListingPhoto.class,id);
 	}
 
 	@Override
