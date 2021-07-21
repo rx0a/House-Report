@@ -36,7 +36,7 @@
 <!-- CSS -->
 <link rel="stylesheet" href="style.css" />
 <!-- END CSS -->
-<title>User Profile</title>
+<title>Admin Dashboard</title>
 <style>
 .mytable {
 	height: 300px;
@@ -151,9 +151,6 @@ html {
 				<div class="collapse navbar-collapse justify-content-end"
 					id="navigation">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="profile.do">
-								<span class="no-icon">User Dashboard</span>
-						</a></li>
 					</ul>
 				</div>
 			</div>

@@ -75,6 +75,7 @@ public class UserProfileController {
 			mv.setViewName("admin");
 			return mv;
 		} else {
+			mv.addObject("listingList", listingDao.displayListings());
 			mv.setViewName("userProfile");
 			return mv;
 		}

@@ -99,8 +99,8 @@ html {
 </style>
 </head>
 <body>
-	<header>
 		<!-- Navbar -->
+	<header>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#">House Report</a>
@@ -150,13 +150,7 @@ html {
 				</button>
 				<div class="collapse navbar-collapse justify-content-end"
 					id="navigation">
-					<c:if test="${user.role == 'admin'}">
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="admin.do">
-									<span class="no-icon">Admin Dashboard</span>
-							</a></li>
-						</ul>
-					</c:if>
+
 				</div>
 			</div>
 		</nav>

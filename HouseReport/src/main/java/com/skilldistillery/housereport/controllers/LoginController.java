@@ -12,14 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.housereport.data.AddressDAO;
 import com.skilldistillery.housereport.data.UserDAO;
-import com.skilldistillery.housereport.entities.Listing;
+import com.skilldistillery.housereport.entities.Address;
 import com.skilldistillery.housereport.entities.User;
 
 @Controller
 public class LoginController {
 	@Autowired
 	private UserDAO userDao;
+	@Autowired
+	private AddressDAO addressDao;
 
 	@RequestMapping(path = { "/", "login.do" })
 	public String login(Model model) {
@@ -38,21 +41,19 @@ public class LoginController {
 		if (user.getEnabled() == 1) {
 			if (userDao.checkUsername(username)) {
 				if (user.getPassword().equals(password)) {
-					// username and password is correct - going home
 					session.setAttribute("user", user);
+					List<Address> addresses = addressDao.findAddress("");
+					model.addAttribute("AddressList", addresses);
 					mv.setViewName("home");
-					// session - add login time
 					LocalDateTime lt = LocalDateTime.now();
 					session.setAttribute("loginTime", lt);
 					return mv;
 				} else {
-					// Wrong password - going back to login
 					mv.clear();
 					mv.setViewName("login");
 					return mv;
 				}
 			} else {
-				// No user with that username - going to register
 				mv.clear();
 				mv.setViewName("register");
 				return mv;
