@@ -158,7 +158,7 @@ html {
 	<!-- End Raybar -->
 	<main>
 		<!--     <div class="wrapper"> -->
-		<div class="main-panel" style="padding-top:60px">
+		<div class="main-panel" style="padding-top:80px">
 			<nav class="navbar navbar-expand-lg " color-on-scroll="500">
 				<div class=" container-fluid  ">
 					<p></p>

@@ -1,38 +1,12 @@
 @charset "UTF-8";
 
-body{
-padding-top: 40px;	
-}
-
-main{
-	margin-top: 25px;
-	padding-top: 40px;
-}
-
-html {
-  scroll-padding-top: 70px;
-}
-
 
 .form-group { 
     padding-top: 65px; 
 }
 
-form{
-	padding: 10px;
-	line-height: 2;
-	margin: 5px;
-}
-
-#state{
-padding: 5px;
-margin-top: 5px;
-margin-left: 5px;	
-}
-
 input[type=text], .txtarea{
 margin-bottom: 10px;
-
  }
 
 .carousel-inner img {
@@ -75,13 +49,4 @@ button.dislike{
 	
   overflow: auto;
   
-}
-
-.navbar{
-	margin-bottom:50px;
-}
-
-header{
-	margin-bottom:50px;
-	padding-bottom: 50px;
 }
