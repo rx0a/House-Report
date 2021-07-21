@@ -264,7 +264,7 @@ html {
 																<tr>
 																	<td class="test align-bottom" valign="bottom">
 
-																		<form action="editListing.do" method="POST">
+																		<form action="modifyListing.do" method="POST">
 																			<input type="hidden" name="id" value="${listing.id}" />
 																			<input type="hidden" name="id" value="${user.id}">
 																			<button class="btn btn-outline-danger " type="submit"
