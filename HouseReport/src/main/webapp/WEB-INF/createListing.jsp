@@ -416,7 +416,9 @@
 			listing photo object
 input type="submit" value="Create"
 		</div> -->
+		<div class="col text-center">
 		<button type="submit" class="btn btn-primary bg-dark" value="Create">Submit</button>
+		</div>
 	</form>
 
 </body>
