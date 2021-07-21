@@ -1,6 +1,7 @@
 package com.skilldistillery.housereport.controllers;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.housereport.data.UserDAO;
+import com.skilldistillery.housereport.entities.Listing;
 import com.skilldistillery.housereport.entities.User;
 
 @Controller
@@ -23,7 +25,7 @@ public class LoginController {
 	public String login(Model model) {
 		return "login";
 	}
-	
+
 	@RequestMapping(path = { "user.do" })
 	public String user(Model model) {
 		return "user";
@@ -33,7 +35,7 @@ public class LoginController {
 	public ModelAndView checkAccount(Model model, String username, String password, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User user = userDao.findByUsername(username);
-		if(user.getEnabled() == 1) {
+		if (user.getEnabled() == 1) {
 			if (userDao.checkUsername(username)) {
 				if (user.getPassword().equals(password)) {
 					// username and password is correct - going home
@@ -62,5 +64,14 @@ public class LoginController {
 			mv.setViewName("login");
 			return mv;
 		}
+	}
+
+	@RequestMapping(path = { "logOut.do" }, method = RequestMethod.GET)
+	public ModelAndView logOut(HttpSession session) {
+		User user2 = (User) session.getAttribute("user");
+		ModelAndView mv = new ModelAndView();
+		session.removeAttribute("user");
+		mv.setViewName("login");
+		return mv;
 	}
 }
