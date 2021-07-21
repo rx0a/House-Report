@@ -37,10 +37,10 @@ public class UserProfileController {
 		String userRole = user2.getRole();
 		ModelAndView mv = new ModelAndView();
 		System.out.println(userRole);
-		List<Listing> loggedInUserListings = user2.getListings();
-		for (Listing listing : loggedInUserListings) {
-			listingDao.updateRating(listing.getId());
-		}
+//		List<Listing> loggedInUserListings = user2.getListings();
+//		for (Listing listing : loggedInUserListings) {
+//			listingDao.updateRating(listing.getId());
+//		}
 		mv.setViewName("userProfile");
 		return mv;
 	}

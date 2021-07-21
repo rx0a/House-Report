@@ -164,13 +164,15 @@ public class ListingController {
 	}
 	
 	@RequestMapping(path="modifyListing.do", params= {"action"}, method=RequestMethod.POST)
-	public String modifyListing(RedirectAttributes redir, Listing listing, String action) {
+	public String modifyListing(Model model, RedirectAttributes redir, Listing listing, String action) {
 		if(action.equals("Delete")) {
 			redir.addFlashAttribute("listing", listing);
-			return "redirect:deleteListing.do";
+			return "deleteListing";
 		} else if(action.equals("Edit")) {
-			redir.addFlashAttribute("listing", listing);
-			return "redirect:editListing.do";
+			Listing dbListing = listingDao.findById(listing.getId());
+			System.out.println(dbListing);
+			model.addAttribute("listing", dbListing);
+			return "editListing";
 		} else {
 			return "userProfile";
 		}
