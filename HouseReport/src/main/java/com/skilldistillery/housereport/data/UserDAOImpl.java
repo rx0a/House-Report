@@ -71,16 +71,24 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public boolean deleteUser(User user) {
 		User dbUser = em.find(User.class, user.getId());
+		
+		if(dbUser.getComments() != null) {
+			for (Comment comment : dbUser.getComments()) {
+				em.remove(comment);
+			}}
+		
+		if(dbUser.getRatings() != null) {
 		for (Rating rating : dbUser.getRatings()) {
 			em.remove(rating);
-		}
-		for (Comment comment : dbUser.getComments()) {
-			em.remove(comment);
-		}
+		}}
+
+		
+		if(dbUser.getFavorites() != null) {
 		for (Listing favorite : dbUser.getFavorites()) {
 			em.remove(favorite);
-		}
+		}}
 		List<Listing> deletedUserListings = dbUser.getListings();
+		if(deletedUserListings != null) {
 		for (Listing listing : deletedUserListings) {
 			Address address =listing.getAddress();
 			for (Event event : listing.getEvents()) {
@@ -89,9 +97,12 @@ public class UserDAOImpl implements UserDAO {
 			for (ListingPhoto photo : listing.getListingPhotos()) {
 				em.remove(photo);
 			}
+			for (Comment comment : listing.getComments()) {
+				em.remove(comment);
+			}
 			em.remove(listing);
 			em.remove(address);
-		}
+		}}
 		em.remove(dbUser);
 		boolean successfulDelete = !em.contains(dbUser);
 		return successfulDelete;
