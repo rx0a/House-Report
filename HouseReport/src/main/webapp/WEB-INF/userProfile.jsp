@@ -390,10 +390,21 @@ html {
 																	${comment.listing.address.city},
 																	${comment.listing.address.state}</button>
 															</form>
+															<c:choose>
+															<c:when test="${!empty editComment}">
+															<form action="listing.do" method="POST">
+															<input type="hidden" name="id" value="${comment.id }">
+															<input type="text" name="commentText" value="${comment.comment }">
+															<input type="submit" value="Submit Edited Comment" />
+															</form>
+															</c:when>
+															<c:otherwise>
 															<p>"${comment.comment}"</p>
+															</c:otherwise>
+															</c:choose>
 														</td>
 														<td class="td-actions text-right">
-															<form action="editComment.do" method="GET">
+															<form action="editComment.do" method="POST">
 																<input type="hidden" name="id" value="${comment.id}" />
 																<button class="btn btn-outline-danger" type="submit"
 																	name="action" value="Delete">

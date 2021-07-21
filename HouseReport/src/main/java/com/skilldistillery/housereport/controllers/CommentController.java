@@ -35,6 +35,12 @@ public class CommentController {
 		return "editComment";
 	}
 	
+	@RequestMapping(path="editComment.do", method=RequestMethod.POST)
+	public String accountEditComment(Model model, int id) {
+		model.addAttribute("editComment", id);
+		return "userProfile";
+	}
+	
 	@RequestMapping(path="accountEditedComment.do", method=RequestMethod.POST)
 	public String accountEditedComment(Comment comment) {
 		Comment dbComment = commentDao.findById(comment.getId());
