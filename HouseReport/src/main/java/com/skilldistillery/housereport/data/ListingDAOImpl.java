@@ -12,25 +12,24 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.housereport.entities.Address;
 import com.skilldistillery.housereport.entities.Listing;
-import com.skilldistillery.housereport.entities.ListingPhoto;
 import com.skilldistillery.housereport.entities.PropertyType;
 import com.skilldistillery.housereport.entities.User;
 
 @Service
 @Transactional
-public class ListingDAOImpl implements ListingDAO{
+public class ListingDAOImpl implements ListingDAO {
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Autowired
 	AddressDAOImpl addDAO;
-	
+
 	@Autowired
 	UserDAOImpl userDAO;
-	
+
 	@Autowired
 	PropertyTypeDAOImpl propertyTypeDao;
-	
+
 	@Autowired
 	ListingPhotoDAOImpl listingPhotoDao;
 
@@ -38,6 +37,7 @@ public class ListingDAOImpl implements ListingDAO{
 	public Listing findById(int id) {
 		return em.find(Listing.class, id);
 	}
+
 	@Override
 	public List<Listing> listings() {
 		String jpql = "SELECT l FROM Listing l";
@@ -48,7 +48,6 @@ public class ListingDAOImpl implements ListingDAO{
 	@Override
 	public Listing create(Listing listing, User user, Address address, PropertyType propertyType) {
 		Address dbAddress = addDAO.create(address);
-		
 		User dbUser = em.find(User.class, user.getId());
 		System.out.println(dbUser.getId() + "TEST FROM IMPL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		PropertyType dbPropertyType = propertyTypeDao.create(propertyType);
@@ -75,10 +74,10 @@ public class ListingDAOImpl implements ListingDAO{
 		dbListing.setLotSizeSqft(listing.getLotSizeSqft());
 		dbListing.setPropertyTax(listing.getPropertyTax());
 		dbListing.setParkingType(listing.getParkingType());
-		
+
 		Address dbAddress = addDAO.update(address);
 		dbListing.setAddress(dbAddress);
-		
+
 		return dbListing;
 	}
 
@@ -89,7 +88,7 @@ public class ListingDAOImpl implements ListingDAO{
 		boolean successfulDelete = !em.contains(dbListing);
 		return successfulDelete;
 	}
-	
+
 	@Override
 	public double updateRating(int id) {
 		String jpql1 = "SELECT COUNT(r) from Rating r WHERE r.listing.id = :id";
@@ -106,6 +105,12 @@ public class ListingDAOImpl implements ListingDAO{
 		em.flush();
 		return accuracyRating;
 	}
-	
+
+	@Override
+	public List<Listing> displayListings() {
+		String jpql = "select l FROM Listing l";
+		List<Listing> allListings = em.createQuery(jpql, Listing.class).getResultList();
+		return allListings;
+	}
 
 }

@@ -16,5 +16,6 @@ public interface ListingDAO {
 	List<Listing> listings();
 	double updateRating(int id);
 	Listing create(Listing listing, User user, Address address, PropertyType propertyType);
+	List<Listing> displayListings();
 
 }
