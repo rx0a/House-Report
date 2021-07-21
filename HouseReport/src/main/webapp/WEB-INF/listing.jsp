@@ -215,7 +215,7 @@
 						<td>${selectedListing.propertyTax } %</td>
 					</tr>
 					<c:choose>
-							<c:when test="${! empty selectedListing.events}">	
+							<c:when test="${! empty selectedListing.events}">
 							<c:forEach var="event" items="${selectedListing.events}">	
 					<tr>
 						<td>Event:</td>
@@ -232,6 +232,10 @@
 					</tr> 
 					
 					</table>
+					<form action="addEvent.do" method="post">
+					<input type="submit" value="Add Event">
+					<input type="hidden" name="id" value="${selectedListing.id }">
+					</form>
 					</div>
 			<br>
 
