@@ -21,10 +21,10 @@ public class ResultsController {
 	@RequestMapping(path = { "results.do" })
 	public ModelAndView showResults(Model model) {
 		ModelAndView mv = new ModelAndView();
-		List<Listing> listings = listingDao.listings();
-		for (Listing listing : listings) {
-			listingDao.updateRating(listing.getId());
-		}
+//		List<Listing> listings = listingDao.listings();
+//		for (Listing listing : listings) {
+//			listingDao.updateRating(listing.getId());
+//		}
 		mv.addObject("listings", listingDao.listings());
 		mv.setViewName("results");
 		return mv;

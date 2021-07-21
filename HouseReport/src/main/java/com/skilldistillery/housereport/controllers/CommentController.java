@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.housereport.data.CommentDAO;
 import com.skilldistillery.housereport.data.ListingDAO;
@@ -41,10 +42,10 @@ public class CommentController {
 		return "userProfile";
 	}
 	
-	@RequestMapping(path="accountEditedComment.do", method=RequestMethod.POST)
-	public String accountEditedComment(Comment comment) {
-		Comment dbComment = commentDao.findById(comment.getId());
-		dbComment.setComment(comment.getComment());
+	@RequestMapping(path="accountEditedComment.do", params = {"id", "commentText"}, method=RequestMethod.POST)
+	public String accountEditedComment(int id, String commentText) {
+		Comment dbComment = commentDao.findById(id);
+		dbComment.setComment(commentText);
 		commentDao.updateComment(dbComment);
 		return "redirect:profile.do";
 	}
@@ -73,9 +74,10 @@ public class CommentController {
 		Comment commentObj = new Comment(comment, LocalDateTime.now(), dbUser, dbListing);
 		Comment dbComment = commentDao.createComment(commentObj, listingID, userID);
 		dbUser = userDao.findByUsername(dbUser.getUsername());
-//		dbUser.getComments().add(dbComment);
+		dbUser.getComments().add(dbComment);
 		dbListing = listingDao.findById(listingID);
 		session.setAttribute("user", dbUser);
+		dbListing.getComments().add(dbComment);
 		model.addAttribute("selectedListing", dbListing);
 		return "listing";
 	}

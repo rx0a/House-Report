@@ -43,8 +43,9 @@ public class Listing {
 	private Double propertyTax;
 	@Column(name = "parking_type")
 	private String parkingType;
-	@Transient 
+	@Column(name = "accuracy_rating") 
 	private double accuracyRating;
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy="listing")
 	private List<Comment> comments;
 	@ManyToOne

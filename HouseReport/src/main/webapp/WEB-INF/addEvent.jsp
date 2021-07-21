@@ -1,13 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Add Event</title>
+<!-- BOOTSTRAP -->
+<link rel="canonical"
+	href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark@1.1.0/dist/css/bootstrap-dark.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<!-- END BOOTSTRAP -->
+<!-- JAVASCRIPT -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<!-- END JAVASCRIPT -->
+<!-- CSS -->
+<link rel="stylesheet" href="style.css" />
+<!-- END CSS -->
+<title>User Profile</title>
 </head>
 <body>
+
 	<!-- Start Raybar -->
 	<header>
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -70,23 +97,22 @@
 <h2>Add event for: </h2>
 <p>${listing.address.street}</p>
 <p>${listing.address.city}, ${listing.address.state} ${listing.address.postalCode}</p>
-<form action="addEvent.do" method="post">
+<form action="createEvent.do" method="post">
 <label>Event: </label>
 <select name="eventType">
-	<option value="Earthquake">Earthquake</option>
-	<option value="Hurricane">Hurricane</option>
-	<option value="Wildfire">Wildfire</option>
-	<option value="Tornado">Tornado</option>
-	<option value="Tsunami">Tsunami</option>
-	<option value="Flood">Flood</option>
-	<option value="Hail">Hail</option>
+    <option value="Earthquake">Earthquake</option>
+    <option value="Hurricane">Hurricane</option>
+    <option value="Wildfire">Wildfire</option>
+    <option value="Tornado">Tornado</option>
+    <option value="Tsunami">Tsunami</option>
+    <option value="Flood">Flood</option>
+    <option value="Hail">Hail</option>
 </select><br>
 <label>Event date:</label>
 <input type="date" name="eventDate"
-	value="2021-04-17"
-	min="1950-01-01" max="2021-07-23">
-	<input type="hidden" value="${listing.id}">
+    min="1950-01-01" max="2021-07-23">
+    <input type="hidden" name="listId" value="${listing.id}">
+    <input type="submit" value="Add">
 </form>
-
 </body>
 </html>

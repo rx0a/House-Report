@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS `listing` (
   `lot_size_sqft` INT NULL,
   `property_tax` DECIMAL(4,2) NULL,
   `parking_type` VARCHAR(45) NULL,
+  `accuracy_rating` DOUBLE(5,2) NULL,
   `address_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `property_id` INT NOT NULL,
@@ -307,16 +308,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `housereportdb`;
-INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (1, 795000, 3438, 3, 3, 64.5, 47.3, 0.0, '2021-06-16 20:45:20', 1890, 3920, 0.6, '2-Car Garage', 1, 1, 1);
-INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (2, 424900, 2457, 3, 3, NULL, NULL, 285.00, '2021-06-18 11:11:41', 2020, 1862, 0.6, '2-Car Garage', 2, 2, 2);
-INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (3, 684900, 1472, 2, 2, NULL, NULL, 0.0, '2021-06-18 11:29:21', 1946, 5000, 0.6, '2-Car Garage', 3, 3, 5);
-INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (4, 359900, 805, 2, 1, NULL, NULL, 0.0, '2021-06-18 11:56:12', 1949, 6750, 0.6, 'Street Parking', 4, 7, 6);
-INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (5, 575000, 1575, 3, 2, NULL, NULL, 0.0, '2021-06-18 12:22:18', 1891, 1880, 0.6, 'Street Parking', 5, 10, 4);
-INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (6, 710000, 1822, 3, 2, NULL, NULL, 0.00, '2021-06-18 12:29:34', 1931, 4791, 0.6, '1-Car Garage', 6, 4, 5);
-INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (7, 1050000, 3161, 5, 5, NULL, NULL, 0.0, '2021-06-18 12:36:12', 2015, 3500, 0.6, '2-Car Garage', 7, 1, 1);
-INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (8, 299000, 1360, 3, 1, NULL, NULL, 0.0, '2021-06-18 12:44:15', 1955, 6098, 0.6, 'Street Parking', 8, 1, 5);
-INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (9, 300000, 2210, 4, 2, NULL, NULL, 0.0, '2021-06-18 12:50:14', 1912, 6534, 0.58, 'Street Parking', 9, 6, 5);
-INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `address_id`, `user_id`, `property_id`) VALUES (10, 75000, 822, 2, 1, NULL, NULL, 0.0, '2021-06-18 12:56:43', 1910, 10890, 1.61, '3-Car Garage', 10, 8, 6);
+INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `accuracy_rating`, `address_id`, `user_id`, `property_id`) VALUES (1, 795000, 3438, 3, 3, 64.5, 47.3, 0.0, '2021-06-16 20:45:20', 1890, 3920, 0.6, '2-Car Garage', 50.00, 1, 1, 1);
+INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `accuracy_rating`, `address_id`, `user_id`, `property_id`) VALUES (2, 424900, 2457, 3, 3, NULL, NULL, 285.00, '2021-06-18 11:11:41', 2020, 1862, 0.6, '2-Car Garage', 100.00, 2, 2, 2);
+INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `accuracy_rating`, `address_id`, `user_id`, `property_id`) VALUES (3, 684900, 1472, 2, 2, NULL, NULL, 0.0, '2021-06-18 11:29:21', 1946, 5000, 0.6, '2-Car Garage', 33.33, 3, 3, 5);
+INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `accuracy_rating`, `address_id`, `user_id`, `property_id`) VALUES (4, 359900, 805, 2, 1, NULL, NULL, 0.0, '2021-06-18 11:56:12', 1949, 6750, 0.6, 'Street Parking', 100.00, 4, 7, 6);
+INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `accuracy_rating`, `address_id`, `user_id`, `property_id`) VALUES (5, 575000, 1575, 3, 2, NULL, NULL, 0.0, '2021-06-18 12:22:18', 1891, 1880, 0.6, 'Street Parking', 66.67, 5, 10, 4);
+INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `accuracy_rating`, `address_id`, `user_id`, `property_id`) VALUES (6, 710000, 1822, 3, 2, NULL, NULL, 0.00, '2021-06-18 12:29:34', 1931, 4791, 0.6, '1-Car Garage', 66.67, 6, 4, 5);
+INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `accuracy_rating`, `address_id`, `user_id`, `property_id`) VALUES (7, 1050000, 3161, 5, 5, NULL, NULL, 0.0, '2021-06-18 12:36:12', 2015, 3500, 0.6, '2-Car Garage', 66.67, 7, 1, 1);
+INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `accuracy_rating`, `address_id`, `user_id`, `property_id`) VALUES (8, 299000, 1360, 3, 1, NULL, NULL, 0.0, '2021-06-18 12:44:15', 1955, 6098, 0.6, 'Street Parking', 66.67, 8, 1, 5);
+INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `accuracy_rating`, `address_id`, `user_id`, `property_id`) VALUES (9, 300000, 2210, 4, 2, NULL, NULL, 0.0, '2021-06-18 12:50:14', 1912, 6534, 0.58, 'Street Parking', 66.67, 9, 6, 5);
+INSERT INTO `listing` (`id`, `price`, `square_feet`, `bed_number`, `bath_number`, `property_crime_rate`, `violent_crime_rate`, `hoa_monthly_rate`, `created_on`, `year_built`, `lot_size_sqft`, `property_tax`, `parking_type`, `accuracy_rating`, `address_id`, `user_id`, `property_id`) VALUES (10, 75000, 822, 2, 1, NULL, NULL, 0.0, '2021-06-18 12:56:43', 1910, 10890, 1.61, '3-Car Garage', 100.00, 10, 8, 6);
 
 COMMIT;
 
@@ -387,6 +388,34 @@ INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (1, 1, 1);
 INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (5, 0, 1);
 INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (2, 1, 2);
 INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (4, 1, 2);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (1, 1, 2);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (1, 0, 3);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (2, 1, 4);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (2, 0, 5);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (3, 1, 6);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (3, 1, 7);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (3, 0, 8);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (4, 1, 9);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (4, 1, 10);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (4, 0, 1);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (5, 1, 2);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (5, 1, 3);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (5, 1, 4);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (6, 1, 5);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (6, 1, 6);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (6, 0, 7);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (7, 1, 8);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (7, 1, 9);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (7, 0, 10);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (8, 1, 1);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (8, 1, 2);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (8, 0, 3);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (9, 1, 4);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (9, 1, 5);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (9, 0, 6);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (10, 1, 7);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (10, 1, 8);
+INSERT INTO `rating` (`user_id`, `rating`, `listing_id`) VALUES (10, 0, 9);
 
 COMMIT;
 

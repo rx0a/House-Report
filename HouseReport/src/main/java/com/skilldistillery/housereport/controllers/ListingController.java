@@ -148,11 +148,18 @@ public class ListingController {
 		int ratingNum = Integer.parseInt(vote);
 		boolean rating = false;
 		if (ratingNum == 1) rating = true;
-		RatingId ratingID = new RatingId(listingID, userID);
-		Rating ratingObj = new Rating(ratingID, rating, dbUser, dbListing);
-		Rating persistedRating = ratingDao.createRating(ratingObj);
-		model.addAttribute("selectedListing", dbListing);
-		model.addAttribute("rating", persistedRating);
+		try {
+			RatingId ratingID = new RatingId(listingID, userID);
+			Rating ratingObj = new Rating(ratingID, rating, dbUser, dbListing);
+			Rating persistedRating = ratingDao.createRating(ratingObj);
+			dbListing.setAccuracyRating(listingDao.updateRating(listingID));
+			Listing updatedRatingListing = listingDao.update(dbListing, dbListing.getAddress());
+			model.addAttribute("selectedListing", updatedRatingListing);
+			model.addAttribute("rating", persistedRating);
+		} catch (Exception EntityExistsException) {
+			model.addAttribute("selectedListing", dbListing);
+			return "listing";
+		}
 		return "listing";
 		
 	}
