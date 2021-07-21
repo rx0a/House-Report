@@ -1,7 +1,16 @@
 @charset "UTF-8";
 
 body{
-padding: 10px auto;	
+padding-top: 40px;	
+}
+
+main{
+	margin-top: 25px;
+	padding-top: 40px;
+}
+
+html {
+  scroll-padding-top: 70px;
 }
 
 
@@ -69,5 +78,10 @@ button.dislike{
 }
 
 .navbar{
-	margin-bottom: 10px;
+	margin-bottom:50px;
+}
+
+header{
+	margin-bottom:50px;
+	padding-bottom: 50px;
 }
