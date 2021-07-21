@@ -220,7 +220,7 @@
 					<tr>
 						<td>Event:</td>
 						<td>${event.eventType }</td>
-						<td>Date:</td>
+						<td>Event Date:</td>
 						<td>${event.eventDate }</td>
 					</tr>	
 					</c:forEach>

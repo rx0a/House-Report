@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.housereport.data.CommentDAO;
 import com.skilldistillery.housereport.data.ListingDAO;
@@ -73,9 +74,10 @@ public class CommentController {
 		Comment commentObj = new Comment(comment, LocalDateTime.now(), dbUser, dbListing);
 		Comment dbComment = commentDao.createComment(commentObj, listingID, userID);
 		dbUser = userDao.findByUsername(dbUser.getUsername());
-//		dbUser.getComments().add(dbComment);
+		dbUser.getComments().add(dbComment);
 		dbListing = listingDao.findById(listingID);
 		session.setAttribute("user", dbUser);
+		dbListing.getComments().add(dbComment);
 		model.addAttribute("selectedListing", dbListing);
 		return "listing";
 	}
