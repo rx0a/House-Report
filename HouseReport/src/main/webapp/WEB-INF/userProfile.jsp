@@ -362,7 +362,7 @@ html {
 																	<tr>
 																		<td valign="top">
 
-																			<form action="listing.do" method="POST">
+																			<form action="expandListing.do" method="POST">
 																				<input type="hidden" name="id"
 																					value="${favorite.id }">Address:<br>
 																				<button style="padding: 0px"

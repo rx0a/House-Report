@@ -117,7 +117,7 @@
 				<div class="col-md-12">
 
 					<label for="street" class="form-label">Street</label> <input
-						type="text" class="form-control" name="street">
+						type="text" class="form-control" required name="street">
 				</div>
 
 				<div class="col-md-12">
@@ -127,12 +127,12 @@
 
 				<div class="col-md-6">
 					<label for="city" class="form-label">City</label> <input
-						type="text" class="form-control" name="city">
+						type="text" class="form-control" required name="city">
 				</div>
 				<br>
 				<div class="col-md-3">
 					<label for="state" class="form-label"> State </label> <br> <select
-						name="state" class="form-select bg-dark text-light">
+						name="state"  required class="form-select bg-dark text-light">
 						<option selected>State...</option>
 						<option value="AL">Alabama</option>
 						<option value="AK">Alaska</option>
@@ -190,61 +190,61 @@
 
 				<div class="col-md-3">
 					<label for="postalCode" class="form-label">Zip Code</label> <input
-						type="text" class="form-control" name="postalCode">
+						type="number" class="form-control" required name="postalCode">
 				</div>
 
 				<!-- Start of listing object -->
 				<div class="col-md-3">
 					<label for="price" class="form-label">Price</label> <input
-						type="text" class="form-control" name="price"
+						type="number" class="form-control" name="price"
 						value="${listing.price}">
 				</div>
 
 				<div class="col-md-3">
 					<label for="squareFeet" class="form-label">Square footage</label> <input
-						type="text" class="form-control" name="squareFeet"
+						type="number" class="form-control" name="squareFeet"
 						value="${listing.squareFeet}">
 				</div>
 
 				<div class="col-md-3">
 					<label for="bedNumber" class="form-label">Bedrooms</label> <input
-						type="text" class="form-control" name="bedNumber"
+						type="number" class="form-control" name="bedNumber"
 						value="${listing.bedNumber}">
 				</div>
 
 				<div class="col-md-3">
 					<label for="bathNumber" class="form-label">Bathrooms</label> <input
-						type="text" class="form-control" name="bathNumber"
+						type="number" class="form-control" name="bathNumber"
 						value="${listing.bathNumber}">
 				</div>
 
 				<div class="col-md-3">
 					<label for="propertyCrimeRate" class="form-label"> Crime
-						Rate</label> <input type="text" class="form-control"
+						Rate</label> <input type="number" class="form-control"
 						name="propertyCrimeRate" value="${listing.propertyCrimeRate}">
 				</div>
 
 				<div class="col-md-3">
 					<label for="hoaMonthlyRate" class="form-label">Monthly HOA
-						Cost</label> <input type="text" class="form-control" name="hoaMonthlyRate"
+						Cost</label> <input type="number" class="form-control" name="hoaMonthlyRate"
 						value="${listing.hoaMonthlyRate}">
 				</div>
 
 				<div class="col-md-3">
 					<label for="yearBuilt" class="form-label">Year Built</label> <input
-						type="text" class="form-control" name="yearBuilt"
+						type="number" class="form-control" required name="yearBuilt"
 						value="${listing.yearBuilt}">
 				</div>
 
 				<div class="col-md-3">
 					<label for="lotSizeSqft" class="form-label">Lot Size</label> <input
-						type="text" class="form-control" name="lotSizeSqft"
+						type="number" class="form-control" name="lotSizeSqft"
 						value="${listing.lotSizeSqft}">
 				</div>
 
 				<div class="col-md-3">
 					<label for="propertyTax" class="form-label">Property Tax</label> <input
-						type="text" class="form-control" name="propertyTax"
+						type="number" class="form-control" name="propertyTax"
 						value="${listing.propertyTax}">
 				</div>
 
