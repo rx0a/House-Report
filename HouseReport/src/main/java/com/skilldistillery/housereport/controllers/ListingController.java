@@ -1,7 +1,5 @@
 package com.skilldistillery.housereport.controllers;
 
-import java.text.DecimalFormat;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.skilldistillery.housereport.data.AddressDAO;
 import com.skilldistillery.housereport.data.ListingDAO;
 import com.skilldistillery.housereport.data.ListingPhotoDAO;
+import com.skilldistillery.housereport.data.PropertyTypeDAO;
 import com.skilldistillery.housereport.data.RatingDAO;
 import com.skilldistillery.housereport.data.UserDAO;
 import com.skilldistillery.housereport.entities.Address;
@@ -41,6 +40,9 @@ public class ListingController {
 	
 	@Autowired
 	private ListingPhotoDAO photoDao;
+	
+	@Autowired
+	private PropertyTypeDAO propertyDao;
 
 	@RequestMapping(path = { "showListings.do" })
 	public String showListings(Model model) {
@@ -57,6 +59,7 @@ public class ListingController {
 	@RequestMapping(path = "updateListing.do", method = RequestMethod.POST)
 	public String updateListing(Address address, Listing listing, PropertyType propertyType, ListingPhoto photo) {
 		Address dbAddress = addressDao.findById(address.getId());
+		System.out.println(propertyType.getType() + "----------------------------------------test prop type");
 		dbAddress.setStreet(address.getStreet());
 		dbAddress.setStreet2(address.getStreet2());
 		dbAddress.setCity(address.getCity());
@@ -74,6 +77,7 @@ public class ListingController {
 		dbListing.setLotSizeSqft(listing.getLotSizeSqft());
 		dbListing.setPropertyTax(listing.getPropertyTax());
 		dbListing.setParkingType(listing.getParkingType());
+		dbListing.getPropertyType().setType(propertyType.getType());
 		listingDao.update(dbListing, dbAddress);
 		return "redirect:profile.do";
 	}
