@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.skilldistillery.housereport.data.CommentDAO;
 import com.skilldistillery.housereport.data.ListingDAO;
 import com.skilldistillery.housereport.data.UserDAO;
+import com.skilldistillery.housereport.entities.Address;
 import com.skilldistillery.housereport.entities.Comment;
 import com.skilldistillery.housereport.entities.Listing;
 import com.skilldistillery.housereport.entities.User;
@@ -84,4 +85,20 @@ public class CommentController {
 		return "listing";
 	}
 
+	@RequestMapping(path="deleteComment.do", params = {"id"}, method=RequestMethod.POST)
+	public String deleteComment(HttpSession session, int id) {
+		Comment dbComment = commentDao.findById(id);
+		User dbUser = dbComment.getUser();
+//		User dbUser2 = userDao.findByUsername(dbUser.getUsername());
+		dbUser.removeComment(dbComment);
+//		Listing dbListing = dbComment.getListing();
+//		dbListing.removeComment(dbComment);
+//		Address address = dbListing.getAddress();
+//		listingDao.update(dbListing, address);
+//		userDao.updateUser(dbUser);
+		commentDao.deleteComment(id);
+//		userDao.updateUser(dbUser);
+		session.setAttribute("user", dbUser);
+		return "userProfile";
+	}
 }

@@ -350,10 +350,10 @@ html {
 																	<tr>
 																		<td class="test align-bottom" valign="bottom">
 
-																			<form action="deleteFavorite.do" method="POST">
-																				<input type="hidden" name="id"
+																			<form action="deleteFromFavorites.do" method="POST">
+																				<input type="hidden" name="favoriteID"
 																					value="${favorite.id}" /> <input type="hidden"
-																					name="id" value="${user.id}">
+																					name="userID" value="${user.id}">
 																				<button class="btn btn-outline-danger "
 																					type="submit" name="action" value="Delete">
 																					<i class="fa fa-trash" aria-hidden="true"></i>
@@ -422,13 +422,16 @@ html {
 																</c:choose>
 															</td>
 															<td class="td-actions text-right">
-																<form action="editComment.do" method="POST">
+																<form action="deleteComment.do" method="POST">
 																	<input type="hidden" name="id" value="${comment.id}" />
 																	<button class="btn btn-outline-danger" type="submit"
 																		name="action" value="Delete">
 																		<i class="fa fa-trash" aria-hidden="true"></i>
 																	</button>
+																	</form>
 																	&nbsp;&nbsp;
+																	<form action="editComment.do" method="POST">
+																	<input type="hidden" name="id" value="${comment.id}" />
 																	<button class="btn btn-outline-warning" type="submit"
 																		name="action" value="Edit">
 																		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>

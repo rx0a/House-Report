@@ -146,6 +146,7 @@ public class ListingDAOImpl implements ListingDAO {
 		System.out.println("--------------------------break13---------------------------");
 		System.out.println("--------------------------break14---------------------------");
 		boolean successfulDelete = !em.contains(dbListing);
+		System.out.println(successfulDelete);
 		System.out.println("--------------------------break15---------------------------");
 		return successfulDelete;
 	}
