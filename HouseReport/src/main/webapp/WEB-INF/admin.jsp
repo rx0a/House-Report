@@ -263,10 +263,7 @@ html {
 																	<td valign="top">
 
 																		<form action="#" method="POST">
-																			<input type="hidden" name="id" value="${user.id }">Name:
-																			<button style="padding: 0px"
-																				class="btn btn-link text-left" type="submit">${user.firstName}
-																				${user.lastName}</button>
+																			<input type="hidden" name="id" value="${user.id }">Name: ${user.firstName} ${user.lastName}
 																		</form>Username: ${user.username }<br>Password:
 																		${user.password }<br>Enabled: ${user.enabled } <br>Email:
 																		${user.email}
@@ -352,7 +349,7 @@ html {
 															<table class="table mytable">
 																<tr>
 																	<td valign="top">
-																		<form action="listing.do" method="POST">
+																		<form action="expandListing.do" method="POST">
 																			<input type="hidden" name="id"
 																				value="${address.listing.id }">Address:<br>
 																			<button style="padding: 0px"
