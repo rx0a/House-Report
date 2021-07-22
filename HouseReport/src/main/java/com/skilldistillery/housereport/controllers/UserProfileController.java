@@ -110,9 +110,10 @@ public class UserProfileController {
 		dbUser.setLastName(lastname);
 		dbUser.setEmail(email);
 		userDao.updateUser(dbUser);
-		session.setAttribute("user", dbUser);
 		LocalDateTime updateTime = LocalDateTime.now();
 		dbUser.setUpdatedTime(updateTime);
+		session.setAttribute("user", dbUser);
+		session.setAttribute("updatedTime", updateTime);
 //		LocalDateTime now = LocalDateTime.now();
 //		dbUser.setUpdatedTime(Duration.between(updateTime, now));
 //		session.setAttribute("updateTime", updateTime);

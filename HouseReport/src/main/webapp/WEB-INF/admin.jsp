@@ -261,7 +261,6 @@ html {
 															<table class="table mytable">
 																<tr>
 																	<td valign="top">
-
 																		<form action="#" method="POST">
 																			<input type="hidden" name="id" value="${user.id }">Name: ${user.firstName} ${user.lastName}
 																		</form>Username: ${user.username }<br>Password:
