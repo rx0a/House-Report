@@ -41,7 +41,7 @@
 <title>House Report</title>
 
 <link rel="canonical" />
-<body>
+<body class="text-center">
 		<!-- Start Raybar -->
 	<header>
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -113,15 +113,47 @@
 	<br>
 	<br>
 	<br>
-	<form action="deleteListing.do" method="post" style="padding-top:80px">
+		
+
+				
+				
+				
+			
+			
+			
+			<div class="col-md-6 mx-auto">
+					<div class="card ">
+						<div class="card-header ">
+							<h4 class="card-title">Are you sure you want to delete this listing?</h4>
+						</div>
+						<div class="card-body ">
+							<div class="table-full-width">
+										
+	<form action="deleteListing.do" class="d-inline" method="POST">
+			<input type="hidden" name="id" value="${listing.id}"/> 
+			<input type="hidden" name="userID" value="${user.id}"> 
+			<input class="btn btn-primary bg-dark" type="submit" value="Yes" />
+		</form>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<form action="profile.do" class="d-inline">
+			<input class="btn btn-primary bg-dark" type="submit" value="No" />
+		</form>
+							</div>
+						</div>
+					</div>
+				</div>	
+			
+		
+	<!-- 
+	 <form action="deleteListing.do" method="post" style="padding-top:80px">
 	<input type="hidden" name="id" value="${listing.id}">
-		<b>Are you sure you want to delete this listing?</b>
 		<input type="submit" value="Yes">
 	</form>
 	
 	<form action="profile.do">
 	<input type="submit" value="No">
 	</form>
+	 -->
 		
 </body>
 </html>

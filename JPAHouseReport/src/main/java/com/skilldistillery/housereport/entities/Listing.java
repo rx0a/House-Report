@@ -44,7 +44,7 @@ public class Listing {
 	@Column(name = "parking_type")
 	private String parkingType;
 	@Column(name = "accuracy_rating") 
-	private double accuracyRating;
+	private int accuracyRating;
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy="listing")
 	private List<Comment> comments;
@@ -233,10 +233,10 @@ public class Listing {
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
 	}
-	public double getAccuracyRating() {
+	public int getAccuracyRating() {
 		return accuracyRating;
 	}
-	public void setAccuracyRating(double accuracyRating) {
+	public void setAccuracyRating(int accuracyRating) {
 		this.accuracyRating = accuracyRating;
 	}
 	public List<User> getFavoriteUsers() {

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.skilldistillery.housereport.data.AddressDAO;
 import com.skilldistillery.housereport.data.ListingDAO;
 import com.skilldistillery.housereport.data.ListingPhotoDAO;
+import com.skilldistillery.housereport.data.PropertyTypeDAO;
 import com.skilldistillery.housereport.data.RatingDAO;
 import com.skilldistillery.housereport.data.UserDAO;
 import com.skilldistillery.housereport.entities.Address;
@@ -39,6 +40,9 @@ public class ListingController {
 	
 	@Autowired
 	private ListingPhotoDAO photoDao;
+	
+	@Autowired
+	private PropertyTypeDAO propertyDao;
 
 	@RequestMapping(path = { "showListings.do" })
 	public String showListings(Model model) {
@@ -55,11 +59,12 @@ public class ListingController {
 	@RequestMapping(path = "updateListing.do", method = RequestMethod.POST)
 	public String updateListing(Address address, Listing listing, PropertyType propertyType, ListingPhoto photo) {
 		Address dbAddress = addressDao.findById(address.getId());
+		System.out.println(propertyType.getType() + "----------------------------------------test prop type");
 		dbAddress.setStreet(address.getStreet());
 		dbAddress.setStreet2(address.getStreet2());
-		dbAddress.setCity(dbAddress.getCity());
-		dbAddress.setState(dbAddress.getState());
-		dbAddress.setPostalCode(dbAddress.getPostalCode());
+		dbAddress.setCity(address.getCity());
+		dbAddress.setState(address.getState());
+		dbAddress.setPostalCode(address.getPostalCode());
 		Listing dbListing = listingDao.findById(listing.getId());
 		dbListing.setPrice(listing.getPrice());
 		dbListing.setSquareFeet(listing.getSquareFeet());
@@ -72,6 +77,7 @@ public class ListingController {
 		dbListing.setLotSizeSqft(listing.getLotSizeSqft());
 		dbListing.setPropertyTax(listing.getPropertyTax());
 		dbListing.setParkingType(listing.getParkingType());
+		dbListing.getPropertyType().setType(propertyType.getType());
 		listingDao.update(dbListing, dbAddress);
 		return "redirect:profile.do";
 	}
@@ -136,6 +142,9 @@ public class ListingController {
 		dbUser = userDao.findById(dbUser.getId());
 		dbUser.getListings().size();
 		session.setAttribute("user", dbUser);
+		
+		return addRating(model, lp.getListing().getId(), dbUser.getId(), "1");
+		
 //		dbUser.getListings().get(listing.getId()).getListingPhotos().add(photo);
 //		session.setAttribute("user", dbUser);
 //		photo.setListing(listing);
@@ -144,7 +153,7 @@ public class ListingController {
 //		photo.setListing(dbListing);
 //		dbListing.getListingPhotos().add(photo);
 //		ListingPhoto dbPhoto = photoDao.create(photo);
-		return "redirect:profile.do";
+//		return "listing";
 	}
 
 	@RequestMapping(path = "addRating.do", params= {"listingID", "userID", "vote"}, method= RequestMethod.POST)
