@@ -207,11 +207,37 @@ html {
 								</c:choose>
 							</div>
 							<c:choose>
-								<c:when test="${! empty user.updatedTime }">
+								<c:when test="${! empty updatedTime }">
 									<div class="card-footer ">Last Updated:
+									
+									
+																		 <c:if
+														test="${Duration.between(updatedTime, LocalDateTime.now()).getSeconds() < 60}">
+                                ${Duration.between(updatedTime, LocalDateTime.now()).getSeconds()}
+										seconds ago.
+                                </c:if> <c:if
+														test="${60 < Duration.between(updatedTime, LocalDateTime.now()).getSeconds()}">
+														<c:if
+															test="${3600 > Duration.between(updatedTime, LocalDateTime.now()).getSeconds() }">   
+                                ${Duration.between(updatedTime, LocalDateTime.now()).toMinutes()}
+										minutes ago.
+                                </c:if>
 
-										${Duration.between(user.updatedTime, LocalDateTime.now()).getSeconds()}
-										seconds ago.</div>
+													</c:if> <c:if test="${Duration.between(updatedTime, LocalDateTime.now()).getSeconds() > 3600 }">
+														<c:if
+															test="${Duration.between(updatedTime, LocalDateTime.now()).getSeconds()   < 86400 }">
+   
+                                ${Duration.between(updatedTime, LocalDateTime.now()).toHours()}
+										hours ago.
+                                </c:if>
+
+													</c:if> <c:if
+														test="${Duration.between(updatedTime, LocalDateTime.now()).getSeconds() > 86400}">
+                                
+                                ${Duration.between(updatedTime, LocalDateTime.now()).toDays()}
+										days ago.
+                                </c:if>
+</div>
 								</c:when>
 								<c:otherwise>
 									<div class="card-footer ">Last Updated: Never</div>
