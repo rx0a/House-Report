@@ -146,7 +146,7 @@
 				<tr>
 					<td class="align-left" style="padding-left: 0; margin-left: 0;">
 						<form action="addRating.do" method="POST">
-							Rating:&nbsp;${selectedListing.address.listing.accuracyRating }%<br>
+							Rating:&nbsp;${selectedListing.accuracyRating }%<br>
 							<input type="hidden" name="listingID"
 								value="${selectedListing.id}" /> <input type="hidden"
 								name="userID" value="${user.id}">
