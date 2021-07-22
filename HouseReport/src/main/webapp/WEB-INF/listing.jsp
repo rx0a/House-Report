@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.time.*"%>
 <!DOCTYPE html>
 <html>
 
@@ -43,6 +45,54 @@
 <style>
 .titletable {
 	width: 100%;
+}
+
+.userpic {
+	width: 50px;
+}
+
+.username {
+	width: 150px;
+}
+
+.commenttable {
+	min-height: 150px;
+}
+
+.commenttext {
+	padding-left: 50px;
+}
+
+.c-badge {
+	height: 20px;
+	font-size: 11px;
+	width: 92px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 2px
+}
+
+.comment-text {
+	font-size: 13px
+}
+
+.wish {
+	color: #35b69f
+}
+
+.user-feed {
+	font-size: 14px;
+	margin-top: 12px
+}
+
+.listingbg {
+	background-color: #191d21;
+}
+
+.com {
+	margin: auto;
 }
 </style>
 
@@ -146,10 +196,9 @@
 				<tr>
 					<td class="align-left" style="padding-left: 0; margin-left: 0;">
 						<form action="addRating.do" method="POST">
-							Rating:&nbsp;${selectedListing.accuracyRating }%<br>
-							<input type="hidden" name="listingID"
-								value="${selectedListing.id}" /> <input type="hidden"
-								name="userID" value="${user.id}">
+							Rating:&nbsp;${selectedListing.accuracyRating }%<br> <input
+								type="hidden" name="listingID" value="${selectedListing.id}" />
+							<input type="hidden" name="userID" value="${user.id}">
 							<button class="btn btn-outline-primary  " name="vote"
 								type="submit" value="1">
 								<i class="fa fa-arrow-up" aria-hidden="true"></i>
@@ -182,8 +231,9 @@
 				</tr>
 			</table>
 		</div>
+
 		<!-- Start Listing body -->
-		<div class="card-body">
+		<div class="card-body listingbg">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="card ">
@@ -319,52 +369,100 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<br>
 
-		<!-- Comment Box -->
-		<section>
-			<div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-dark"
-				style="max-width: auto; max-height: 250px;">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-5 col-md-6 col-12 pb-4">
-							<h1>Comments</h1>
 
-							<c:choose>
-								<c:when test="${! empty selectedListing.comments}">
-									<c:forEach var="comment" items="${selectedListing.comments}">
-										<div class="comment mt-4 text-justify">
-											<img src="https://i.imgur.com/yTFUilP.jpg" alt=""
-												class="rounded-circle" width="40" height="40">
-											<h4>${comment.user.username }</h4>
-											<span>- 18 July, 2021</span> <br>
-											<p>${comment.comment}</p>
-										</div>
-									</c:forEach>
-								</c:when>
-								<c:otherwise>
-								No comments on this listing<br>
-								</c:otherwise>
-							</c:choose>
-						</div>
+			<br>
+			<!-- New new new comment box -->
+			<div class="col-md-8 com">
+				<div class="card ">
+
+					<div class="card-header ">
+						<h4 class="card-title">Comments</h4>
+
+						<form class="d-flex" action="postComment.do" method="POST">
+							<input type="hidden" name="listingID"
+								value="${selectedListing.id}" /> <input type="hidden"
+								name="userID" value="${user.id}"> <img
+								src="images/avatar.png" width="50" height="50"
+								class="rounded-circle mr-2">
+							<textarea class="form-control z-depth-1 bg-dark text-light"
+								rows="2" name="comment" placeholder="Enter your comment..."></textarea>
+							&nbsp;&nbsp;
+							<button class="btn btn-outline-light" type="submit">
+								<i class="fa fa-paper-plane"></i>
+							</button>
+						</form>
 
 					</div>
+
+					<div class="card-body ">
+
+						<c:choose>
+							<c:when test="${! empty selectedListing.comments}">
+								<c:forEach var="comment" items="${selectedListing.comments}">
+
+
+									<div class="d-flex flex-row p-3">
+										<img src="images/avatar.png" width="40" height="40"
+											class="rounded-circle mr-3">
+										<div class="w-100">
+											<div
+												class="d-flex justify-content-between align-items-center">
+												<div class="d-flex flex-row align-items-center">
+													<span class="mr-2">${comment.user.username }</span> <small
+														class="c-badge">${comment.user.role}</small>
+												</div>
+												<small> <c:if
+														test="${Duration.between(comment.commentDate, LocalDateTime.now()).getSeconds() < 60}">
+                                ${Duration.between(comment.commentDate, LocalDateTime.now()).getSeconds()}
+										seconds ago.
+                                </c:if> <c:if
+														test="${60 < Duration.between(comment.commentDate, LocalDateTime.now()).getSeconds()}">
+														<c:if
+															test="${3600 > Duration.between(comment.commentDate, LocalDateTime.now()).getSeconds() }">   
+                                ${Duration.between(comment.commentDate, LocalDateTime.now()).toMinutes()}
+										minutes ago.
+                                </c:if>
+
+													</c:if> <c:if
+														test="${Duration.between(comment.commentDate, LocalDateTime.now()).getSeconds() > 3600 }">
+														<c:if
+															test="${Duration.between(comment.commentDate, LocalDateTime.now()).getSeconds()   < 86400 }">
+   
+                                ${Duration.between(comment.commentDate, LocalDateTime.now()).toHours()}
+										hours ago.
+                                </c:if>
+
+													</c:if> <c:if
+														test="${Duration.between(comment.commentDate, LocalDateTime.now()).getSeconds() > 86400}">
+                                
+                                ${Duration.between(comment.commentDate, LocalDateTime.now()).toDays()}
+										days ago.
+                                </c:if>
+												</small>
+											</div>
+											<p class="text-justify comment-text mb-0">${comment.comment}</p>
+										</div>
+									</div>
+									<hr class="solid">
+
+								</c:forEach>
+
+							</c:when>
+							<c:otherwise>
+								No comments on this listing<br>
+							</c:otherwise>
+						</c:choose>
+
+
+
+					</div>
+
 				</div>
 			</div>
-		</section>
-		<form action="postComment.do" method="POST">
-
-			<input type="text" name="comment" /> <input type="hidden"
-				name="listingID" value="${selectedListing.id}" /> <input
-				type="hidden" name="userID" value="${user.id}"> <input
-				class="btn btn-primary bg-dark" type="submit" value="Post Comment" />
-		</form>
+		</div>
 	</div>
 
-	<div class="card-footer text-muted"></div>
-
 	<!-- End Info Card -->
-
 
 </body>
