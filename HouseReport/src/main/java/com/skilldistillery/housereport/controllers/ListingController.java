@@ -59,9 +59,9 @@ public class ListingController {
 		Address dbAddress = addressDao.findById(address.getId());
 		dbAddress.setStreet(address.getStreet());
 		dbAddress.setStreet2(address.getStreet2());
-		dbAddress.setCity(dbAddress.getCity());
-		dbAddress.setState(dbAddress.getState());
-		dbAddress.setPostalCode(dbAddress.getPostalCode());
+		dbAddress.setCity(address.getCity());
+		dbAddress.setState(address.getState());
+		dbAddress.setPostalCode(address.getPostalCode());
 		Listing dbListing = listingDao.findById(listing.getId());
 		dbListing.setPrice(listing.getPrice());
 		dbListing.setSquareFeet(listing.getSquareFeet());
