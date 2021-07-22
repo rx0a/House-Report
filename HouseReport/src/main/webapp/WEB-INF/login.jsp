@@ -61,6 +61,10 @@
   <script>alert("Account created! Please log in to continue!");
 </script>
 </c:if>
+	<c:if test="${accountWrongPassword}">
+  <script>alert("Login Credentials could not be found!");
+</script>
+</c:if>
 <c:if test="${accountDisabled}">
   <script>alert("Account has beed disabled! Please contact a site administrator to re-enable your account!");
 </script>

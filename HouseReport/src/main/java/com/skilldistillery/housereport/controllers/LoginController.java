@@ -50,6 +50,8 @@ public class LoginController {
 					return mv;
 				} else {
 					mv.clear();
+					boolean accountWrongPassword = true;
+					model.addAttribute("accountWrongPassword", accountWrongPassword);
 					mv.setViewName("login");
 					return mv;
 				}
