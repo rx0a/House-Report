@@ -111,7 +111,11 @@
 				<option value="Tornado">Tornado</option>
 				<option value="Tsunami">Tsunami</option>
 				<option value="Flood">Flood</option>
-				<option value="Hail">Hail</option>
+				<option value="House Fire">Hail</option>
+				<option value="Meth Lab Explosion">Meth Lab Explosion</option>
+				<option value="Shooting">Shooting</option>
+				<option value="Tree Falls on House">Tree Falls on House</option>
+				<option value="Giraffe Battle">Giraffe Battle</option>
 			</select><br> <label>Event date:</label> <input
 				class="bg-dark text-light" type="date" name="eventDate"
 				min="1950-01-01" max="2021-07-23"> <br> <input
