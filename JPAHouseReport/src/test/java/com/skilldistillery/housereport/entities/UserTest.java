@@ -63,11 +63,11 @@ class UserTest {
 	@Test
 	void test_user_mapped_listings() {
 		assertNotNull(user.getListings());
-		assertEquals(4, user.getListings().size());
+		assertEquals(3, user.getListings().size());
 	}
 	@Test
 	void test_user_mapped_ratings() {
 		assertNotNull(user.getRatings());
-		assertEquals(1, user.getRatings().size());
+		assertEquals(3, user.getRatings().size());
 	}
 }
