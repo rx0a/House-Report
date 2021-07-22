@@ -78,7 +78,11 @@ public class ListingController {
 		dbListing.setPropertyTax(listing.getPropertyTax());
 		dbListing.setParkingType(listing.getParkingType());
 		dbListing.getPropertyType().setType(propertyType.getType());
+		ListingPhoto dbListingPhoto = photoDao.findById(photo.getId());
 		listingDao.update(dbListing, dbAddress);
+		dbListingPhoto.setListing(dbListing);
+		dbListingPhoto.setImgUrl(photo.getImgUrl());
+		dbListing.addPhoto(dbListingPhoto);
 		return "redirect:profile.do";
 	}
 
