@@ -116,14 +116,6 @@
 			<div class="carousel-item">
 				<img class="d-block" src="${photo.imgUrl}" alt="Image of home">
 			</div>
-			
-		<!-- 	<div class="carousel-item">
-				<img class="d-block" src="images/badhouse2.jpeg" alt="Second slide">
-			</div>
-			
-			<div class="carousel-item">
-				<img class="d-block" src="images/badhouse3.jpeg" alt="Third slide">
-			</div> -->
 		</c:forEach>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleControls"
@@ -147,10 +139,8 @@
 				${selectedListing.address.postalCode}</h5>
 				
 				<table style="width:40%">
-					<tr>
-						<thead>
-						House Info
-						</thead>
+					<tr><td>
+					<p>House Info</p></td>
 					</tr>
 					<tr>
 						<td>Price:</td>
@@ -217,8 +207,8 @@
 					
 					</table>
 					<form action="addEvent.do" method="post">
-					<input type="submit" value="Add Event">
-					<input type="hidden" name="id" value="${selectedListing.id }">
+					<input class="btn btn-primary bg-dark" type="submit" value="Add Event">
+					<input class="btn btn-primary bg-dark" type="hidden" name="id" value="${selectedListing.id }">
 					</form>
 					</div>
 			<br>
@@ -254,42 +244,19 @@
 					</div>
 				</div>
 			</section>
-
-		<!-- 	<form>
-				<div class="form-group">
-					<label for="userComment">Enter Comment Here</label>
-					<textarea class="form-control" id="userComment" name="userComment"
-						rows="3"></textarea>
-				</div>
-
-				Like/Dislike
-				<button class="dislike">
-					<i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-				</button>
-
-				<button class="like">
-					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-				</button>
-				<br> <br>
-				End Like/Dislike
-
-			<a href="#" class="btn btn-primary">Submit Comment</a> <br> <br>
-
-			</form> -->
-			<!-- End Comment Box -->
 	<form action="postComment.do" method="POST">
 	
 							<input type="text" name="comment"/> 
 							<input type="hidden" name="listingID" value="${selectedListing.id}" /> 
 							<input type="hidden" name="userID" value="${user.id}">
-							<input type="submit" value="Post Comment" />
+							<input class="btn btn-primary bg-dark" type="submit" value="Post Comment" />
 						</form>
 		</div>
 		<div>
 			<form action="addToFavorites.do" method="POST">
 							<input type="hidden" name="listingID" value="${selectedListing.id}" /> 
 							<input type="hidden" name="userID" value="${user.id}">
-							<input type="submit" value="Add to Favorites" />
+							<input class="btn btn-primary bg-dark" type="submit" value="Add to Favorites" />
 						</form><br>
 		</div>
 		<div>
@@ -308,8 +275,8 @@
 			</form>
 		</div>
 							
-		<div class="card-footer text-muted">2 days ago</div>
-	</div>
+		<div class="card-footer text-muted"> </div>
+
 	<!-- End Info Card -->
 
 

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -42,10 +42,10 @@
 
 <link rel="canonical" />
 <style>
-
 </style>
 </head>
-<body >	<!-- Start Raybar -->
+<body>
+	<!-- Start Raybar -->
 	<header>
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
@@ -72,7 +72,7 @@
 						</li>
 					</ul>
 					<ul class="navbar-nav ml-auto ">
-						<li class="nav-item dropdown" style="margin-right:20px" ><a
+						<li class="nav-item dropdown" style="margin-right: 20px"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> ${user.firstName }
@@ -103,183 +103,182 @@
 	</header>
 	<!-- End Raybar -->
 	<main>
-	<br>
-	<br>
-		<br>
-	<br>	<br>
-	<br>
-<div style="padding-top:250"></div>
-<div class="container-fluid mycontainer card" style="width:50%; margin-left:auto;margin-right:auto; padding:20px; ">
-<div>
-<h3>Create a new listing</h3></div>
-	<form class="row g-3" action="createdListing.do" method="POST">
-		<input type="hidden" name="userId" value="${user.id}">
+		<br> <br> <br> <br> <br> <br>
+		<div style="padding-top: 250"></div>
+		<div class="container-fluid mycontainer card"
+			style="width: 50%; margin-left: auto; margin-right: auto; padding: 20px;">
+			<div>
+				<h3>Create a new listing</h3>
+			</div>
+			<form class="row g-3" action="createdListing.do" method="POST">
+				<input type="hidden" name="userId" value="${user.id}">
 
-		<!-- Start of address object -->
-		<div class="col-md-12">
+				<!-- Start of address object -->
+				<div class="col-md-12">
 
-			<label for="street" class="form-label">Street</label> <input
-				type="text" class="form-control" name="street">
-		</div>
+					<label for="street" class="form-label">Street</label> <input
+						type="text" class="form-control" name="street">
+				</div>
 
-		<div class="col-md-12">
-			<label for="street2" class="form-label">Apt</label> <input
-				type="text" class="form-control" name="street2">
-		</div>
+				<div class="col-md-12">
+					<label for="street2" class="form-label">Apt</label> <input
+						type="text" class="form-control" name="street2">
+				</div>
 
-		<div class="col-md-6">
-			<label for="city" class="form-label">City</label> <input type="text"
-				class="form-control" name="city">
-		</div>
-		<br>
-		<div class="col-md-3">
-			<label for="state" class="form-label"> State </label> <br> <select
-				name="state" class="form-select bg-dark">
-				<option selected>State...</option>
-				<option value="AL">Alabama</option>
-				<option value="AK">Alaska</option>
-				<option value="AZ">Arizona</option>
-				<option value="AR">Arkansas</option>
-				<option value="CA">California</option>
-				<option value="CO">Colorado</option>
-				<option value="CT">Connecticut</option>
-				<option value="DE">Delaware</option>
-				<option value="DC">DC</option>
-				<option value="FL">Florida</option>
-				<option value="GA">Georgia</option>
-				<option value="HI">Hawaii</option>
-				<option value="ID">Idaho</option>
-				<option value="IL">Illinois</option>
-				<option value="IN">Indiana</option>
-				<option value="IA">Iowa</option>
-				<option value="KS">Kansas</option>
-				<option value="KY">Kentucky</option>
-				<option value="LA">Louisiana</option>
-				<option value="ME">Maine</option>
-				<option value="MD">Maryland</option>
-				<option value="MA">Massachusetts</option>
-				<option value="MI">Michigan</option>
-				<option value="MN">Minnesota</option>
-				<option value="MS">Mississippi</option>
-				<option value="MO">Missouri</option>
-				<option value="MT">Montana</option>
-				<option value="NE">Nebraska</option>
-				<option value="NV">Nevada</option>
-				<option value="NH">New Hampshire</option>
-				<option value="NJ">New Jersey</option>
-				<option value="NM">New Mexico</option>
-				<option value="NY">New York</option>
-				<option value="NC">North Carolina</option>
-				<option value="ND">North Dakota</option>
-				<option value="OH">Ohio</option>
-				<option value="OK">Oklahoma</option>
-				<option value="OR">Oregon</option>
-				<option value="PA">Pennsylvania</option>
-				<option value="RI">Rhode Island</option>
-				<option value="SC">South Carolina</option>
-				<option value="SD">South Dakota</option>
-				<option value="TN">Tennessee</option>
-				<option value="TX">Texas</option>
-				<option value="UT">Utah</option>
-				<option value="VT">Vermont</option>
-				<option value="VA">Virginia</option>
-				<option value="WA">Washington</option>
-				<option value="WV">West Virginia</option>
-				<option value="WI">Wisconsin</option>
-				<option value="WY">Wyoming</option>
-			</select>
-		</div>
+				<div class="col-md-6">
+					<label for="city" class="form-label">City</label> <input
+						type="text" class="form-control" name="city">
+				</div>
+				<br>
+				<div class="col-md-3">
+					<label for="state" class="form-label"> State </label> <br> <select
+						name="state" class="form-select bg-dark text-light">
+						<option selected>State...</option>
+						<option value="AL">Alabama</option>
+						<option value="AK">Alaska</option>
+						<option value="AZ">Arizona</option>
+						<option value="AR">Arkansas</option>
+						<option value="CA">California</option>
+						<option value="CO">Colorado</option>
+						<option value="CT">Connecticut</option>
+						<option value="DE">Delaware</option>
+						<option value="DC">DC</option>
+						<option value="FL">Florida</option>
+						<option value="GA">Georgia</option>
+						<option value="HI">Hawaii</option>
+						<option value="ID">Idaho</option>
+						<option value="IL">Illinois</option>
+						<option value="IN">Indiana</option>
+						<option value="IA">Iowa</option>
+						<option value="KS">Kansas</option>
+						<option value="KY">Kentucky</option>
+						<option value="LA">Louisiana</option>
+						<option value="ME">Maine</option>
+						<option value="MD">Maryland</option>
+						<option value="MA">Massachusetts</option>
+						<option value="MI">Michigan</option>
+						<option value="MN">Minnesota</option>
+						<option value="MS">Mississippi</option>
+						<option value="MO">Missouri</option>
+						<option value="MT">Montana</option>
+						<option value="NE">Nebraska</option>
+						<option value="NV">Nevada</option>
+						<option value="NH">New Hampshire</option>
+						<option value="NJ">New Jersey</option>
+						<option value="NM">New Mexico</option>
+						<option value="NY">New York</option>
+						<option value="NC">North Carolina</option>
+						<option value="ND">North Dakota</option>
+						<option value="OH">Ohio</option>
+						<option value="OK">Oklahoma</option>
+						<option value="OR">Oregon</option>
+						<option value="PA">Pennsylvania</option>
+						<option value="RI">Rhode Island</option>
+						<option value="SC">South Carolina</option>
+						<option value="SD">South Dakota</option>
+						<option value="TN">Tennessee</option>
+						<option value="TX">Texas</option>
+						<option value="UT">Utah</option>
+						<option value="VT">Vermont</option>
+						<option value="VA">Virginia</option>
+						<option value="WA">Washington</option>
+						<option value="WV">West Virginia</option>
+						<option value="WI">Wisconsin</option>
+						<option value="WY">Wyoming</option>
+					</select>
+				</div>
 
-		<div class="col-md-3">
-			<label for="postalCode" class="form-label">Zip Code</label> <input
-				type="text" class="form-control" name="postalCode">
-		</div>
+				<div class="col-md-3">
+					<label for="postalCode" class="form-label">Zip Code</label> <input
+						type="text" class="form-control" name="postalCode">
+				</div>
 
-		<!-- Start of listing object -->
-		<div class="col-md-3">
-			<label for="price" class="form-label">Price</label> <input
-				type="text" class="form-control" name="price"
-				value="${listing.price}">
-		</div>
+				<!-- Start of listing object -->
+				<div class="col-md-3">
+					<label for="price" class="form-label">Price</label> <input
+						type="text" class="form-control" name="price"
+						value="${listing.price}">
+				</div>
 
-		<div class="col-md-3">
-			<label for="squareFeet" class="form-label">Square footage</label> <input
-				type="text" class="form-control" name="squareFeet"
-				value="${listing.squareFeet}">
-		</div>
+				<div class="col-md-3">
+					<label for="squareFeet" class="form-label">Square footage</label> <input
+						type="text" class="form-control" name="squareFeet"
+						value="${listing.squareFeet}">
+				</div>
 
-		<div class="col-md-3">
-			<label for="bedNumber" class="form-label">Bedrooms</label> <input
-				type="text" class="form-control" name="bedNumber"
-				value="${listing.bedNumber}">
-		</div>
+				<div class="col-md-3">
+					<label for="bedNumber" class="form-label">Bedrooms</label> <input
+						type="text" class="form-control" name="bedNumber"
+						value="${listing.bedNumber}">
+				</div>
 
-		<div class="col-md-3">
-			<label for="bathNumber" class="form-label">Bathrooms</label> <input
-				type="text" class="form-control" name="bathNumber"
-				value="${listing.bathNumber}">
-		</div>
+				<div class="col-md-3">
+					<label for="bathNumber" class="form-label">Bathrooms</label> <input
+						type="text" class="form-control" name="bathNumber"
+						value="${listing.bathNumber}">
+				</div>
 
-		<div class="col-md-3">
-			<label for="propertyCrimeRate" class="form-label">
-				Crime Rate</label> <input type="text" class="form-control"
-				name="propertyCrimeRate" value="${listing.propertyCrimeRate}">
-		</div>
+				<div class="col-md-3">
+					<label for="propertyCrimeRate" class="form-label"> Crime
+						Rate</label> <input type="text" class="form-control"
+						name="propertyCrimeRate" value="${listing.propertyCrimeRate}">
+				</div>
 
-		<div class="col-md-3">
-			<label for="hoaMonthlyRate" class="form-label">Monthly HOA
-				Cost</label> <input type="text" class="form-control" name="hoaMonthlyRate"
-				value="${listing.hoaMonthlyRate}">
-		</div>
+				<div class="col-md-3">
+					<label for="hoaMonthlyRate" class="form-label">Monthly HOA
+						Cost</label> <input type="text" class="form-control" name="hoaMonthlyRate"
+						value="${listing.hoaMonthlyRate}">
+				</div>
 
-		<div class="col-md-3">
-			<label for="yearBuilt" class="form-label">Year Built</label> <input
-				type="text" class="form-control" name="yearBuilt"
-				value="${listing.yearBuilt}">
-		</div>
+				<div class="col-md-3">
+					<label for="yearBuilt" class="form-label">Year Built</label> <input
+						type="text" class="form-control" name="yearBuilt"
+						value="${listing.yearBuilt}">
+				</div>
 
-		<div class="col-md-3">
-			<label for="lotSizeSqft" class="form-label">Lot Size</label> <input
-				type="text" class="form-control" name="lotSizeSqft"
-				value="${listing.lotSizeSqft}">
-		</div>
+				<div class="col-md-3">
+					<label for="lotSizeSqft" class="form-label">Lot Size</label> <input
+						type="text" class="form-control" name="lotSizeSqft"
+						value="${listing.lotSizeSqft}">
+				</div>
 
-		<div class="col-md-3">
-			<label for="propertyTax" class="form-label">Property Tax</label> <input
-				type="text" class="form-control" name="propertyTax"
-				value="${listing.propertyTax}">
-		</div>
+				<div class="col-md-3">
+					<label for="propertyTax" class="form-label">Property Tax</label> <input
+						type="text" class="form-control" name="propertyTax"
+						value="${listing.propertyTax}">
+				</div>
 
-		<div class="col-md-3">
-			<label for="parkingType" class="form-label">Parking Type</label> <input
-				type="text" class="form-control" name="parkingType"
-				value="${listing.parkingType}">
-		</div>
+				<div class="col-md-3">
+					<label for="parkingType" class="form-label">Parking Type</label> <input
+						type="text" class="form-control" name="parkingType"
+						value="${listing.parkingType}">
+				</div>
 
-		<!-- property type object -->
-		<div class="col-md-3">
-			<label for="state" class="form-label"> Type </label> <br> <select
-				id="state" class="form-select bg-dark">
-				<option selected>Property Type...</option>
-				<option value="Apartment">Apartment</option>
-				<option value="House">House</option>
-				<option value="Condo">Condo</option>
-				<option value="Duplex">Duplex</option>
-				<option value="Townhouse">Townhouse</option>
-			</select>
-		</div>
+				<!-- property type object -->
+				<div class="col-md-3">
+					<label for="state" class="form-label"> Type </label> <br> <select
+						id="state" class="form-select bg-dark text-light">
+						<option selected>Property Type...</option>
+						<option value="Apartment">Apartment</option>
+						<option value="House">House</option>
+						<option value="Condo">Condo</option>
+						<option value="Duplex">Duplex</option>
+						<option value="Townhouse">Townhouse</option>
+					</select>
+				</div>
 
-		<!-- listing photo object -->
-		<div class="col-md-3">
-			<label for="imgUrl" class="form-label">Photo URL</label> <input
-				type="text" class="form-control" id="Create" name="imgUrl">
+				<!-- listing photo object -->
+				<div class="col-md-3">
+					<label for="imgUrl" class="form-label">Photo URL</label> <input
+						type="text" class="form-control" id="Create" name="imgUrl">
+				</div>
+				<br>
+				<div class="col text-center">
+					<button type="submit" class="btn btn-primary bg-dark"
+						value="Create">Submit</button>
+				</div>
+			</form>
 		</div>
-
-		<div class="col text-center">
-		<button type="submit" class="btn btn-primary bg-dark" value="Create">Submit</button>
-		</div>
-	</form>
-</div>
-</main>
+	</main>
 </body>
 </html>

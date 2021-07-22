@@ -94,7 +94,7 @@ html {
 }
 </style>
 </head>
-<body>	
+<body>
 
 	<!-- Start Raybar -->
 	<header>
@@ -123,7 +123,7 @@ html {
 						</li>
 					</ul>
 					<ul class="navbar-nav ml-auto ">
-						<li class="nav-item dropdown" style="margin-right:20px" ><a
+						<li class="nav-item dropdown" style="margin-right: 20px"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> ${user.firstName }
@@ -155,7 +155,7 @@ html {
 	<!-- End Raybar -->
 
 	<!--     <div class="wrapper"> -->
-	<div class="main-panel" style="padding-top:80px">
+	<div class="main-panel" style="padding-top: 80px">
 		<nav class="navbar navbar-expand-lg " color-on-scroll="500">
 			<div class=" container-fluid  ">
 				<p></p>
@@ -168,27 +168,7 @@ html {
 						class="navbar-toggler-bar burger-lines"></span>
 				</button>
 				<div class="collapse navbar-collapse justify-content-end"
-					id="navigation">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="https://example.com"
-							id="navbarDropdownMenuLink" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> <span
-								class="no-icon">Admin</span>
-						</a>
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
-								<form action="viewUsers.do" method="POST">
-									<button class="dropdown-item" type="submit" name="action"
-										value="View Users">View Users</button>
-								</form>
-
-							</div></li>
-						<li class="nav-item"><a class="nav-link" href="#pablo"> <span
-								class="no-icon">Log out</span>
-						</a></li>
-					</ul>
-				</div>
+					id="navigation"></div>
 			</div>
 		</nav>
 		<!-- End Navbar -->
@@ -213,9 +193,9 @@ html {
 								</button>
 								<h4 class="card-title">Profile Info</h4>
 							</div>
-								<c:choose>
-									<c:when test="${! empty user}">
-
+							<c:choose>
+								<c:when test="${! empty user}">
+									<div style="padding-left:40px;padding-right:40px;padding-top:20px;padding-bottom:20px;">
 										<div class="info">
 											Username: <input class="form-control me-2" type="text"
 												name="username" value="${user.username}" />
@@ -240,11 +220,10 @@ html {
 											Email: <input class="form-control me-2" type="text"
 												name="email" value="${user.email}" />
 										</div>
-									</c:when>
-								</c:choose>
-							<div class="card-footer ">
-
-							</div>
+									</div>
+								</c:when>
+							</c:choose>
+							<div class="card-footer "></div>
 
 						</div>
 					</form>

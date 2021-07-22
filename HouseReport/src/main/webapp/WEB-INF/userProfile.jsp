@@ -410,9 +410,10 @@ html {
 																	<c:when test="${!empty editComment}">
 																		<form action="accountEditedComment.do" method="POST">
 																			<input type="hidden" name="id" value="${comment.id }">
-																			<input type="text" name="commentText"
-																				value="${comment.comment }"> <input
-																				type="submit" value="Submit Edited Comment" />
+																			<textarea class="form-control z-depth-1 bg-dark text-light"rows="2"name="commentText">${comment.comment } </textarea>
+																				<br>
+																				<input class="btn btn-primary bg-dark pull-right"
+																				type="submit" value="Submit" />
 																		</form>
 																	</c:when>
 																	<c:otherwise>
@@ -441,11 +442,6 @@ html {
 		You do not have any current comments<br>
 												</c:otherwise>
 											</c:choose>
-
-											<form action="deleteUser.do" method="POST">
-												<input type="hidden" name="id" value="${user.id}"> <input
-													type="submit" value="Kill Yo-self" />
-											</form>
 										</tbody>
 									</table>
 								</div>

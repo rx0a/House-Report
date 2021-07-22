@@ -31,11 +31,10 @@
 <!-- CSS -->
 <link rel="stylesheet" href="style.css" />
 <!-- END CSS -->
-<title>User Profile</title>
+<title>Add Event</title>
 </head>
 <body>
-
-		<!-- Start Raybar -->
+	<!-- Start Raybar -->
 	<header>
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
@@ -62,7 +61,7 @@
 						</li>
 					</ul>
 					<ul class="navbar-nav ml-auto ">
-						<li class="nav-item dropdown" style="margin-right:20px" ><a
+						<li class="nav-item dropdown" style="margin-right: 20px"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> ${user.firstName }
@@ -92,27 +91,34 @@
 		</nav>
 	</header>
 	<!-- End Raybar -->
+	<div style="padding-top: 80px"></div>
+	<br>
+	<br>
+	<br>
+	<div class="container-fluid mycontainer card"
+		style="width: 25%; margin-left: auto; margin-right: auto; padding: 20px;">
 
-<div style="padding-top:80px"> </div>
-<h2>Add event for: </h2>
-<p>${listing.address.street}</p>
-<p>${listing.address.city}, ${listing.address.state} ${listing.address.postalCode}</p>
-<form action="createEvent.do" method="post">
-<label>Event: </label>
-<select name="eventType">
-    <option value="Earthquake">Earthquake</option>
-    <option value="Hurricane">Hurricane</option>
-    <option value="Wildfire">Wildfire</option>
-    <option value="Tornado">Tornado</option>
-    <option value="Tsunami">Tsunami</option>
-    <option value="Flood">Flood</option>
-    <option value="Hail">Hail</option>
-</select><br>
-<label>Event date:</label>
-<input type="date" name="eventDate"
-    min="1950-01-01" max="2021-07-23">
-    <input type="hidden" name="listId" value="${listing.id}">
-    <input type="submit" value="Add">
-</form>
+		<h2>Add event for:</h2>
+		<h5>${listing.address.street}</h5>
+		<h5>${listing.address.city},${listing.address.state}
+			${listing.address.postalCode}</h5>
+		<form action="createEvent.do" method="post">
+			<br> <label>Event: </label> <select class="bg-dark text-light"
+				name="eventType">
+				<option value="Earthquake">Earthquake</option>
+				<option value="Hurricane">Hurricane</option>
+				<option value="Wildfire">Wildfire</option>
+				<option value="Tornado">Tornado</option>
+				<option value="Tsunami">Tsunami</option>
+				<option value="Flood">Flood</option>
+				<option value="Hail">Hail</option>
+			</select><br> <label>Event date:</label> <input
+				class="bg-dark text-light" type="date" name="eventDate"
+				min="1950-01-01" max="2021-07-23"> <br> <input
+				type="hidden" name="listId" value="${listing.id}"> <br>
+			<input class="btn btn-primary bg-dark pull-right" type="submit"
+				value="Add">
+		</form>
+	</div>
 </body>
 </html>
