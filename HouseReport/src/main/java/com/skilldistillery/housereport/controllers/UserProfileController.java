@@ -148,8 +148,8 @@ public class UserProfileController {
 		userDao.deactivateUser(dbUser);
 		System.out.println(dbUser.getEnabled());
 //		mv.addObject("disabledUser", dbUser);
-		mv.setViewName("userProfile");
-		return "redirect:profile.do";
+//		mv.setViewName("userProfile");
+		return "admin";
 	}
 
 	@RequestMapping(path = { "activateUser.do" }, method = RequestMethod.POST)
@@ -165,7 +165,7 @@ public class UserProfileController {
 		userDao.activateUser(dbUser);
 		System.out.println(dbUser.getEnabled());
 //		mv.addObject("disabledUser", dbUser);
-		mv.setViewName("userProfile");
-		return "redirect:profile.do";
+//		mv.setViewName("userProfile");
+		return "admin";
 	}
 }
