@@ -87,24 +87,31 @@ public class UserDAOImpl implements UserDAO {
 		for (Listing favorite : dbUser.getFavorites()) {
 			em.remove(favorite);
 		}}
-		List<Listing> deletedUserListings = dbUser.getListings();
-		if(deletedUserListings != null) {
-		for (Listing listing : deletedUserListings) {
-			Address address =listing.getAddress();
-			for (Event event : listing.getEvents()) {
-				em.remove(event);
-			}
-			for (ListingPhoto photo : listing.getListingPhotos()) {
-				em.remove(photo);
-			}
-			for (Comment comment : listing.getComments()) {
-				em.remove(comment);
-			}
-			em.remove(listing);
-			em.remove(address);
-		}}
+//		List<Listing> deletedUserListings = dbUser.getListings();
+//		if(deletedUserListings != null) {
+//		for (Listing listing : deletedUserListings) {
+//			Address address =listing.getAddress();
+//			for (Event event : listing.getEvents()) {
+//				em.remove(event);
+//				System.out.println("TEST 8=---------------------------------------------");
+//			}
+//			for (ListingPhoto photo : listing.getListingPhotos()) {
+//				em.remove(photo);
+//				System.out.println("TEST 9=---------------------------------------------");
+//			}
+//			for (Comment comment : listing.getComments()) {
+//				em.remove(comment);
+//				System.out.println("TEST 10=---------------------------------------------");
+//			}
+//			em.remove(listing);
+//			System.out.println("TEST 11=---------------------------------------------");
+//			em.remove(address);
+//			System.out.println("TEST 12=---------------------------------------------");
+//		}}
 		em.remove(dbUser);
+		System.out.println("TEST 12=---------------------------------------------");
 		boolean successfulDelete = !em.contains(dbUser);
+		System.out.println(successfulDelete);
 		return successfulDelete;
 	}
 

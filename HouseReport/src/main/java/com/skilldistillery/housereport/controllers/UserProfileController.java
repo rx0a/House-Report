@@ -124,6 +124,10 @@ public class UserProfileController {
 	@RequestMapping(path = { "deleteUser.do" }, params = "id", method = RequestMethod.POST)
 	public String deleteUser(int id) {
 		User user = userDao.findById(id);
+		List<Listing> userListings = user.getListings();
+		for (Listing listing : userListings) {
+			listingDao.delete(listing);
+		}
 		userDao.deleteUser(user);
 		return "admin";
 	}
