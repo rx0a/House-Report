@@ -53,7 +53,13 @@ public class ListingController {
 	}
 
 	@RequestMapping(path = "updateListing.do", method = RequestMethod.POST)
-	public String updateListing(Listing listing) {
+	public String updateListing(Address address, Listing listing, PropertyType propertyType, ListingPhoto photo) {
+		Address dbAddress = addressDao.findById(address.getId());
+		dbAddress.setStreet(address.getStreet());
+		dbAddress.setStreet2(address.getStreet2());
+		dbAddress.setCity(dbAddress.getCity());
+		dbAddress.setState(dbAddress.getState());
+		dbAddress.setPostalCode(dbAddress.getPostalCode());
 		Listing dbListing = listingDao.findById(listing.getId());
 		dbListing.setPrice(listing.getPrice());
 		dbListing.setSquareFeet(listing.getSquareFeet());
@@ -66,7 +72,7 @@ public class ListingController {
 		dbListing.setLotSizeSqft(listing.getLotSizeSqft());
 		dbListing.setPropertyTax(listing.getPropertyTax());
 		dbListing.setParkingType(listing.getParkingType());
-		listingDao.update(dbListing, dbListing.getAddress());
+		listingDao.update(dbListing, dbAddress);
 		return "redirect:profile.do";
 	}
 
