@@ -70,7 +70,7 @@ class ListingTest {
 	@Test
 	void test_listing_mapped_rating() {
 		assertNotNull(listing.getRatings());
-		assertEquals(2, listing.getRatings().size());
+		assertEquals(4, listing.getRatings().size());
 	}
 
 	@Test
@@ -87,7 +87,7 @@ class ListingTest {
 	@Test
 	void test_listing_mapped_favorites() {
 		assertNotNull(listing.getFavoriteUsers());
-		assertEquals(1, listing.getFavoriteUsers().size());
+		assertEquals(2, listing.getFavoriteUsers().size());
 	}
 
 	@Test

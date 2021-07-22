@@ -45,7 +45,7 @@ class ListingPhotoTest {
 	void test_photo_mapped_toDB() {
 
 		assertNotNull(photo);
-		assertEquals("https://www.zillow.com/homedetails/595-N-Gilpin-St-Denver-CO-80218/13345693_zpid/?mmlb=g,0", photo.getImgUrl());
+		assertEquals("https://photos.zillowstatic.com/fp/107f101f3a4819cba827fbf6140a2c69-o_a.webp", photo.getImgUrl());
 	}
 	
 	@Test
