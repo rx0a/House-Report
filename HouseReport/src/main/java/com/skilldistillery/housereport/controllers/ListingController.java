@@ -166,12 +166,14 @@ public class ListingController {
 	
 	@RequestMapping(path="deleteListing.do", method=RequestMethod.POST)
 	public String deleteListing(Listing listing) {
+		System.out.println(listing.getId() + "-----------test-----------------------------listing---------");
 		listingDao.delete(listing);
 		return "redirect:profile.do";
 	}
 	
 	@RequestMapping(path="modifyListing.do", params= {"action"}, method=RequestMethod.POST)
 	public String modifyListing(Model model, RedirectAttributes redir, Listing listing, String action) {
+		System.out.println(listing.getId() + "test from modifyListing---------------------------------------------");
 		if(action.equals("Delete")) {
 			redir.addFlashAttribute("listing", listing);
 			return "deleteListing";

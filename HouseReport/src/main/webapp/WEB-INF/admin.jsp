@@ -351,21 +351,20 @@ html {
 																<tr>
 																	<td class="test align-bottom" valign="bottom">
 
-																		<form action="editListing.do" method="POST">
-																			<input type="hidden" name="id"
-																				value="${address.listing.id}" /> <input
-																				type="hidden" name="id" value="${user.id}">
-																			<button class="btn btn-outline-danger " type="submit"
-																				name="action" value="Delete">
-																				<i class="fa fa-trash" aria-hidden="true"></i>
-																			</button>
-																			&nbsp;&nbsp;
-																			<button class="btn btn-outline-warning  "
-																				type="submit" name="action" value="Edit">
-																				<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-																			</button>
-																		</form>
-																	</td>
+																			<form action="modifyListing.do" method="POST">
+																				<input type="hidden" name="id" value="${address.listing.id}" />
+																				<input type="hidden" name="id" value="${user.id}">
+																				<button class="btn btn-outline-danger "
+																					type="submit" name="action" value="Delete">
+																					<i class="fa fa-trash" aria-hidden="true"></i>
+																				</button>
+																				&nbsp;&nbsp;
+																				<button class="btn btn-outline-warning  "
+																					type="submit" name="action" value="Edit">
+																					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+																				</button>
+																			</form>
+																		</td>
 																</tr>
 															</table>
 														</td>
