@@ -39,8 +39,15 @@
 <title>House Report</title>
 
 <link rel="canonical" />
-<body>	
 
+<style>
+.titletable {
+	width: 100%;
+}
+</style>
+
+</head>
+<body>
 	<!-- Start Raybar -->
 	<header>
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -68,7 +75,7 @@
 						</li>
 					</ul>
 					<ul class="navbar-nav ml-auto ">
-						<li class="nav-item dropdown" style="margin-right:20px" ><a
+						<li class="nav-item dropdown" style="margin-right: 20px"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> ${user.firstName }
@@ -98,184 +105,264 @@
 		</nav>
 	</header>
 	<!-- End Raybar -->
-
-
 	<!-- Carousel -->
-	<div id="carouselExampleControls" class="carousel slide" style="padding-top:80px"
-		data-ride="carousel">
+	<div id="carouselExampleControls" class="carousel slide"
+		style="padding-top: 70px; height: 600px;" data-ride="carousel">
 		<div class="carousel-inner">
-		
+
 			<div class="carousel-item active">
-				<img class="d-block" src="${selectedListing.listingPhotos.get(0).imgUrl}" alt="Image of home">
-				<%-- <img class="d-block" c:each="photo : ${selectedListing.listingPhotos}" alt="Image of home"> --%> 
-				
+
+				<img class="d-block w-100 h-100" style="margin-top: -200px;"
+					src="${selectedListing.listingPhotos.get(0).imgUrl}"
+					alt="Image of home">
 			</div>
-			
 			<c:forEach var="photo" items="${selectedListing.listingPhotos}">
-			
-			<div class="carousel-item">
-				<img class="d-block" src="${photo.imgUrl}" alt="Image of home">
-			</div>
-		</c:forEach>
+
+				<div class="carousel-item">
+
+					<img class="d-block w-100 h-100" style="margin-top: -200px;"
+						src="${photo.imgUrl}" alt="Image of home">
+				</div>
+			</c:forEach>
 		</div>
-		<a class="carousel-control-prev" href="#carouselExampleControls"
-			role="button" data-slide="prev"> <span
-			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-			class="sr-only">Previous</span>
-		</a> <a class="carousel-control-next" href="#carouselExampleControls"
-			role="button" data-slide="next"> <span
-			class="carousel-control-next-icon" aria-hidden="true"></span> <span
-			class="sr-only">Next</span>
-		</a>
+		<button class="carousel-control-prev" type="button"
+			data-target="#carouselExampleControls" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+				class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button"
+			data-target="#carouselExampleControls" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
+				class="visually-hidden">Next</span>
+		</button>
 	</div>
 	<!-- End Carousel-->
 
 	<!-- Info Card -->
 	<div class="card text-center">
-		<div class="card-header">Home Details</div>
+		<div class="card-header" style="padding-left: 0; margin-left: 0;">
+			<table class="table titletable "
+				style="padding-left: 0; margin-left: 0;">
+				<tr>
+					<td class="align-left" style="padding-left: 0; margin-left: 0;">
+						<form action="addRating.do" method="POST">
+							Rating:&nbsp;${selectedListing.accuracyRating }%<br>
+							<input type="hidden" name="listingID"
+								value="${selectedListing.id}" /> <input type="hidden"
+								name="userID" value="${user.id}">
+							<button class="btn btn-outline-primary  " name="vote"
+								type="submit" value="1">
+								<i class="fa fa-arrow-up" aria-hidden="true"></i>
+							</button>
+
+							<button class="btn btn-outline-warning  " name="vote"
+								type="submit" value="0">
+								<i class="fa fa-arrow-down" aria-hidden="true"></i>
+							</button>
+						</form>
+					</td>
+					<td class="align-center">
+						<h5 class="card-title">${selectedListing.address.street},
+							<br> ${selectedListing.address.city},
+							${selectedListing.address.state}
+							${selectedListing.address.postalCode}
+						</h5>
+					</td>
+					<td class="align-right">
+						<form action="addToFavorites.do" method="POST">
+							<input type="hidden" name="listingID"
+								value="${selectedListing.id}" /> <input type="hidden"
+								name="userID" value="${user.id}"> Favorite<br>
+							<button class="btn btn-outline-danger  " type="submit"
+								value="favorite">
+								<i class="fa fa-heart" aria-hidden="true"></i>
+							</button>
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!-- Start Listing body -->
 		<div class="card-body">
-			<h5 class="card-title">${selectedListing.address.street}, <br>
-				${selectedListing.address.city}, ${selectedListing.address.state}
-				${selectedListing.address.postalCode}</h5>
-				
-				<table style="width:40%">
-					<tr><td>
-					<p>House Info</p></td>
-					</tr>
-					<tr>
-						<td>Price:</td>
-						<td>$ ${selectedListing.price }</td>
-					</tr>
-					<tr>
-						<td>Square Feet:</td>
-						<td>${selectedListing.squareFeet }</td>
-					</tr>	
-					<tr>
-						<td>Bedrooms:</td>
-						<td>${selectedListing.bedNumber }</td>
-					</tr>
-					<tr>
-						<td>Bathrooms:</td>
-						<td>${selectedListing.bathNumber }</td>
-					</tr>
-					<tr>
-						<td>Year Built:</td>
-						<td>${selectedListing.yearBuilt }</td>
-					</tr>
-					<tr>
-						<td>Property Crime Rate:</td>
-						<td>${selectedListing.propertyCrimeRate}</td>
-					</tr>
-					<tr>
-						<td>Violent Crime Rate:</td>
-						<td>${selectedListing.violentCrimeRate }</td>
-					</tr>
-					<tr>
-						<td>Lot Size:</td>
-						<td>${selectedListing.lotSizeSqft }</td>
-					</tr>
-					<tr>
-						<td>Property Type:</td>
-						<td>${selectedListing.propertyType.type }</td>
-					</tr>
-					<tr>
-						<td>Parking:</td>
-						<td>${selectedListing.parkingType }</td>
-					<tr>
-						<td>Monthly HOA fees:</td>
-						<td>${selectedListing.hoaMonthlyRate }</td>
-					<tr>
-						<td>Property Tax Rate:</td>
-						<td>${selectedListing.propertyTax } %</td>
-					</tr>
-					<c:choose>
-							<c:when test="${! empty selectedListing.events}">
-							<c:forEach var="event" items="${selectedListing.events}">	
-					<tr>
-						<td>Event:</td>
-						<td>${event.eventType }</td>
-						<td>Event Date:</td>
-						<td>${event.eventDate }</td>
-					</tr>	
-					</c:forEach>
-					</c:when>
-					</c:choose>
-						<tr>
-						<td>Accuracy Rating:</td>
-						<td>${selectedListing.accuracyRating } %</td>
-					</tr> 
-					
-					</table>
-					<form action="addEvent.do" method="post">
-					<input class="btn btn-primary bg-dark" type="submit" value="Add Event">
-					<input class="btn btn-primary bg-dark" type="hidden" name="id" value="${selectedListing.id }">
-					</form>
-					</div>
-			<br>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card ">
+						<div class="card-header ">
+							<h4 class="card-title">Details</h4>
+						</div>
+						<div class="card-body ">
+							<div class="table-full-width">
+								<table class="table table-striped" id="container">
+									<tbody>
+										<tr>
+											<td>
+												<div class="form-check">Price:</div>
+											</td>
+											<td>$ ${selectedListing.price }</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check">Square Feet:</div>
+											</td>
+											<td>${selectedListing.squareFeet }</td>
+										</tr>
 
-			<!-- Comment Box -->
-			<section>
-				<div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-dark"
-					style="max-width: auto; max-height: 250px;">
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-5 col-md-6 col-12 pb-4">
-								<h1>Comments</h1>
-								
-							<c:choose>
-							<c:when test="${! empty selectedListing.comments}">	
-							<c:forEach var="comment" items="${selectedListing.comments}">
-								<div class="comment mt-4 text-justify">
-									<img src="https://i.imgur.com/yTFUilP.jpg" alt=""
-										class="rounded-circle" width="40" height="40">
-									<h4>${comment.user.username }</h4>
-									<span>- 18 July, 2021</span> <br>
-									<p>${comment.comment}</p>
-								</div>
-								</c:forEach>
-								</c:when>
-								<c:otherwise>
-								No comments on this listing<br>
-								</c:otherwise>	
-								</c:choose>
+										<tr>
+											<td>
+												<div class="form-check">Bedrooms:</div>
+											</td>
+											<td>${selectedListing.bedNumber }</td>
+										</tr>
+
+
+										<tr>
+											<td>
+												<div class="form-check">Bathrooms:</div>
+											</td>
+											<td>${selectedListing.bathNumber }</td>
+										</tr>
+
+										<tr>
+											<td>
+												<div class="form-check">Year Built:</div>
+											</td>
+											<td>${selectedListing.yearBuilt }</td>
+										</tr>
+
+										<tr>
+											<td>
+												<div class="form-check">Crime Rate:</div>
+											</td>
+											<td>${selectedListing.propertyCrimeRate }</td>
+										</tr>
+
+										<tr>
+											<td>
+												<div class="form-check">Violent Crime Rate:</div>
+											</td>
+											<td>${selectedListing.violentCrimeRate }</td>
+										</tr>
+
+										<tr>
+											<td>
+												<div class="form-check">Lot Size:</div>
+											</td>
+											<td>${selectedListing.lotSizeSqft }</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check">Property Type:</div>
+											</td>
+											<td>${selectedListing.propertyType.type }</td>
+										</tr>
+
+										<tr>
+											<td>
+												<div class="form-check">Parking:</div>
+											</td>
+											<td>${selectedListing.parkingType }</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check">Monthly HOA fees:</div>
+											</td>
+											<td>$ ${selectedListing.hoaMonthlyRate }</td>
+										</tr>
+
+										<tr>
+											<td>
+												<div class="form-check">Property Tax Rate:</div>
+											</td>
+											<td>$ ${selectedListing.propertyTax }</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
-
 						</div>
 					</div>
 				</div>
-			</section>
-	<form action="postComment.do" method="POST">
-	
-							<input type="text" name="comment"/> 
-							<input type="hidden" name="listingID" value="${selectedListing.id}" /> 
-							<input type="hidden" name="userID" value="${user.id}">
-							<input class="btn btn-primary bg-dark" type="submit" value="Post Comment" />
-						</form>
+				<div class="col-md-6">
+					<div class="card ">
+						<div class="card-header ">
+							<form action="addEvent.do" method="post">
+								<button class="btn btn-outline-primary pull-right" type="submit"
+									value="Add Event">
+									<i class="fa fa-plus"></i>
+								</button>
+								<input class="btn btn-primary bg-dark" type="hidden" name="id"
+									value="${selectedListing.id }">
+							</form>
+							<h4 class="card-title">Events</h4>
+						</div>
+						<div class="card-body ">
+							<div class="table-full-width">
+								<table class="table table-striped" id="container">
+									<tbody>
+										<c:choose>
+											<c:when test="${! empty selectedListing.events}">
+												<c:forEach var="event" items="${selectedListing.events}">
+													<tr>
+														<td>${event.eventType }</td>
+														<td>${event.eventDate }</td>
+													</tr>
+												</c:forEach>
+											</c:when>
+
+											<c:otherwise>
+		No recorded events.<br>
+											</c:otherwise>
+										</c:choose>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div>
-			<form action="addToFavorites.do" method="POST">
-							<input type="hidden" name="listingID" value="${selectedListing.id}" /> 
-							<input type="hidden" name="userID" value="${user.id}">
-							<input class="btn btn-primary bg-dark" type="submit" value="Add to Favorites" />
-						</form><br>
-		</div>
-		<div>
-			<h5>Is this listing accurate?</h5>
-			<form action="addRating.do" method="POST">
-			<input type="hidden" name="listingID" value="${selectedListing.id}" /> 
-			<input type="hidden" name="userID" value="${user.id}">
-			<input type="hidden" name="vote" value="1">
-			<input type="submit" value="Yes" />
-			</form>
-			<form action="addRating.do" method="POST">
-			<input type="hidden" name="listingID" value="${selectedListing.id}" /> 
-			<input type="hidden" name="userID" value="${user.id}">
-			<input type="hidden" name="vote" value="0">
-			<input type="submit" value="No" />
-			</form>
-		</div>
-							
-		<div class="card-footer text-muted"> </div>
+		<br>
+
+		<!-- Comment Box -->
+		<section>
+			<div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-dark"
+				style="max-width: auto; max-height: 250px;">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-5 col-md-6 col-12 pb-4">
+							<h1>Comments</h1>
+
+							<c:choose>
+								<c:when test="${! empty selectedListing.comments}">
+									<c:forEach var="comment" items="${selectedListing.comments}">
+										<div class="comment mt-4 text-justify">
+											<img src="https://i.imgur.com/yTFUilP.jpg" alt=""
+												class="rounded-circle" width="40" height="40">
+											<h4>${comment.user.username }</h4>
+											<span>- 18 July, 2021</span> <br>
+											<p>${comment.comment}</p>
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+								No comments on this listing<br>
+								</c:otherwise>
+							</c:choose>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<form action="postComment.do" method="POST">
+
+			<input type="text" name="comment" /> <input type="hidden"
+				name="listingID" value="${selectedListing.id}" /> <input
+				type="hidden" name="userID" value="${user.id}"> <input
+				class="btn btn-primary bg-dark" type="submit" value="Post Comment" />
+		</form>
+	</div>
+
+	<div class="card-footer text-muted"></div>
 
 	<!-- End Info Card -->
 
