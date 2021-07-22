@@ -125,8 +125,8 @@ html {
 							</form>
 						</li>
 					</ul>
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item dropdown"><a
+					<ul class="navbar-nav ml-auto ">
+						<li class="nav-item dropdown" style="margin-right:20px" ><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> ${user.firstName }
@@ -421,13 +421,16 @@ html {
 																</c:choose>
 															</td>
 															<td class="td-actions text-right">
-																<form action="editComment.do" method="POST">
+																<form action="deleteComment.do" method="POST">
 																	<input type="hidden" name="id" value="${comment.id}" />
 																	<button class="btn btn-outline-danger" type="submit"
 																		name="action" value="Delete">
 																		<i class="fa fa-trash" aria-hidden="true"></i>
 																	</button>
+																	</form>
 																	&nbsp;&nbsp;
+																	<form action="editComment.do" method="POST">
+																	<input type="hidden" name="id" value="${comment.id}" />
 																	<button class="btn btn-outline-warning" type="submit"
 																		name="action" value="Edit">
 																		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
