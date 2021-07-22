@@ -350,10 +350,10 @@ html {
 																	<tr>
 																		<td class="test align-bottom" valign="bottom">
 
-																			<form action="deleteFavorite.do" method="POST">
-																				<input type="hidden" name="id"
+																			<form action="deleteFromFavorites.do" method="POST">
+																				<input type="hidden" name="favoriteID"
 																					value="${favorite.id}" /> <input type="hidden"
-																					name="id" value="${user.id}">
+																					name="userID" value="${user.id}">
 																				<button class="btn btn-outline-danger "
 																					type="submit" name="action" value="Delete">
 																					<i class="fa fa-trash" aria-hidden="true"></i>

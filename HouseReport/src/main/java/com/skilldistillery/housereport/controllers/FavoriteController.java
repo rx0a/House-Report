@@ -1,5 +1,7 @@
 package com.skilldistillery.housereport.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,12 +31,12 @@ public class FavoriteController {
 		return "redirect:profile.do";
 	}
 	
-	@RequestMapping(path="deleteFromFavorites.do", params = {"userID", "listingID"}, method=RequestMethod.POST)
-	public String deleteFromFavorites(int userID, int listingID) {
+	@RequestMapping(path="deleteFromFavorites.do", params = {"favoriteID", "userID"}, method=RequestMethod.POST)
+	public String deleteFromFavorites(HttpSession session, int favoriteID, int userID) {
 		User dbUser = userDao.findById(userID);
-		Listing dbListing = listingDao.findById(listingID);
-		dbUser.removeFavorite(dbListing);
+		dbUser.removeFavorite(listingDao.findById(favoriteID));
 		userDao.updateUser(dbUser);
+//		session.setAttribute("user", dbUser);
 		return "redirect:profile.do";
 	}
 }
