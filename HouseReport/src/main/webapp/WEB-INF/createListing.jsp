@@ -273,6 +273,8 @@
 						type="text" class="form-control" id="Create" name="imgUrl">
 				</div>
 				<br>
+				<input type="hidden" name="vote" value="1">
+				
 				<div class="col text-center">
 					<button type="submit" class="btn btn-primary bg-dark"
 						value="Create">Submit</button>

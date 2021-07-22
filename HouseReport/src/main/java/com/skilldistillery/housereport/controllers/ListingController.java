@@ -136,6 +136,9 @@ public class ListingController {
 		dbUser = userDao.findById(dbUser.getId());
 		dbUser.getListings().size();
 		session.setAttribute("user", dbUser);
+		
+		return addRating(model, lp.getListing().getId(), dbUser.getId(), "1");
+		
 //		dbUser.getListings().get(listing.getId()).getListingPhotos().add(photo);
 //		session.setAttribute("user", dbUser);
 //		photo.setListing(listing);
@@ -144,7 +147,7 @@ public class ListingController {
 //		photo.setListing(dbListing);
 //		dbListing.getListingPhotos().add(photo);
 //		ListingPhoto dbPhoto = photoDao.create(photo);
-		return "redirect:profile.do";
+//		return "listing";
 	}
 
 	@RequestMapping(path = "addRating.do", params= {"listingID", "userID", "vote"}, method= RequestMethod.POST)
