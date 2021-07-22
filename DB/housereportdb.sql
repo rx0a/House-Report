@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `listing` (
   `lot_size_sqft` INT NULL,
   `property_tax` DECIMAL(4,2) NULL,
   `parking_type` VARCHAR(45) NULL,
-  `accuracy_rating` DOUBLE(5,2) NULL,
+  `accuracy_rating` DECIMAL(5,2) NOT NULL DEFAULT 100.0,
   `address_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `property_id` INT NOT NULL,

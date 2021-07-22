@@ -1,5 +1,6 @@
 package com.skilldistillery.housereport.data;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -161,7 +162,10 @@ public class ListingDAOImpl implements ListingDAO {
 		long upVotes = em.createQuery(jpql2, Long.class).setParameter("id", id).getSingleResult();
 		double yes = (double) upVotes;
 		double total = (double) totalVotes;
-		double accuracyRating = yes / total * 100;
+		double accuracyRating = yes / total;
+		new DecimalFormat("#.##").format(accuracyRating);
+		accuracyRating = accuracyRating * 100;
+		new DecimalFormat("#.##").format(accuracyRating);
 		Listing listing = em.find(Listing.class, id);
 		listing.setAccuracyRating(accuracyRating);
 		em.flush();
