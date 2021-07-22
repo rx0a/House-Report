@@ -15,5 +15,6 @@ public interface UserDAO {
 	boolean checkEmail(String email);
 	List<User> displayUsers();
 	User deactivateUser (User user);
+	User activateUser (User user);
 	List<User> find(String keyword);
 }

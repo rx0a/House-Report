@@ -276,18 +276,32 @@ html {
 																<tr>
 																	<td class="test align-bottom" valign="bottom">
 
-																		<form action="deactivateUser.do" method="POST">
+																		<form action="deleteUser.do" method="POST">
 																			<input type="hidden" name="id" value="${user.id}">
 																			<button class="btn btn-outline-danger " type="submit"
 																				name="action" value="Delete">
 																				<i class="fa fa-trash" aria-hidden="true"></i>
 																			</button>
+																		</form>
 																			&nbsp;&nbsp;
+																		<c:if test="${user.enabled < 1}">
+																		<form action="deactivateUser.do" method="POST">
 																			<button class="btn btn-outline-warning  "
 																				type="submit" name="action" value="Deactivate">
 																				<i class="fa fa-power-off" aria-hidden="true"></i>
 																			</button>
 																		</form>
+																		</c:if>
+																		<c:if test="${user.enabled > 0}">
+																		<form action="activateUser.do" method="POST">
+																			<input type="hidden" name="id" value="${user.id}">
+																			&nbsp;&nbsp;
+																			<button class="btn btn-outline-warning  "
+																				type="submit" name="action" value="Activate">
+																				<i class="fa fa-power-off" aria-hidden="true"></i>
+																			</button>
+																		</form>
+																		</c:if>
 																	</td>
 																</tr>
 															</table>

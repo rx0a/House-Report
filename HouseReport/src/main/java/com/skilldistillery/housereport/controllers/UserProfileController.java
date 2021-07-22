@@ -125,7 +125,7 @@ public class UserProfileController {
 	public String deleteUser(int id) {
 		User user = userDao.findById(id);
 		userDao.deleteUser(user);
-		return "login";
+		return "admin";
 	}
 
 	@RequestMapping(path = { "editUserPage.do" }, params = "id", method = RequestMethod.POST)
@@ -152,4 +152,20 @@ public class UserProfileController {
 		return "redirect:profile.do";
 	}
 
+	@RequestMapping(path = { "activateUser.do" }, method = RequestMethod.POST)
+	public String activateUser(User user) {
+		
+		System.out.println(user.getId());
+		ModelAndView mv = new ModelAndView();
+		User dbUser = userDao.findById(user.getId());
+		
+		System.out.println(dbUser);
+		
+		System.out.println(dbUser.getEnabled());
+		userDao.activateUser(dbUser);
+		System.out.println(dbUser.getEnabled());
+//		mv.addObject("disabledUser", dbUser);
+		mv.setViewName("userProfile");
+		return "redirect:profile.do";
+	}
 }
