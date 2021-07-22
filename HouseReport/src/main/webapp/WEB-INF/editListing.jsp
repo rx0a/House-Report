@@ -256,8 +256,8 @@
 
 				<!-- property type object -->
 				<div class="col-md-3">
-					<label for="state" class="form-label"> Type </label> <br> <select
-						id="state" class="form-select bg-dark text-light">
+					<label class="form-label"> Type </label> <br> <select
+						id="state" name="type" value="${listing.propertyType.type}" class="form-select bg-dark text-light">
 						<option selected>Property Type...</option>
 						<option value="Apartment">Apartment</option>
 						<option value="House">House</option>
