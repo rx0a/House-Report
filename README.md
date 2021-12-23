@@ -29,13 +29,13 @@ This application functions as a crowd sourced database for houses that may or no
 * [Spring Framework](https://en.wikipedia.org/wiki/Spring_Framework#Spring_Boot)<br>
 * [MVC / Model-View-Controller](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)<br>
 
-## How to Run
+<!-- ## How to Run
 To run make sure chrome is updated to the lastest version. Listed below are each developers ec2 instances' of the application.<br>
 NOTE: you'll need to create an account
 * [Caleb Koch's House Report](http://3.141.54.239:8080/HouseReport/)
 * [Ray Space's House Report](http://52.8.239.60:8080/HouseReport/)
 * [Brian Ramirez's House Report](http://18.118.108.93:8080/HouseReport/)
-* [Alex Adkins's House Report](http://18.119.85.90:8080/HouseReport/)
+* [Alex Adkins's House Report](http://18.119.85.90:8080/HouseReport/) -->
 
 ## Lessons Learned
 * Working as a team within an agile enviroment with a scrum master.
